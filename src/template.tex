@@ -1,0 +1,216 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage[a4paper, rmargin=3cm, lmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
+\usepackage{mathtools}
+\usepackage{bookmark}
+\usepackage{subcaption}
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[ruled, noline]{algorithm2e}
+\usepackage{fontspec}
+
+\usepackage{setspace}
+\setstretch{1.5}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{6px}
+
+\usepackage{unicode-math}
+\setmathfont{Stix Two Math}
+\setmathfont{TeX Gyre Pagella Math}[
+   range=bb,
+   Scale=MatchUppercase,
+   version=pagella
+]
+
+\usepackage{polyglossia}
+\setdefaultlanguage{portuguese} % might be portuguese, though referencing may present incompatibilities
+\setotherlanguages{english} % secondary language for abstract and stuff
+\usepackage{times} % not recommended, but it is the standard package for Times included in LuaTeX and ready to go for Overleaf, see alternative option below (which require local installation of LaTeX)
+
+% in case you have a local installation for the font Times, this is preferrable, especially if you have Small Caps support
+%\setmainfont{times}[
+%  % In my case, needs to point for MS Office location since regular MacOS Times doesn't support small caps
+%  Path           = /Applications/Microsoft Word.app/Contents/Resources/DFonts/,
+%  Extension      = .ttf ,
+%  BoldFont       = *bd ,
+%  ItalicFont     = *i ,
+%  BoldItalicFont = *bi,
+%  Ligatures      = Rare, %for some unknown reason, Times put Common ligatures under Rare
+%]
+
+% or simply, in case you have the legal font Times LT Std installed in your local machine
+%\setmainfont{Times LT Std}[Ligatures = Common] % name might differ
+
+% useful command defition for writting mathematics: QED, norm, set cardinality and equals by definition
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\card}[1]{\lvert#1\rvert}
+\newcommand*{\defeq}{\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt
+                     \hbox{\scriptsize.}\hbox{\scriptsize.}}}%
+                     =}
+
+% useful command definition for SCB bracket citation
+\newcommand{\citeb}[1]{\bibleftbracket\cite{#1}\bibrightbracket}
+
+% math numbering scheme, speak with your supervisor in case you want to change it
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{definition}{Definition}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+
+% reference style (Sociedade Brasileira de Computação is compliant with Chicago author-date)
+% as per https://presencial.unifcv.edu.br/arquivos/orientacao_para_artigos_area_informatica.pdf
+\usepackage[authordate, strict, backend=biber, autolang=other]{biblatex-chicago}
+\addbibresource{references.bib}
+\DeclareDelimFormat{nameyeardelim}{\addcomma\space}
+\setlength\bibitemsep{6.0pt}
+
+% flush all sections right
+\usepackage{sectsty}
+\sectionfont{\raggedleft}
+
+% used only for text samples, can be safely removed in the final document
+\usepackage{lipsum} 
+\usepackage{metalogo}
+
+\begin{document}
+\pagenumbering{roman}
+\setcounter{page}{1}
+\thispagestyle{empty}
+    \begin{center}
+        \includegraphics[scale=0.18]{images/unirio.png}\\
+        \fontsize{13}{15}
+        \textsc{
+        Universidade Federal do Estado do Rio de Janeiro\\
+        Centro de Ciências Exatas e Tecnológicas\\
+        Escola de Informática Aplicada\\}
+        \vspace{2.8cm}
+        Work's title\\
+            
+        \vspace{2.8cm}
+        Author's name
+        \vspace*{\fill}\\
+        
+        \textsc{Rio de Janeiro, RJ -- Brasil\\
+        (Mês), (Ano)}
+    \end{center}
+    \clearpage
+
+    \begin{center}
+        Work's title
+        \vskip 0.5cm
+        Author's name
+        \vskip 2.0cm
+    \end{center}
+    \begin{flushright}
+        \parbox{8.0cm}{
+        Projeto de graduação apresentado à Escola de Informática Aplicada
+        da Universidade Federal do Estado do Rio de Janeiro (UNIRIO) como
+        cumprimento de requerimento parcial para obtenção título de Bacharel em
+        Sistemas de Informação.}
+        \vskip 1.5cm
+        Approved by:
+        \vskip 1.5cm
+        \rule{10.0cm}{.1mm}
+
+        Supervisor, D.Sc. -- UNIRIO
+        \vskip 1.0cm
+
+        \rule{10.0cm}{.1mm}
+
+        Supervisor 2, D.Sc. -- UNIRIO
+        \vskip 1.0cm
+
+        \rule{10.0cm}{.1mm}
+
+        Supervisor 3, D.Sc. -- XXXX
+        \vskip 1.0cm
+    \end{flushright}
+    \vspace{\stretch{1}}
+    \begin{center}
+        \textsc{Rio de Janeiro, RJ -- Brasil} \\ \textsc{(Mês), (Ano)}
+    \end{center}
+    % Fim da folha de rosto
+
+    \clearpage
+    \begin{flushright}
+        \section*{Acknowledgments}    
+    \end{flushright}
+    \lipsum[1]
+    \clearpage
+    \begin{abstract}
+        \lipsum[1]
+        
+        {\bf Palavras-chave:} Separadas por vírgulas.
+    \end{abstract}
+    \clearpage
+    \begin{english}
+        \begin{abstract}
+            \lipsum[1]
+
+            {\bf Keywords:} Between commas.
+        \end{abstract}
+    \end{english}
+    \clearpage
+    \tableofcontents
+    \clearpage
+    \listoffigures
+    \clearpage
+    \listoftables
+    \clearpage
+    \listofalgorithms
+    % Não sei como fazer para aparecer em português. Dê seus pulos.
+    \clearpage
+    \pagenumbering{arabic}
+    \setcounter{page}{1}
+    \section{Introdução}
+
+    \subsection{Motivação}
+    \lipsum[1-2]
+    \subsection{Objetivos}
+    \lipsum[3-4]
+    \subsection{Organização do texto}
+    \lipsum[5-6]
+    \clearpage
+    \section{Configurações}
+    \subsection{Ligaduras}
+    Se a versão da fonte Times New Roman (ou Times) tiver sido escolhida adequadamente
+    (ao menos versão 5.01.3x), as ligaduras entre as letras deve ser exibida
+    corretamente e as seguintes comparações estão corretas: \\
+    
+    \begin{center}
+        \Huge
+        f\/f\/i \(\neq\) ffi \\
+        f\/i \(\neq\) fi \\
+        f\/l \(\neq\) fl \\
+        f\/f\/l \(\neq\) ffl \\
+    \end{center}
+
+    \subsection{Engine}
+    Este documento foi pensado para ser compilado em Lua\TeX \,e Biber, não sendo
+    garantido seu funcionamento com \LaTeXe \,ou \XeLaTeX.
+
+    \clearpage
+    \section{Conclusão}
+    \clearpage
+
+    \section*{Referências}
+    Instruções de bibliografia a seguir foram retiradas do manual de referência
+    da Sociedade Brasileira de Computação \citeb{sbc}:
+    % no meu TCC, eu utlizei somente \citep. Fale com seu supervisor.
+
+    As referências bibliográficas devem ser de entendimento único e uniformes.
+    Nós recomendamos dar ao autor nomes de referências em colchete, e.g.
+    \citeb{knuth}, \citeb{smith};
+    ou datas nos parênteses, \textcite{knuth}, \textcite{smith}.
+    
+    As referências devem ser listadas usando o tamanho de fonte de 12 pontos,
+    com 6 pontos do espaço antes de cada referência.
+    A primeira linha de cada referência não deve ser recuada,
+    quando a subseqüente dever ser recuada 0.5 cm.
+    \clearpage
+    \nocite{*}
+    % flush section font left
+    \sectionfont{\raggedright}
+    \printbibliography
+\end{document}
