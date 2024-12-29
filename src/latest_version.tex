@@ -323,11 +323,11 @@
 
     \section{Modelagem}
 
-    Com os conceitos de um ecossistema RAG em mente, é possível explicar de forma objetiva a modelagem da solução proposta para este trabalho. Antes de abordar as tecnologias específicas, tema reservado para um capítulo específico, será apresentada uma visão abstrata da modelagem da solução.
+    Com os conceitos de um ecossistema RAG em mente, é possível explicar de forma objetiva a modelagem da solução proposta para este trabalho. Antes de abordar as tecnologias específicas, tema reservado para um capítulo posterior, será apresentada uma visão abstrata da modelagem da solução.
 
-    O projeto pode ser enxergado como um sistema composto por três artefatos, cada um responsável por uma parte do ecossistema proposto. Esses artefatos implementam sistemas ou serviços que se comunicam entre si ao longo da solução, podendo incluir uma LLM, uma API ou uma instância de banco vetorial. Apesar de estarem conectados, cada artefato é independente e funciona de forma autonoma.
+    De maneira objetiva, o projeto pode ser descrito como um sistema composto por três artefatos, cada um responsável por uma parte do ecossistema proposto. Esses artefatos implementam sistemas ou serviços que se comunicam entre si ao longo da solução, podendo implementar uma LLM, uma API ou uma instância de banco vetorial. Apesar de estarem conectados, cada artefato é independente e funciona de forma autônoma.
     
-    Juntos, esses três artefatos formam a solução proposta, proporcionando uma abordagem modular e integrada para alcançar os objetivos propostos neste trabalho. Estes artefatos são respectivamente um pipeline de processamento, uma interface de programação de aplicações (API) e uma interface gráfica de usuário.
+    Juntos, esses três artefatos formam a solução proposta. Proporcionando uma abordagem modular e integrada para alcançar os objetivos propostos neste trabalho. Dentre os artefatos temos respectivamente um pipeline de processamento, uma interface de programação de aplicações (API) e uma interface gráfica de usuário.
     
     \subsubsection{Pipeline de Processamento}
 
@@ -350,7 +350,7 @@
     
     \subsection{Modelo Conceitual}
     
-    O projeto foi contruido com base nos três artefatos explicados e funciona como ilustrado na visão arquitetural:
+    Analisar uma biblioteca de documentos pode ser complexo, pois cada biblioteca pode comportar diversos tipos de documentos, em formatos distintos. Este projeto foi construído visando a análise de qualquer biblioteca de documentos, ou seja, o processamento dos dados da biblioteca será realizado mesmo que ela tenha arquivos em formatos diferentes. O projeto foi contruido com base nos três artefatos previamente explicados e funciona de acordo com a seguinte visão arquitetural:
 
     \begin{figure}[h]
         \includegraphics[scale=0.3]{architecture.png}
@@ -359,26 +359,38 @@
         \centering
     \end{figure}
 
-    \subsubsection{Ingestão / Preparo}
-    Ingrstão dos documentos e preparação deles
+    \subsubsection{Ingestão e Preparo}
+    
+    Etapa onde a biblioteca é analisada, seus documentos são processados e transformados de maneira sequencial para obtermos um determinado modelo com as informações necessárias de cada documento. Esta etapa é dividida em duas partes, uma de ingestão e outra de preparo.
+
+    \begin{itemize}
+        \item Ingestão: Nesta parte os documentos são lidos e sua extensão é análisada, determinando a forma como o documento terá seus dados extraídos. Uma vez analisados, o documento é divididoo em chunks, um bloco de texto com os dados do documento.
+        \item Preparo: Para cada chunk obtido na ingestão, é instanciado um modelo contendo os dados gerais do documento, assim como os dados do próprio chunk. Este modelo, em específico, visa uma inserção no banco vetorial que será feita na etapa de armazenamento dos embeddings.
+    \end{itemize}
 
     \subsubsection{Geração de Embeddings}
-    Geração dos embeddings
+    
+    Antes de armazenar os modelos obtidos na etapa anterior, a informação de cada chunk precisa estar em um formato específico para o banco vetorial, este formato é obtido quando geramos os embeddings, que neste contexto, são uma representação numérica de baixa dimensão dos dados de um chunk expecífico.
 
     \subsubsection{Armazenamento dos Embeddings}
-    Armazenamento dos embeddings e o modelo utilizado no banco vetorial
+    
+    Uma vez gerados, os embeddings de cada chunk estão presentes no modelo previamente adquirido na etapa de Ingestão e Preparo. Nesta etapa ocorre o armazenamento dos modelos na instância do banco vetorial do projeto. O armazenamento é feito de forma sequencial, porém em batches ou grupos com tamanho baseado na quantidade de chunks obtidos. Isso ocorre pois reduz o tempo da etapa de inserção ao banco, tendo em vista que uma vez que um documento é particionado em chunks, dependendo do tamanho do documento, podemos obter mais de 100 chunks, ou seja, 100 inserções.
 
     \subsubsection{Query}
-    Query realizada pelo usuario
+    
+    Aqui ocorre a interação do usuário com o sistema, nesta etapa o usuário digita uma pergunta dentro do espaço de input ou entrada da interface gráfica, que neste contexto é composta por um chat.
 
     \subsubsection{Busca por informações relevantes}
-    Interpretação da query do usuário
+    
+    No momento em que o usuário realiza a query, o sistema realiza uma busca por contexto ou informações relevantes como a biblioteca que o usuário está consultando (caso hajam múltiplas bibliotecas), uma determinada data, autor ou demais filtros que o usuário possa vir a fazer. Com as informações relevantes analisadas, é gerado um objeto de contexto que contém todas as informações relevantes
 
     \subsubsection{Envio de Query, Prompt e Contexto}
-    Convulta ao banco vetorial
+    
+    Com o contexto e a query em mãos, o sistema prossegue com o fluxo principal e envia uma solicitação a API contendo a query que o usuário realizou, o prompt a ser seguido pela LLM e o contexto.
 
     \subsubsection{Retorno de Resposta Humanizada}
-    Resposta entregue ao usuário
+    
+    Ao final da requisição feita pelo usuário, a API responde com uma lista contendo os objetos presentes no banco vetorial cujo embedding contém informações relevantes para a query do usuário. Esta lista contém os modelos presentes no banco vetorial, definidos na etapa de Preparação, e a partir dessa resposta passamos a lista para uma LLM que irá analisar primeiramente um prompt focado em entregar respostas humanizadas para o usuário. Neste prompt, há todo um cuidado para que qualquer desenvolvedor que deseje implementar este projeto possa utilizar do prompt engineering a fim de realizar as afinações necessárias para seu próprio contexto.
 
     \subsection{Tecnologias}
 
