@@ -8,6 +8,15 @@
 \usepackage[ruled, noline]{algorithm2e}
 \usepackage{fontspec}
 
+\usepackage{listings} % Para formatar o código
+
+\lstset{
+    basicstyle=\ttfamily,       % Usa uma fonte monoespaçada
+    frame=single,               % Adiciona uma borda ao redor do código
+    breaklines=true,            % Quebra linhas automaticamente
+    showstringspaces=false      % Não mostra espaços nos strings
+}
+
 \usepackage{setspace}
 \setstretch{1.5}
 \setlength{\parindent}{1.25cm}
@@ -435,10 +444,61 @@
     \clearpage
 
     \section{Solução Desenvolvida}
-    \subsection{Visão Geral}
-    \lipsum[1-2]
-    \subsection{Funcionalidades}
+
+    Com uma visão geral de como funciona um ecossistema RAG e quais artefatos são necessários para implementá-lo, prosseguiremos para o desenvolvimento da solução deste projeto. Levando em consideração as tecnologias apresentadas anteriormente, os próximos tópicos irão abordar o desenvolvimento concreto da solução buscada para este projeto.
+
+    Para a implementação da solução descrita, a biblioteca utilizada foi de todos os trabalhos de conclusão de curso do ano de 2023 publicados pela secretaria do Bacharelado em Sistemas de Informação da Universidade Federal do Estado do Rio de Janeiro, UNIRIO.
+
+    \subsection{Pipeline de Ingestão}
+    
+    Tendo em vista que uma biblioteca de documentos contém diversos documentos e cada documento possui sua própria extensão, é necessário desenvolver uma solução capaz de processar diversos tipos de documentos, podendo atender diversas bibliotecas distintas.
+
+    Este processamento foi implementado seguindo um Design Pattern, mais especificamente o factory design pattern. O factory design pattern implementa uma interface para a criação de objetos que herdam de uma superclasse, permitindo que as classes filhas possam alterar o tipo de objeto criado. Neste contexto, foi implementada uma fábrica de extratores, todo extrator possui uma instancia dos clientes provedores de serviços do LlamaIndex e Docling, assim como variáveis pré definidas e os métodos de extração. 
+    
+    No entanto, cada extrator implementa o método de extração a sua própria maneira, assim é possível implementar a extração de um arquivo .pdf ou .docx mudando somente a implementação de um único método. Isso contribui para uma melhor manutenção do código e atribui a responsabilidade de extração para um único extrator específico de cada documento.
+
+    Após extraídos os dados dos documentos, é necessário separar os dados relevantes de cada documento e particionar o mesmo em chunks. Para isso, antes de particionar os documentos é realizada uma busca por dados relevantes do documento, neste caso, por se tratar de uma biblioteca de TCCs os dados relevantes são o resumo (abstract), nome, biblioteca a qual ele pertence, caminho (filepath), extensão e mídias do arquivo.
+
+    As mídias são separadas em dois tipos, imagens e tabelas, durante a primeira leitura do documento a biblioteca Docling identifica as mídias dos documentos e as salva em um diretório específico dentro do código do artefato do pipeline, posteriormente este diretório será injetado no código do artefato da API.
+
+    As informações relevantes devem então ser extraídas no começo da extração do documento, uma vez que a busca pelo resumo do trabalho pode tomar tempo de processamento, seria imprudente realizar uma busca após a partição dos documentos. Uma vez extraídas, é gerado um breve resumo do abstract por uma LLM, neste caso foi utilizado o Ollama com um prompt que enfatiza o resumo de no máximo 2 paragrafos contendo 250 caracteres. Essas informações nos geram o seguinte modelo:
+
+    \begin{lstlisting}
+        {
+            "abstract": "resumo extraído do documento",
+            "summary": "um breve resumo do abstract",
+            "filename": "nome do arquivo sem extensão",
+            "database": "biblioteca a qual o arquivo pertence",
+            "filepath": "caminho onde o arquivo se encontra",
+            "medias": {
+                "images": "lista com o caminho das imagens achadas no arquivo",
+                "tables": "lista com o caminhos das tabelas achadas no arquivo"
+            },
+            "extension": "extensão do arquivo"
+        }
+    \end{lstlisting}
+
+    Com as informações gerais acima, podemos dar continuidade a partição dos documentos em chunks. Neste projeto, cada chunk possui 2048 tokens. Cada chunk gerado será lido e terá o embedding gerado para a inserção no banco vetorial, neste projeto o modelo de embedding é parametrizado mas optei por seguir esta implementação utilizando o modelo impira/layoutlm-document-qa pois é um modelo especifico para RAG e já treinado para melhor atender nosso caso de uso. Assim, obtemos o seguinte modelo para os chunks:
+
+    \begin{lstlisting}
+        {
+            "_id": "chave única do chunk",
+            "chunk": "objeto imutável obtido durante partição",
+            "sequence": "sequência do chunk em questão",
+            "pages": "lista de páginas com a informação do chunk em questão",
+            "tables": "lista de caminhos das tabelas achadas no arquivo",
+            "figures": "lista de caminhos das imagens achadas no arquivo",
+            "vector": "embeddings gerado para o chunk"
+        }
+    \end{lstlisting}
+
+    Este processo de leitura e processamento irá se repetir diversas vezes até que o último documento seja devidamente processado. Uma vez processados, os documentos estarão no formato de chunk seguindo o modelo acima e estarão prontos para inserção no banco vetorial. A inserção no banco irá selecionar cem chunks e realizar uma inserção em batch dos mesmos, devido ao tamanho da biblioteca em questão cem foi um número razoável de chunks, mas dependendo da biblioteca será necessário aumentar este número.
+
+    \subsection{Interface de Programação de Aplicações}
     \lipsum[3-4]
+
+    \subsection{Interface Gráfica de Usuário}
+    \lipsum[5-6]
 
     \clearpage
 
@@ -453,20 +513,6 @@
     \clearpage
 
     \section*{Referências}
-    Instruções de bibliografia a seguir foram retiradas do manual de referência
-    da Sociedade Brasileira de Computação \citeb{sbc}:
-    % no meu TCC, eu utlizei somente \citep. Fale com seu supervisor.
-
-    As referências bibliográficas devem ser de entendimento único e uniformes.
-    Nós recomendamos dar ao autor nomes de referências em colchete, e.g.
-    \citeb{knuth}, \citeb{smith};
-    ou datas nos parênteses, \textcite{knuth}, \textcite{smith}.
-    
-    As referências devem ser listadas usando o tamanho de fonte de 12 pontos,
-    com 6 pontos do espaço antes de cada referência.
-    A primeira linha de cada referência não deve ser recuada,
-    quando a subseqüente dever ser recuada 0.5 cm.
-    \clearpage
 
     \nocite{*}
 
