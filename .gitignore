@@ -1,3 +1,5 @@
-src/latest_version.**
-!src/latest_version.tex
-!src/latest_version.pdf
+.vscode
+
+src/current.**
+!src/current.tex
+!src/current.pdf
