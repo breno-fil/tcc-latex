@@ -33,7 +33,7 @@
 \usepackage{polyglossia}
 \setdefaultlanguage{portuguese} % might be portuguese, though referencing may present incompatibilities
 \setotherlanguages{english} % secondary language for abstract and stuff
-\usepackage{times} % not recommended, but it is the standard package for Times included in LuaTeX and ready to go for Overleaf, see alternative option below (which require local installation of LaTeX)
+\usepackage{libertine}
 
 % in case you have a local installation for the font Times, this is preferrable, especially if you have Small Caps support
 %\setmainfont{times}[
@@ -161,12 +161,13 @@
         Agradecimentos
     \end{flushright}
     \lipsum[1-2]
+
     \clearpage
 
     \begin{abstract}
-        Em uma parceria entre Seagate e a International Data Corporation (IDC) foi realizado o estudo “The Digitization of the World From Edge to Core”, nele a IDC fala sobre diversos aspectos referentes aos dados presentes no mundo digital e um dos tópicos abordados no estudo é “Mankind is on a quest to digitize the world” e neste mesmo tópico eles explicam que os dados que geramos no dia a dia está em constante crescimento, ou seja, estamos gradualmente produzindo mais dados.
+        Em uma parceria entre Seagate e a International Data Corporation (IDC) foi realizado o estudo \citetitle{digitization}, nele a IDC fala sobre diversos aspectos referentes aos dados presentes no mundo digital e um dos tópicos abordados no estudo é “Mankind is on a quest to digitize the world” e neste mesmo tópico eles explicam que os dados que geramos no dia a dia está em constante crescimento, ou seja, estamos gradualmente produzindo mais dados.
 
-        Com um volume cada vez maior de dados, uma busca por informação otimizada é essencial, dado que são necessárias ferramentas que nos garantam confiança e precisão da informação adquirida. Com isso em mente, este trabalho visa o desenvolvimento de um sistema capaz de ler, processar e armazenar documentos diversos de determinada biblioteca (conjunto de documentos) para que possamos utilizar um Large Language Model (LLM) para responder perguntas que os usuários possam ter acerca dos documentos.
+        Com um volume cada vez maior de dados, uma busca por informação otimizada é essencial, dado que são necessárias ferramentas que nos garantam confiança e precisão da informação adquirida. Com isso em mente, este trabalho visa o desenvolvimento de um sistema capaz de ler, processar e armazenar documentos diversos de determinada biblioteca (conjunto de documentos) para que possamos utilizar um \textit{Large Language Model} (LLM) para responder perguntas que os usuários possam ter acerca dos documentos.
         
         A ideia é conseguir processar documentos de diferentes épocas, temas, formatos e conseguir responder o maior número possível de perguntas dos usuários com a melhor confiança possível.
 
@@ -178,9 +179,9 @@
 
     \begin{english}
         \begin{abstract}
-            In a partnership between Seagate and the International Data Corporation (IDC), the study “The Digitization of the World From Edge to Core” was conducted. In it, IDC discusses various aspects related to data present in the digital world and one of the topics covered in the study is “Mankind is on a quest to digitize the world”. In this same topic, they explain that the data we generate on a daily basis is constantly growing, that is, we are gradually producing more data.
+            In a partnership between Seagate and the International Data Corporation (IDC), the study \citetitle{digitization} was conducted. In it, IDC discusses various aspects related to data present in the digital world and one of the topics covered in the study is “Mankind is on a quest to digitize the world”. In this same topic, they explain that the data we generate on a daily basis is constantly growing, that is, we are gradually producing more data.
 
-            With an ever-increasing volume of data, an optimized search for information is essential, given that tools are needed that guarantee reliability and accuracy of the information acquired. With this in mind, this work aims to develop a system capable of reading, processing and storing various documents from a given library (set of documents) so that we can use a Large Language Model (LLM) to answer questions that users may have about the documents.
+            With an ever-increasing volume of data, an optimized search for information is essential, given that tools are needed that guarantee reliability and accuracy of the information acquired. With this in mind, this work aims to develop a system capable of reading, processing and storing various documents from a given library (set of documents) so that we can use a \textit{Large Language Model} (LLM) to answer questions that users may have about the documents.
 
             The idea is to be able to process documents from different periods, themes and formats and to be able to answer as many user questions as possible with the greatest possible confidence.
 
@@ -200,46 +201,65 @@
     \listoftables
     \clearpage
 
-    \listofalgorithms
-    \clearpage
+    % \listofalgorithms
+    % \clearpage
 
     \pagenumbering{arabic}
     \setcounter{page}{1}
 
     \section{Introdução}
 
+    Este trabalho adotará a abordagem de \textit{Design Science Research} (DSR) para garantir que ao final do trabalho, o artefato modelado esteja implementado e funcionando conforme planejado.
+
+    O DSR, com raízes na engenharia e nas ciências do artificial [\citeauthor{simon_1996}, \citeyear{simon_1996}], é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real [\textcite{design_science}].
+
+    Assim, ao utilizar o \textit{Design Science Research} (DSR), este trabalho resultará em um artefato produzido com base nas análises e discussões realizadas ao longo das próximas seções deste trabalho.
+
     \subsection{Motivação}
-    Recentemente precisei implementar uma solução de onboarding para funcionários de uma determinada empresa. Por ser uma empresa grande, diversas regras e normas estavam distribuidas em inúmeros documentos (documentos de formatos distintos e sem uma padronização específica), o que gerava uma dor para funcionários recém contratados, que nem sempre sabiam qual documento consultar.
 
-    Para implementar esta solução, foi escolhida uma abordagem que utilizasse o conceito de Retrieval Augmented Generation (RAG) para trazer aos funcionários a informação buscada no menor tempo possível e com confiança de que a informação é válida. Ao longo da implementação da solução, lembrei de todas as vezes que precisei ler um artigo, livro ou até slides só por conta de um determinado tópico ou assunto e o tempo que gastei procurando uma informação que nem sempre seria útil, seja por falta de referência ou a própria informação.
+    Em 2018, a \textit{Seagate}, gigante do armazenamento de dados, uniu forças com a \textit{International Data Corporation} (IDC) para realizar o estudo \citetitle{digitization} [\citeauthor{digitization}, \citeyear{digitization}]. No estudo conduzido, a IDC destacou: \textit{“Mankind is on a quest to digitize the world.”} Essa frase encapsula a era em que vivemos, marcada por um crescimento incessante no volume de dados que produzimos diariamente. Cada clique, pagamento por aproximação ou uso de \textit{wearables} adiciona mais um fragmento ao vasto oceano digital.
 
-    Com isso em mente, busquei implementar um projeto que seria capaz de processar uma biblioteca de documentos e implementar o conceito de RAG para que um usuário seja capaz de fazer perguntas em uma interface de chat simples e com base nos dados processados da biblioteca de documentos, um Large Language Model (LLM) irá retornar uma resposta humanizada contendo uma resposta e a referência, de qual documento veio a resposta, ao usuário.
+    Com a expansão contínua da Internet das Coisas (IoT), o cenário se transforma em um redemoinho de informações. Chegará, ou talvez já tenha chegado, o momento em que será impossível para qualquer ser humano consumir tudo o que criou em um único dia. Nesse turbilhão de dados, buscar uma matéria ou reportagem torna-se uma tarefa semelhante a encontrar uma agulha em um palheiro digital, um desafio tão fascinante quanto frustrante.
 
-    O tema de busca por informação é importante, pois na internet ainda encontramos diversos dados sem referência ou representados de maneiras distintas (como em um gráfico e em um texto descritivo, ambos com a mesma informação), alguns dados também podem estar alocados em aplicações pouco intuitivas o que acaba aumentando o tempo de busca por informação, seja um site difícil de navegar ou um portal com o mecanismo de busca ruim. Todo esse tempo investido na busca por uma informação, nem sempre é vantajoso para estudantes e pesquisadores, o que pode dificultar pesquisas e trabalhos a longo prazo.
+    É nesse contexto que este projeto surge, como uma bússola tecnológica para navegar por essa imensidão. O objetivo é implementar uma solução que processe bibliotecas de documentos e aplique o conceito de \textit{Retrieval Augmented Generation} (RAG). Com uma interface de chat simples, o usuário poderá fazer perguntas e receber respostas humanizadas, geradas por um \textit{Large Language Model} (LLM), com referências claras aos documentos de origem.
+
+    O desafio de buscar informações relevantes é significativo. A internet ainda abriga dados sem referência ou apresentados de formas variadas, como gráficos e textos, dificultando a assimilação. Além disso, interfaces pouco intuitivas e mecanismos de busca ineficazes consomem tempo valioso. Para estudantes e pesquisadores, essa batalha constante com a desorganização digital pode transformar o simples ato de encontrar informações em um verdadeiro labirinto.
 
     \subsection{Objetivos}
+
     O principal objetivo deste trabalho é provar que é possível implementar uma solução RAG para bibliotecas de documentos específicos, neste caso os Trabalhos de Conclusão de Curso (TCCs), disponíveis na biblioteca de publicações do curso de Bacharelado em Sistemas de Informação (BSI) da Universidade Federal do Estado do Rio de Janeiro (UNIRIO) [\textcite{tccs_unirio}].
 
     Mais especificamente, estarei usando como biblioteca todos os TCCs de 2023 disponíveis na biblioteca do curso. Embora sejam do mesmo curso e ano, nem todos os trabalhos possuem a mesma estrutura, os alunos são livres para escrever seus trabalhos de diversas formas e não há como garantir uma padronização comum à eles, tornando o processamento dos documentos mais complexo. No entanto, todos os documentos disponíveis na bibliotecas são do tipo Portable Document Format (PDF) com extensão .pdf, isso vai contribuir durante a etapa de implementação dos extratores mais a frente no projeto.
-    
-    \subsection{Metodologia}
-    Neste projeto irei utilizar uma abordagem de Design Science Research (DSR) para que ao final do projeto o artefato modelado esteja implementado e funcionando como planejado.
 
-    O DSR tem suas raízes na engenharia e nas ciências do artificial [\textcite{simon_1996}]. É uma metodologia fundamental para a resolução de problemas, buscando aprimorar o conhecimento humano com a criação de artefatos inovadores e a geração de conhecimento de design por meio de soluções para problemas do mundo real [\textcite{design_science}].
+    O objetivo principal deste trabalho é demonstrar a viabilidade de implementar uma solução baseada em \textit{Retrieval Augmented Generation} (RAG) para bibliotecas de documentos. Neste trabalho, o foco será nas \citetitle{tccs_unirio} [\citeauthor{tccs_unirio}].
+
+    A biblioteca utilizada será composta por todos os TCCs de 2023 disponíveis no acervo do curso. Apesar de pertencerem ao mesmo ano e programa, esses trabalhos não seguem uma estrutura uniforme. A liberdade dada aos alunos na elaboração de seus TCCs resulta em formatos variados, o que aumenta a complexidade do processamento. Por outro lado, há um fator que facilita o trabalho: todos os documentos estão no formato \textit{Portable Document Format} (PDF), com extensão .pdf. Essa padronização no tipo de arquivo será uma aliada crucial na etapa de implementação dos extratores ao longo do projeto.
+
+    Uma vez implementada, a solução será testada por meio de uma série de perguntas feitas à biblioteca processada. As respostas fornecidas pelo sistema serão avaliadas com base em sua relevância e capacidade de contribuir para o esclarecimento das dúvidas apresentadas, permitindo verificar a eficácia da solução proposta.
+
+    \subsection{Organização do Texto}
+    Este trabalho está organizado em capítulos, com o objetivo de apresentar os processos, métodos, análises e descobertas de forma clara e coerente. A estrutura do documento foi elaborada para facilitar a compreensão do leitor sobre a complexidade do tema e os resultados obtidos, conduzindo-o até a implementação da solução final. Os capítulos estão estruturados da seguinte forma:
     
-    Deste modo, ao utilizar o DSR, ao final do projeto haverá um artefato que foi produzido com base na aplicação de tudo estudado e discutido nas próximas seções deste trabalho.
+    \begin{itemize}
+        \item \textbf{Capítulo 1 -- Introdução:} Apresenta o contexto do trabalho, destacando o problema do crescente volume de dados. Discute a motivação para a solução proposta, sua relevância no cenário atual e os objetivos estabelecidos.
+        \item \textbf{Capítulo 2 -- Conceitos Fundamentais:} Dedica-se à fundamentação teórica, abordando os conceitos essenciais para a compreensão da solução e sua implementação. Inclui uma introdução ao conceito de \textit{Large Language Models} (LLM) e uma análise detalhada do \textit{Retrieval Augmented Generation} (RAG).
+        \item \textbf{Capítulo 3 -- Modelagem:} Descreve a composição da solução, explicando os artefatos envolvidos e suas responsabilidades. Também aborda o funcionamento e o papel de cada componente na solução final. Ao final, apresenta as tecnologias utilizadas, incluindo descrições breves sobre as ferramentas, suas versões e funções.
+        \item \textbf{Capítulo 4 -- Solução Desenvolvida:} Detalha os artefatos implementados, explicando como a solução cumpre suas funções. Apresenta os resultados obtidos e discute as respostas fornecidas para algumas das questões propostas, avaliando a eficácia da solução.
+        \item \textbf{Capítulo 5 -- Conclusão:} O capítulo final resume as considerações sobre os resultados alcançados, destacando tanto os aspectos positivos quanto as limitações da solução implementada. Além disso, discute possíveis trabalhos futuros ou aplicações derivadas da solução, encerrando com as referências utilizadas no desenvolvimento do trabalho.
+    \end{itemize}
     
     \clearpage
 
-    \section{Fundamentação}
-
-    \subsection{Conceitos Fundamentais}
+    \section{Conceitos Fundamentais}
 
     No livro RAG-Driven Generative AI, do Denis Rothman, ele diz que "Mesmo o modelo mais avançado de Inteligêcia Artificial (IA) generativa é limitado a responder sobre dados nos quais ela foi treinada." \textcite{rothman} o que nos chama a atenção a um probelma em especial, como fazer para que uma IA saiba responder perguntas referentes a um conjunto específico de dados?
 
     De fato, uma IA não tem como saber o que ela não sabe, não existe conhecimento além dos dados nos quais ela foi treinada. Perguntas fora do contexto do treinamento de uma IA geralmente levam a halucinações, viés e respostas sem sentido. Para isso, foi implementado um framework, ou estrutura, que combina abordagens baseadas em recuperação com modelos generativos, esta estrutura é a Retrieval Augmented Generation (RAG).
 
     A RAG recupera dados relevantes de fontes externas em tempo real e usa esses dados para gerar respostas contextualmente relevantes. Uma de suas principais vantagens é a adaptabiolidade, tendo em vista que a estrutura pode ser aplicada independente do tipo de dado abordado na solução, seja texto, imagens, áudios ou documentos diversos.
+
+    \subsection{\textit{Large Language Models} (LLMs)}
+    \lipsum[1-2]
 
     \subsection{O que é RAG?}
     
