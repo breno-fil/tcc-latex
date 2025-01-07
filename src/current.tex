@@ -9,6 +9,7 @@
 \usepackage{fontspec}
 
 \usepackage{listings} % Para formatar o código
+\usepackage{tabularx} % Para tabelas ajustáveis à largura total
 
 \lstset{
     basicstyle=\ttfamily,       % Usa uma fonte monoespaçada
@@ -209,154 +210,223 @@
 
     \section{Introdução}
 
-    Este trabalho adotará a abordagem de \textit{Design Science Research} (DSR) para garantir que ao final do trabalho, o artefato modelado esteja implementado e funcionando conforme planejado.
+    Com a expansão contínua da Internet das Coisas (IoT), o cenário se transforma em um redemoinho de informações. Chegará, ou talvez já tenha chegado, o momento em que será impossível para qualquer ser humano consumir tudo o que criou em um único dia.
 
-    O DSR, com raízes na engenharia e nas ciências do artificial [\citeauthor{simon_1996}, \citeyear{simon_1996}], é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real [\textcite{design_science}].
+    Durante estudo, a \textit{International Data Coorporation} (IDC) previu que a \textit{Global Datasphere} cresceria de 45 zettabytes em 2019 para 175 zettabytes em 2025 \citeb{digitization}. Um crescimento de aproximadamente 380\% em 6 anos, porém essa previsão foi feita em 2018 e atualmente já existem estudos que projetam números ainda maiores para a produção de dados. Como é o exemplo do estudo \citetitle{data_created}, onde foram calculados um total de 147 \textit{zetabytes} produzidos em 2024, com previsão de 181 \textit{zetabytes} para 2025, um crescimento de 23.12\% \citeb{data_created}.
 
-    Assim, ao utilizar o \textit{Design Science Research} (DSR), este trabalho resultará em um artefato produzido com base nas análises e discussões realizadas ao longo das próximas seções deste trabalho.
+    \begin{figure}[h]
+        \label{fig:total_dados_anual}
+        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{global-data-generated-annually-fabio-duarte.png}
+        \centering
+        \caption{Total de dados produzidos por ano, \citeb{data_created}}
+        \centering
+    \end{figure}        
 
     \subsection{Motivação}
 
-    Em 2018, a \textit{Seagate}, gigante do armazenamento de dados, uniu forças com a \textit{International Data Corporation} (IDC) para realizar o estudo \citetitle{digitization} [\citeauthor{digitization}, \citeyear{digitization}]. No estudo conduzido, a IDC destacou: \textit{“Mankind is on a quest to digitize the world.”} Essa frase encapsula a era em que vivemos, marcada por um crescimento incessante no volume de dados que produzimos diariamente. Cada clique, pagamento por aproximação ou uso de \textit{wearables} adiciona mais um fragmento ao vasto oceano digital.
+    No estudo \citetitle{digitization}, a \textit{Seagate}, gigante do armazenamento de dados, uniu forças com a \textit{International Data Corporation} (IDC) para conduzir uma análise dos dados presentes na \textit{Global Datasphere}, que quantifica e analisa o total de dados criados, capturados e replicados no mundo inteiro. A IDC destacou: \textit{“Mankind is on a quest to digitize the world.”} Essa frase encapsula a era em que vivemos, marcada por um crescimento incessante no volume de dados que produzimos diariamente.
+    
+    Cada clique, pagamento por aproximação ou uso de \textit{wearables} adiciona mais um fragmento ao vasto oceano digital. Nesse turbilhão de dados, buscar uma matéria ou reportagem torna-se uma tarefa semelhante a encontrar uma agulha em um palheiro digital, um desafio tão fascinante quanto frustrante.
 
-    Com a expansão contínua da Internet das Coisas (IoT), o cenário se transforma em um redemoinho de informações. Chegará, ou talvez já tenha chegado, o momento em que será impossível para qualquer ser humano consumir tudo o que criou em um único dia. Nesse turbilhão de dados, buscar uma matéria ou reportagem torna-se uma tarefa semelhante a encontrar uma agulha em um palheiro digital, um desafio tão fascinante quanto frustrante.
-
-    É nesse contexto que este projeto surge, como uma bússola tecnológica para navegar por essa imensidão. O objetivo é implementar uma solução que processe bibliotecas de documentos e aplique o conceito de \textit{Retrieval Augmented Generation} (RAG). Com uma interface de chat simples, o usuário poderá fazer perguntas e receber respostas humanizadas, geradas por um \textit{Large Language Model} (LLM), com referências claras aos documentos de origem.
+    E esse contexto de imensidão de dados onde a busca por informações é cada vez mais dificíl, é o berço deste projeto. O objetivo é implementar uma solução que processe bibliotecas de documentos e aplique o conceito de \textit{Retrieval Augmented Generation} (RAG). Com uma interface de chat simples, o usuário poderá fazer perguntas e receber respostas humanizadas, geradas por um \textit{Large Language Model} (LLM), com referências claras aos documentos de origem.
 
     O desafio de buscar informações relevantes é significativo. A internet ainda abriga dados sem referência ou apresentados de formas variadas, como gráficos e textos, dificultando a assimilação. Além disso, interfaces pouco intuitivas e mecanismos de busca ineficazes consomem tempo valioso. Para estudantes e pesquisadores, essa batalha constante com a desorganização digital pode transformar o simples ato de encontrar informações em um verdadeiro labirinto.
 
     \subsection{Objetivos}
 
-    O principal objetivo deste trabalho é provar que é possível implementar uma solução RAG para bibliotecas de documentos específicos, neste caso os Trabalhos de Conclusão de Curso (TCCs), disponíveis na biblioteca de publicações do curso de Bacharelado em Sistemas de Informação (BSI) da Universidade Federal do Estado do Rio de Janeiro (UNIRIO) [\textcite{tccs_unirio}].
-
-    Mais especificamente, estarei usando como biblioteca todos os TCCs de 2023 disponíveis na biblioteca do curso. Embora sejam do mesmo curso e ano, nem todos os trabalhos possuem a mesma estrutura, os alunos são livres para escrever seus trabalhos de diversas formas e não há como garantir uma padronização comum à eles, tornando o processamento dos documentos mais complexo. No entanto, todos os documentos disponíveis na bibliotecas são do tipo Portable Document Format (PDF) com extensão .pdf, isso vai contribuir durante a etapa de implementação dos extratores mais a frente no projeto.
-
-    O objetivo principal deste trabalho é demonstrar a viabilidade de implementar uma solução baseada em \textit{Retrieval Augmented Generation} (RAG) para bibliotecas de documentos. Neste trabalho, o foco será nas \citetitle{tccs_unirio} [\citeauthor{tccs_unirio}].
-
-    A biblioteca utilizada será composta por todos os TCCs de 2023 disponíveis no acervo do curso. Apesar de pertencerem ao mesmo ano e programa, esses trabalhos não seguem uma estrutura uniforme. A liberdade dada aos alunos na elaboração de seus TCCs resulta em formatos variados, o que aumenta a complexidade do processamento. Por outro lado, há um fator que facilita o trabalho: todos os documentos estão no formato \textit{Portable Document Format} (PDF), com extensão .pdf. Essa padronização no tipo de arquivo será uma aliada crucial na etapa de implementação dos extratores ao longo do projeto.
-
-    Uma vez implementada, a solução será testada por meio de uma série de perguntas feitas à biblioteca processada. As respostas fornecidas pelo sistema serão avaliadas com base em sua relevância e capacidade de contribuir para o esclarecimento das dúvidas apresentadas, permitindo verificar a eficácia da solução proposta.
+    O objetivo principal deste trabalho é implementar uma solução baseada em \textit{Retrieval Augmented Generation} (RAG) para bibliotecas de documentos específicos, a fim de viabilizar consultas que retornem dados pertinentes junto com suas referências. Os objetivos específicos são:
+    
+    \begin{enumerate}
+        \item Escrever uma introdução acessível ao conceito de RAG aos alunos do BSI.
+        \item Produzir um documento que instrua a implementação de um ecossistema RAG aos alunos do BSI.
+        \item Realizar a implementação de RAG para documentos, que seja agnóstica tanto ao LLM quanto embeeding utilizados.
+        \item Executar uma validação sobre a solução gerada, de maneira que o resultado seja relevante.
+    \end{enumerate}
 
     \subsection{Organização do Texto}
+
     Este trabalho está organizado em capítulos, com o objetivo de apresentar os processos, métodos, análises e descobertas de forma clara e coerente. A estrutura do documento foi elaborada para facilitar a compreensão do leitor sobre a complexidade do tema e os resultados obtidos, conduzindo-o até a implementação da solução final. Os capítulos estão estruturados da seguinte forma:
     
     \begin{itemize}
-        \item \textbf{Capítulo 1 -- Introdução:} Apresenta o contexto do trabalho, destacando o problema do crescente volume de dados. Discute a motivação para a solução proposta, sua relevância no cenário atual e os objetivos estabelecidos.
-        \item \textbf{Capítulo 2 -- Conceitos Fundamentais:} Dedica-se à fundamentação teórica, abordando os conceitos essenciais para a compreensão da solução e sua implementação. Inclui uma introdução ao conceito de \textit{Large Language Models} (LLM) e uma análise detalhada do \textit{Retrieval Augmented Generation} (RAG).
-        \item \textbf{Capítulo 3 -- Modelagem:} Descreve a composição da solução, explicando os artefatos envolvidos e suas responsabilidades. Também aborda o funcionamento e o papel de cada componente na solução final. Ao final, apresenta as tecnologias utilizadas, incluindo descrições breves sobre as ferramentas, suas versões e funções.
-        \item \textbf{Capítulo 4 -- Solução Desenvolvida:} Detalha os artefatos implementados, explicando como a solução cumpre suas funções. Apresenta os resultados obtidos e discute as respostas fornecidas para algumas das questões propostas, avaliando a eficácia da solução.
-        \item \textbf{Capítulo 5 -- Conclusão:} O capítulo final resume as considerações sobre os resultados alcançados, destacando tanto os aspectos positivos quanto as limitações da solução implementada. Além disso, discute possíveis trabalhos futuros ou aplicações derivadas da solução, encerrando com as referências utilizadas no desenvolvimento do trabalho.
+        \item \textbf{Introdução:} Apresenta o contexto do trabalho, destacando o problema do crescente volume de dados. Discute a motivação para a solução proposta, sua relevância no cenário atual e os objetivos estabelecidos.
+        \item \textbf{Conceitos Fundamentais:} Dedica-se à fundamentação teórica, abordando os conceitos essenciais para a compreensão da solução e sua implementação. Inclui uma introdução ao conceito de \textit{Large Language Models} (LLM) e uma análise detalhada do \textit{Retrieval Augmented Generation} (RAG).
+        \item \textbf{Modelagem:} Descreve a composição da solução, explicando os artefatos envolvidos e suas responsabilidades. Também aborda o funcionamento e o papel de cada componente na solução final. Ao final, apresenta as tecnologias utilizadas, incluindo descrições breves sobre as ferramentas, suas versões e funções.
+        \item \textbf{Solução Desenvolvida:} Detalha os artefatos implementados, explicando como a solução cumpre suas funções. Apresenta os resultados obtidos e discute as respostas fornecidas para algumas das questões propostas, avaliando a eficácia da solução.
+        \item \textbf{Conclusão:} O capítulo final resume as considerações sobre os resultados alcançados, destacando tanto os aspectos positivos quanto as limitações da solução implementada. Além disso, discute possíveis trabalhos futuros ou aplicações derivadas da solução, encerrando com as referências utilizadas no desenvolvimento do trabalho.
     \end{itemize}
+
+    \subsection{Metodologia}
+
+    Este trabalho adotará a abordagem de \textit{Design Science Research} (DSR) para garantir que ao final do trabalho, o artefato modelado esteja implementado e funcionando conforme planejado.
+
+    O DSR, possui raízes na engenharia e nas ciências do artificial \citeb{simon_1996}, é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real \citeb{design_science}.
+
+    Assim, ao utilizar o \textit{Design Science Research} (DSR), este trabalho resultará em um artefato produzido com base nas análises e discussões realizadas ao longo das próximas seções deste trabalho.
     
     \clearpage
 
     \section{Conceitos Fundamentais}
 
-    No livro RAG-Driven Generative AI, do Denis Rothman, ele diz que "Mesmo o modelo mais avançado de Inteligêcia Artificial (IA) generativa é limitado a responder sobre dados nos quais ela foi treinada." \textcite{rothman} o que nos chama a atenção a um probelma em especial, como fazer para que uma IA saiba responder perguntas referentes a um conjunto específico de dados?
+    Para que este trabalho seja compreendido e os próximos capítulos possam ser apresentados com maior clareza, é necessário passarmos por alguns conceitos. Antes de nos aprofundarmos no contexto de um ecossistema de \textit{retrieval augmented generation} (RAG), é necessário compreender um pouco a IA generativa e os \textit{Large Language Models} (LLMs) que contribuem tanto para a interpretação das perguntas feitas durante as interações com o usuário, quanto na geração de uma resposta mais humana.
+    
+    \subsection{IA Generativa}
+    
+    A inteligência artificial generativa, às vezes chamada de \textit{gen AI}, é um tipo de inteligência artificial (IA) capaz de criar conteúdo original — como texto, imagens, vídeos, áudio ou código de software — em resposta a um comando ou solicitação do usuário. \citeb{genai_ibm}
 
-    De fato, uma IA não tem como saber o que ela não sabe, não existe conhecimento além dos dados nos quais ela foi treinada. Perguntas fora do contexto do treinamento de uma IA geralmente levam a halucinações, viés e respostas sem sentido. Para isso, foi implementado um framework, ou estrutura, que combina abordagens baseadas em recuperação com modelos generativos, esta estrutura é a Retrieval Augmented Generation (RAG).
+    A inteligência artificial generativa baseia-se em modelos avançados de \textit{machine learning} (aprendizado de máquina) chamados modelos de \textit{deep learning} (aprendizagem profunda) — algoritmos que simulam os processos de aprendizado e tomada de decisão do cérebro humano. Esses modelos trabalham identificando e codificando padrões e relações em grandes volumes de dados.
 
-    A RAG recupera dados relevantes de fontes externas em tempo real e usa esses dados para gerar respostas contextualmente relevantes. Uma de suas principais vantagens é a adaptabiolidade, tendo em vista que a estrutura pode ser aplicada independente do tipo de dado abordado na solução, seja texto, imagens, áudios ou documentos diversos.
+    A partir dessas informações, a IA generativa é capaz de compreender solicitações ou perguntas feitas em linguagem natural pelos usuários, respondendo com conteúdos novos e relevantes. Essa capacidade permite a criação de textos, imagens, vídeos, áudios e até códigos de software, de forma original e adaptada ao pedido do usuário.
 
-    \subsection{\textit{Large Language Models} (LLMs)}
-    \lipsum[1-2]
+    \subsubsection{Uma Breve História da IA Generativa}
 
-    \subsection{O que é RAG?}
+    O termo "IA generativa" explodiu na consciência pública na década de 2020, mas a IA generativa já faz parte de nossas vidas há décadas, e a tecnologia de IA generativa atual se baseia em avanços de aprendizado de máquina que remontam ao início do século 20. Uma história representativa não exaustiva da IA generativa pode incluir algumas das seguintes datas:
+
+    \begin{itemize}
+        \item \textbf{1964:} O cientista da computação do \textit{Massachusetts Institute of Technology} (MIT), Joseph Weizenbaum, desenvolve o ELIZA, uma aplicação de processamento de linguagem natural baseada em texto. Essencialmente o primeiro \textit{chatbot} (chamado de \textit{"chatterbot"} na época), o ELIZA usava \textit{scripts} de correspondência de padrões para responder a entradas de linguagem natural digitadas com respostas empáticas em texto.
+
+        \item \textbf{1999:} A Nvidia lança o GeoForce, a primeira unidade de processamento gráfico (GPU). Originalmente desenvolvida para fornecer gráficos de movimento suave para videogames, as GPUs se tornaram a plataforma padrão para o desenvolvimento de modelos de IA e mineração de criptomoedas.
+
+        \item \textbf{2004:} O Google \textit{autocomplete} aparece pela primeira vez, gerando palavras ou frases potenciais à medida que os usuários digitam seus termos de busca.
+
+        \item \textbf{2013:} Aparecem os primeiros \textit{autoencoders} variacionais (VAEs).
+
+        \item \textbf{2014:} Surgem as primeiras redes adversariais generativas (GANs) e modelos de difusão.
+
+        \item \textbf{2017:} Ashish Vaswani, uma equipe do Google Brain e um grupo da Universidade de Toronto publicam o artigo \textit{Attention is All you Need}, \citeb{att_all_u_need}, um artigo que documenta os princípios dos modelos de transformadores, amplamente reconhecidos como os responsáveis por permitir os modelos de fundação mais poderosos e as ferramentas de IA generativa que estão sendo desenvolvidas hoje.
+
+        \item \textbf{2019-2020:} O OpenAI lança seus modelos de linguagem GPT (\textit{Generative Pre-trained Transformer}), o GPT-2 e o GPT-3.
+
+        \item \textbf{2022:} O OpenAI apresenta o ChatGPT, uma interface do GPT-3 que gera frases complexas, coerentes e contextuais, além de conteúdo de longo formato em resposta a comandos dos usuários.
+        
+        \item \textbf{2023-2024:} Com a notoriedade e popularidade do ChatGPT, que efetivamente abriu as portas para uma onda de desenvolvimentos, os avanços e lançamentos de produtos em IA generativa têm ocorrido a um ritmo acelerado, incluindo lançamentos do Google Bard (agora Gemini), Microsoft Copilot, IBM watsonx.ai e o modelo de linguagem Llama-2 de código aberto da Meta.
+    \end{itemize}
+
+    \subsubsection{Mais à Frente}
+
+    A inteligência artificial tem sido um tema relevante na tecnologia, mas foi a IA generativa, especialmente com o lançamento do ChatGPT em 2022, que a destacou globalmente, gerando inovação e adoção. Ela oferece grandes benefícios de produtividade para indivíduos e organizações, e, apesar dos desafios e riscos, as empresas exploram como melhorar fluxos de trabalho e enriquecer produtos e serviços. De acordo com uma pesquisa da consultoria \textit{McKinsey}, mais de 65\% das empresas usam Gen AI no mundo. \citeb{mckinsey_genai}.
+
+    \subsection{Large Language Models}
+
+    Os \textit{Large Language Models} (LLMs) são uma categoria de modelos fundamentais treinados em grandes volumes de dados para oferecer capacidades versáteis, atendendo a diversos casos de uso e tarefas. Diferentemente dos modelos específicos para determinados domínios, que exigem treinamentos separados para cada aplicação—geralmente com altos custos e demandas significativas de infraestrutura—os LLMs promovem uma aplicação mais ampla, gerando sinergias entre diferentes áreas e, muitas vezes, alcançando um desempenho superior. \citeb{llm_ibm}
+
+    Os LLMs representam um avanço significativo em \textit{Natural Language Processing} (NLP) e inteligência artificial. Esses modelos estão amplamente acessíveis ao público por meio de interfaces como o \textit{ChatGPT-3} e \textit{GPT-4} da \textit{OpenAI}, apoiados pela \textit{Microsoft}. Outros exemplos incluem os modelos \textit{Llama} da Meta, os modelos \textit{BERT/RoBERTa} e \textit{PaLM} do Google, e a série \textit{Granite} lançada pela IBM.
+
+    Os LLMs são projetados para compreender e gerar texto de forma similar à humana, além de produzir outros tipos de conteúdo. Com base nos extensos volumes de dados em que foram treinados, conseguem traduzir idiomas, resumir textos, responder perguntas, auxiliar na redação e até mesmo na geração de código.
+
+    Essas capacidades são viabilizadas por bilhões de parâmetros que capturam padrões complexos da linguagem. Como resultado, os LLMs estão transformando áreas como chatbots, assistentes virtuais, geração de conteúdo, suporte à pesquisa e tradução de idiomas.
+
+    \subsubsection{Como funcionam?}
+
+    Os \textit{Large Language Models} (LLMs) operam utilizando técnicas de aprendizagem profunda e grandes volumes de dados textuais. Baseados na arquitetura de transformadores \citeb{att_all_u_need}, como o \textit{Generative Pre-trained Transformer} (GPT), esses modelos são especialmente eficazes em lidar com dados sequenciais, como entradas de texto. Compostos por várias camadas de redes neurais, os LLMs empregam um mecanismo de atenção para focar em partes específicas dos conjuntos de dados.
+
+    Durante o treinamento, os modelos aprendem a prever a próxima palavra em uma sentença com base no contexto fornecido pelas palavras anteriores. Isso é feito atribuindo probabilidades à recorrência de palavras que foram tokenizadas (divididas em sequências menores) e transformadas em embeddings, representações numéricas do contexto.
+
+    O treinamento envolve o uso de corpora massivas, com bilhões de páginas de texto, permitindo que os LLMs aprendam gramática, semântica e relações conceituais por meio de aprendizado auto-supervisionado e técnicas de zero-shot. Uma vez treinados, os modelos geram texto prevendo autonomamente a próxima palavra com base na entrada recebida e nos padrões adquiridos, resultando em uma produção linguística coerente e relevante para diversas tarefas de compreensão e geração de linguagem.
+
+    O desempenho dos LLMs pode ser aprimorado por meio de técnicas como \textit{prompt engineering}, \textit{fine-tuning} (ajuste fino) e aprendizado por reforço com feedback humano (\textit{RLHF}). Essas abordagens ajudam a mitigar problemas como vieses, discurso de ódio e respostas incorretas ou ilusórias (\textit{hallucinations}), que podem surgir devido ao treinamento em dados não estruturados. Garantir que os LLMs estejam prontos para uso em nível corporativo é crucial para evitar riscos à reputação e responsabilidades indesejadas.
+
+
+    \subsection{O Problema}
+
+    No livro \citetitle{rothman}, é dito que ``mesmo o modelo mais avançado de Inteligência Artificial (IA) generativa é limitado a responder somente sobre dados nos quais ele foi treinado.'' \citeb{rothman}. Essa afirmação chama a atenção para um problema especial: como fazer para que uma IA saiba responder perguntas referentes a um conjunto específico de dados, diferente daquele em que foi treinada?
+
+    Quando um modelo de IA generativo não sabe como responder com precisão, alguns dizem que ele está produzindo viés ou sofrendo uma \textit{hallucination} (alucinação). No entanto, ``tudo se resume à impossibilidade de fornecer uma resposta adequada quando o treinamento do modelo não incluiu as informações solicitadas além dos problemas clássicos de configuração do modelo.'' \citeb{rothman}. Essa confusão geralmente leva a sequências aleatórias das saídas mais prováveis, não das mais precisas.
+
+    Buscando mitigar essas questões, em 2020 foi publicado o artigo \citetitle{RAG} \citeb{RAG}, que combinava abordagens baseadas em recuperação com modelos generativos, introduzindo a \textit{Retrieval Augmented Generation} (RAG). Uma RAG recupera dados relevantes de fontes externas em tempo real e usa esses dados para gerar respostas contextualmente relevantes, isto é, que façam sentido dentro do contexto trabalhado durante as consultas feitas pelo usuário. Uma de suas principais vantagens é a adaptabilidade, tendo em vista que a estrutura pode ser aplicada independente do tipo de dado abordado na solução, seja texto, imagens, áudios ou documentos diversos.
+
+
+    \subsection{Retrieval Augmented Generation (RAG)}
     
     Quando um modelo de IA generativa não sabe responder determinada pergunta com precisão, diz-se que ele está alucinando ou apresentando viés, mas, na prática, está apenas gerando respostas sem sentido. Isso ocorre porque o modelo não foi treinado com as informações solicitadas ou por conta de limitações em sua configuração, resultando em sequências prováveis, mas não precisas necessariamente.
 
-    A RAG começa onde a IA generativa termina, fornecendo informações que um modelo de LLM não possui para responder com precisão. A RAG otimiza tarefas de recuperação de informações e adiciona os dados recuperados durante a entrada (seja consulta do usuário ou um prompt automatizado), gerando uma saída melhorada e mais amigável ao usuário. O funcionamento geral do RAG pode ser resumido na figura a seguir:
+    Uma RAG começa onde a IA generativa termina, fornecendo informações que um modelo de LLM não possui para responder com precisão as consultas do usuário. Uma RAG otimiza tarefas de recuperação de informações e adiciona os dados recuperados durante a entrada (seja consulta do usuário ou um prompt automatizado), gerando uma saída melhorada e mais amigável ao usuário. O funcionamento geral da RAG pode ser resumido na \ref{fig:rag_estudante}, que será explicada nos próximos parágrafos:
 
     \begin{figure}[h]
-        \includegraphics{retrieval-generation.png}
+        \label{fig:rag_estudante}
+        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{retrieval-generation-denis-rothman.png}
         \centering
-        \caption{Funcionamento geral de uma estrutura RAG}
+        \caption{Funcionamento geral de uma estrutura RAG (extraída de \citeb{rothman})}
         \centering
     \end{figure}
 
-    Imagine um estudante em uma biblioteca, com a tarefa de escrever uma dissertação sobre RAG. Assim como o ChatGPT ou outros copilotos de IA, o estudante sabe ler e escrever. Como qualquer LLM, ele é treinado para compreender informações avançadas, resumir e criar conteúdo. No entanto, como qualquer IA avançada, seja do Hugging Face, Vertex AI ou OpenAI, há muitas informações que este estudante ainda desconhece.
+    Imagine um estudante em uma biblioteca, com a tarefa de escrever uma dissertação sobre RAG. Assim como o ChatGPT ou outras ferramentas de IA generativa, o estudante sabe ler e escrever. Como qualquer LLM, o estudante é treinado para compreender informações avançadas, resumir e criar conteúdo. No entanto, como qualquer IA, há muitas informações que este estudante ainda desconhece.
 
-    Na fase de recuperação, ele busca por livros sobre o tema necessário (lado esquerdo da figura 1) na biblioteca. Em seguida, ele retorna ao seu lugar, realiza a tarefa de recuperação sozinho ou com a ajuda de um colega, extraindo as informações relevantes dos livros adquiridos. Na fase de geração (lado direito da figura 1), o estudante começa a escrever sua dissertação. Assim, funciona como um agente humano guiado por RAG, de maneira semelhante a um framework de IA generativa baseado em RAG.
+    Na fase de recuperação, ele busca por livros sobre o tema necessário (lado esquerdo da \ref{fig:rag_estudante}) na biblioteca. Em seguida, ele retorna ao seu lugar, realiza a tarefa de recuperação sozinho ou com a ajuda de um colega, extraindo as informações relevantes dos livros adquiridos. Na fase de geração (lado direito da \ref{fig:rag_estudante}), o estudante começa a escrever a sua dissertação utilizando o conhecimento adquirido na fase anterior. Esse é o funcionamento de um agente humano guiado por RAG, de maneira semelhante a uma estrutura de IA generativa baseada em RAG.
 
-    Enquanto escreve o seu ensaio sobre RAG, o estudante encontra tópicos difíceis com os quais não tem tempo para consultar todas as informações disponíveis. Como um agente humano generativo, ele fica travado, assim como um modelo de IA generativa. Ele até pode tentar escrever algo, mas, como a IA, não saberá se o conteúdo está correto até que alguém corrija a dissertação e lhe avalie de alguma maneira.
+    Enquanto escreve sua dissertação sobre RAG, o estudante encontra tópicos difíceis com os quais não tem tempo para consultar todas as informações disponíveis. Como um agente humano generativo, ele fica travado, assim como um modelo de IA generativa. Ele até pode tentar escrever algo sobre esses tópicos, mas, como a IA, não saberá se o conteúdo está correto até que alguém corrija a dissertação e lhe avalie de alguma maneira.
 
-    Neste ponto, ele já atingiu seu limite e decide recorrer a um copiloto de IA generativa com RAG para obter respostas corretas. No entanto, existe uma variedade tão grande de modelos LLM e configurações RAG disponíveis que o estudante acaba ficando confuso. Antes de prosseguir, é necessário entender os recursos disponíveis e como o RAG está organizado.
+    Neste ponto, ele já atingiu seu limite e decide recorrer a uma ferramenta de IA generativa com RAG para obter respostas corretas e auxiliá-lo. No entanto, existe uma grande variedade de modelos de LLM e configurações RAG disponíveis, deixando o estudante sobrecarregado. Antes de prosseguir, é necessário entender os recursos disponíveis e como o RAG está organizado.
 
     \subsection{Ecossistema RAG}
 
-    A IA generativa baseada em RAG é um framework que pode ser implementado com diversas configurações, funcionando dentro de um ecossistema amplo (Figura 2). Independentemente da quantidade de frameworks de recuperação e geração disponíveis, tudo se resume a quatro domínios principais e suas respectivas questões:
+    A IA generativa baseada em RAG é um \textit{framework} que pode ser implementada com diversas configurações, funcionando dentro de um ecossistema amplo (\ref{fig:arquitetura_rag}). Independentemente da quantidade de estruturas de recuperação e geração disponíveis, tudo se resume a quatro eixos principais e suas respectivas questões:
     
     \begin{itemize}
-        \item Dados: De onde vêm os dados? São confiáveis e suficientes? Há questões de direitos autorais, privacidade ou segurança?
-        \item Armazenamento: Como os dados serão armazenados antes ou depois do processamento? Qual será o volume armazenado?
-        \item Recuperação: Como os dados corretos serão recuperados para complementar o input do usuário? Qual tipo de framework RAG será mais adequado ao projeto?
-        \item Geração: Qual modelo de IA generativa melhor se adapta ao framework RAG escolhido?
+        \item \textbf{Dados:} De onde vêm os dados? São confiáveis e suficientes? Há questões de direitos autorais, privacidade ou segurança?
+        \item \textbf{Armazenamento:} Como os dados serão armazenados antes ou depois do processamento? Qual será o volume armazenado?
+        \item \textbf{Recuperação:} Como os dados corretos serão recuperados para complementar a entrada (ou consulta) do usuário? Qual tipo de \textit{framework} RAG será mais adequado ao projeto?
+        \item \textbf{Geração:} Qual modelo de IA generativa melhor se adapta ao \textit{framework} RAG escolhido?
     \end{itemize} 
 
-    Esses domínios dependem do tipo de framework RAG utilizado. Antes de escolher, é essencial avaliar a proporção de conhecimento paramétrico e não paramétrico no ecossistema implementado. A Figura 1.3 ilustra os principais componentes do framework RAG, independentemente do tipo implementado.
+    Esses eixos dependem do tipo de \textit{framework} RAG utilizado. Antes de escolher, é essencial avaliar a proporção de conhecimento paramétrico e não paramétrico no ecossistema implementado. No contexto de aprendizado de máquina, o conhecimento paramétrico é o entendimento internalizado que um modelo ganha com o treinamento em um conjunto de dados. 
+    
+    Esse conhecimento é representado pelos parâmetros do modelo (pesos e vieses), que são ajustados durante o processo de treinamento para minimizar a função de perda e melhorar o desempenho do modelo. O Conhecimento paramétrico permite que o modelo faça previsões e generalize para dados novos e invisíveis, capturando recursos e relacionamentos essenciais dentro dos dados de treinamento.
+    
+    Nos próximos parágrafos, a \ref{fig:arquitetura_rag} abaixo, ilustrando os principais componentes do \textit{framework} RAG (independentemente do tipo implementado), será explicada.
 
     \begin{figure}[h]
-        \includegraphics{rag-framework-ecosystem.png}
+        \label{fig:arquitetura_rag}
+        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{rag-framework-ecosystem-denis-rothman.png}
         \centering
-        \caption{Arquitetura da estrutura RAG}
+        \caption{Arquitetura da estrutura RAG (extraída de \citeb{rothman})}
         \centering
     \end{figure}
 
     \begin{itemize}
-        \item Retriever (D): Responsável pela coleta, processamento, armazenamento e recuperação de dados.
-        \item Generator (G): Cuida da complementação do input, engenharia de prompts e geração de respostas.
-        \item Evaluator (E): Avalia o desempenho usando métricas matemáticas, feedback humano e outras formas de validação.
-        \item Trainer (T): Gerencia o modelo pré-treinado inicial e sua posterior fine-tuning.
+        \item \textbf{\textit{Retriever} (D, em verde na \ref{fig:arquitetura_rag}):} Responsável pela coleta, processamento, armazenamento e recuperação de dados.
+        \item \textbf{\textit{Generator} (G, em azul na \ref{fig:arquitetura_rag}):} Cuida da complementação da entrada, engenharia de prompts e geração de respostas.
+        \item \textbf{\textit{Evaluator} (E, em amarelo na \ref{fig:arquitetura_rag}):} Avalia o desempenho usando métricas matemáticas, \textit{feedback} humano e outras formas de validação.
+        \item \textbf{\textit{Trainer} (T, em rosa na \ref{fig:arquitetura_rag}):} Gerencia o modelo pré-treinado inicial e sua posterior ajuste fino (\textit{fine-tuning}).
     \end{itemize}
 
-    Esses quatro componentes dependem de seus respectivos ecossistemas, formando o pipeline de IA generativa baseada em RAG. Nas seções a seguir, usaremos as siglas D, G, E e T para representar respectivamente Retriever, Generator, Evaluator e Trainer. Começando pelo Retriever (D).
+    Esses quatro componentes dependem de seus respectivos ecossistemas, composto por seus subcomponentes, formando o \textit{pipeline} de IA generativa baseada em RAG. Nas seções a seguir, serão usadas as siglas D, G, E e T para representar,respectivamente, \textit{Retriever}, \textit{Generator}, \textit{Evaluator} e \textit{Trainer}.
 
-    \subsubsection{Retriever (D)}
+    \subsubsection{\textit{Retriever} (D)}
 
-    O componente retriever de um ecossistema RAG coleta, processa, armazena e recupera dados. O ponto de partida de um ecossistema RAG é, portanto, um processo de ingestão de dados, cujo primeiro passo é a coleta de dados.
+    O componente \textit{retriever} de um ecossistema RAG coleta, processa, armazena e recupera dados. O ponto de partida de um ecossistema RAG é, portanto, um processo de ingestão de dados, cujo primeiro passo é a coleta de dados. Os subcomponentes são:
 
     \begin{enumerate}
-        \item Coleta de Dados (D1):\\
-        Atualmente dados são extremamente diversos, podendo ser textos, arquivos de mídia (como músicas ou vídeos em mp4) ou arquivos estruturados e não estruturados (PDFs, JSONs e páginas web). Além disso, grande parte desses dados é não estruturada e pode ser encontrada de maneiras imprevisíveis e complexas. Felizmente, várias plataformas, como Pinecone, OpenAI, Chroma e Activeloop, oferecem ferramentas prontas para processar e armazenar essa vasta quantidade de dados.
-        \item Processamento de Dados (D2):\\
-        Na fase de coleta de dados (D1) no processamento de dados multimodais, diferentes tipos de dados, como texto, imagens e vídeos, podem ser extraídos de websites utilizando técnicas de web scraping ou outras fontes de informação. Esses objetos de dados são então transformados para criar representações uniformes. Alguns exemplos dessas transformações incluem: chunking, embedding e indexação. Essas técnicas serão discutidas mais adiante.
-        \item Armazenamento de Dados (D3):\\
-        Neste estágio do pipeline, já coletamos e começamos a processar uma grande quantidade de dados diversos. Mas para fazermos com que esses dados para sejam úteis, vamos fazer uso de vetor stores (armazenamento de vetores), como Elastic Search. Ele não apenas armazena os dados, mas os convertem em entidades matemáticas, representadas como vetores, permitindo realizar cálculos poderosos. Esses sistemas também utilizam técnicas de indexação e outras abordagens para garantir acesso rápido e eficiente aos dados. Em vez de manter os dados em arquivos estáticos, transformamos tudo em um sistema dinâmico e pesquisável, pronto para alimentar chatbots, motores de busca e outras aplicações.
-        \item Consulta de Recuperação (D4):\\
-        O processo de recuperação é acionado pelo input do usuário ou input automatizado (G1). Para recuperar dados rapidamente, carregamos os dados nos vetor stores e datasets após transformá-los para um formato adequado. Em seguida, utilizamos uma combinação de pesquisas por palavras-chave, embeddings inteligentes e indexação para recuperar os dados de forma eficiente. 
-        A similaridade cosseno, por exemplo, encontra itens que estão intimamente relacionados, garantindo que os resultados da busca não sejam apenas rápidos, mas também altamente relevantes.
-        Após a recuperação dos dados, o próximo passo é aumentar o input, ou seja, adicionar as informações recuperadas para enriquecer a resposta gerada.
+        \item \textbf{Coleta de Dados (D1):} Atualmente dados são extremamente diversos, podendo ser textos, arquivos de mídia (como músicas ou vídeos em mp4) ou arquivos estruturados e não estruturados (PDFs, JSONs e páginas \textit{web}). Além disso, grande parte desses dados é não estruturada e pode ser encontrada de maneiras imprevisíveis e complexas. Felizmente, várias plataformas, como Pinecone\footnote{Disponível em \citeb{pinecone}}, OpenAI\footnote{Disponível em \citeb{openai}}, Chroma\footnote{Disponível em \citeb{chroma}} e Activeloop\footnote{Disponível em \citeb{activeloop}}, oferecem ferramentas prontas para processar e armazenar essa vasta quantidade de dados.
+        \item \textbf{Processamento de Dados (D2):} Na fase de coleta de dados (D1) no processamento de dados multimodais, diferentes tipos de dados, como texto, imagens e vídeos, podem ser extraídos de \textit{websites} utilizando técnicas de \textit{web scraping} ou outras fontes de informação. Esses objetos de dados são então transformados para criar representações uniformes. Alguns exemplos dessas transformações incluem: \textit{chunking}, \textit{embedding} e indexação. Essas técnicas serão discutidas mais adiante.
+        \item \textbf{Armazenamento de Dados (D3):} Neste estágio do \textit{pipeline}, já se coletou e se iniciou o processamento de uma grande quantidade de dados diversos. Mas para fazermos com que esses dados sejam úteis, deve-se fazer uso de \textit{vector stores} (armazenamento de vetores), como Elastic Search. Esse não apenas armazena os dados, mas os convertem em entidades matemáticas, representadas como vetores, permitindo realizar cálculos poderosos. Esses sistemas também utilizam técnicas de indexação e outras abordagens para garantir acesso rápido e eficiente aos dados. Em vez de manter os dados em arquivos estáticos, transforma-se tudo em um sistema dinâmico e pesquisável, pronto para alimentar \textit{chatbots}, motores de busca e outras aplicações.
+        \item \textbf{Consulta de Recuperação (D4):} O processo de recuperação é acionado pela entrada (ou consulta) do usuário ou entrada automatizada (G1). Para recuperar dados rapidamente, carregamos os dados nos \textit{vector stores} e \textit{datasets} após transformá-los para um formato adequado. Em seguida, utilizamos uma combinação de pesquisas por palavras-chave, \textit{embeddings} inteligentes e indexação para recuperar os dados de forma eficiente.
+        A similaridade cosseno, que calcula o cosseno entre dois vetores, por exemplo, encontra itens (vetores) que estejam intimamente relacionados, garantindo que os resultados da busca não sejam apenas rápidos, mas também altamente relevantes.
+        Após a recuperação dos dados, o próximo passo é aumentar a entrada, ou seja, adicionar as informações recuperadas para enriquecer a resposta gerada ao usuário.
     \end{enumerate}
 
-    \subsubsection{Generator (G)}
+    \subsubsection{\textit{Generator} (G)}
 
-    No ecossistema RAG, as linhas entre a entrada e a recuperação não são tão nítidas, como mostrado na figura 2, que representa o framework e ecossistema RAG. O input do usuário (G1), seja automatizado ou humano, interage com a consulta de recuperação (D4) para complementar o input antes de enviá-lo ao modelo generativo. O fluxo gerativo começa com o input, que é aprimorado com dados recuperados antes de ser processado pelo modelo de IA generativa.
+    No ecossistema RAG, as linhas entre a entrada e a recuperação não são tão nítidas, como mostrado na \ref{fig:arquitetura_rag}, que representa o \textit{framework} e ecossistema RAG. A entrada do usuário (G1), seja automatizado ou humano, interage com a consulta de recuperação (D4) para complementar a entrada antes de enviá-la ao modelo generativo. O fluxo gerativo começa com a entrada do usuário, que é aprimorada com dados recuperados antes de ser processada pelo modelo de IA generativa.
 
     \begin{enumerate}
-        \item Entrada (G1):\\
-        O input pode ser uma série de tarefas automatizadas (como o processamento de e-mails, por exemplo) ou prompts humanos por meio de uma Interface de Usuário (UI). Essa flexibilidade permite integrar a IA de forma fluida em diversos ambientes profissionais, aprimorando a produtividade em diferentes setores.
-        \item Entrada Aumentada com Feedback Humano (G2):\\
-        O feedback humano (HF, de Human Feedback) pode ser adicionado ao input, conforme descrito na seção Feedback Humano (E2), sob o componente Evaluator (E). O feedback humano torna o ecossistema RAG consideravelmente mais adaptável, permitindo total controle sobre a recuperação de dados e os inputs para a IA generativa. Na seção Building Hybrid Adaptive RAG in Python deste capítulo, construiremos o input aumentado com feedback humano, melhorando a precisão e a relevância das respostas geradas.
-        \item Engenharia de Prompts (G3):\\
-        Tanto o retriever (D) quanto o generator (G) dependem fortemente da engenharia de prompts para preparar a mensagem padrão e aumentada que o modelo de IA generativa deverá processar. A engenharia de prompts combina a saída do retriever com o input do usuário, garantindo que o modelo receba uma entrada bem estruturada e relevante para gerar a resposta desejada.
-        \item Geração e Saída (G4):\\
-        A escolha de um modelo de IA generativa depende dos objetivos do projeto. Modelos como Llama, Gemini, GPT e outros podem atender a diferentes requisitos. No entanto, o prompt precisa estar alinhado com as especificações de cada modelo.
+        \item \textbf{Entrada (G1):} A entrada pode ser uma série de tarefas automatizadas (como o processamento de \textit{e-mails}, por exemplo) ou \textit{prompts} humanos por meio de uma Interface de Usuário (\textit{User Interface} - UI). Essa flexibilidade permite integrar a IA de forma flúida em diversos ambientes profissionais, aprimorando a produtividade em diferentes setores.
+        \item \textbf{Entrada Aumentada com Feedback Humano (G2):} O feedback humano (\textit{Human Feedback} - HF) pode ser adicionado à entrada, conforme descrito na seção \ref{human_feedback}, sob o componente \textit{evaluator} (E). O \textit{feedback} humano torna o ecossistema RAG consideravelmente mais adaptável, permitindo total controle sobre a recuperação de dados e as entradas para a IA generativa.
+        \item \textbf{Engenharia de \textit{Prompts} (G3):} Tanto o \textit{retriever} (D) quanto o \textit{generator} (G) dependem fortemente da engenharia de \textit{prompts} para preparar a mensagem padrão e aumentada que o modelo de IA generativa deverá processar. A engenharia de \textit{prompts} combina a saída do \textit{retriever} (D) com a entrada do usuário, garantindo que o modelo receba uma entrada bem estruturada e relevante para gerar a resposta desejada.
+        \item \textbf{Geração e Saída (G4):} A escolha de um modelo de IA generativa (LLM) depende dos objetivos do projeto. Modelos como Llama\footnote{Disponível em \citeb{llama_models}}, Gemini\footnote{Disponível em \citeb{gemini_models}}, GPT\footnote{Disponível em \citeb{gpt_models}} e outros podem atender a diferentes requisitos. No entanto, o \textit{prompt} precisa estar alinhado com as especificações de cada modelo.
     \end{enumerate}
 
-    \subsubsection{Evaluator (E)}
+    \subsubsection{\textit{Evaluator} (E)}
 
-    Frequentemente, dependemos de métricas matemáticas para avaliar o desempenho de um modelo de IA generativa. No entanto, essas métricas fornecem apenas uma parte do todo. É importante lembrar que o teste final da eficácia de uma IA depende da avaliação humana, que garante uma compreensão mais completa da qualidade e relevância dos resultados gerados.
+    Frequentemente, dependemos de métricas matemáticas para avaliar o desempenho de um modelo de IA generativa (LLM). No entanto, essas métricas fornecem apenas uma parte do todo. É importante lembrar que o teste final da eficácia de uma IA depende da avaliação humana, que garante uma compreensão mais completa da qualidade e aderência aos objetivos do usuário.
 
     \begin{enumerate}
-        \item Métricas (E1):\\
-        Um modelo não pode ser avaliado sem métricas matemáticas, como a similaridade cosseno, assim como em qualquer sistema de IA. Essas métricas garantem que os dados recuperados sejam relevantes e precisos. Ao quantificar as relações e a relevância dos pontos de dados, elas fornecem uma base sólida para avaliar o desempenho e a confiabilidade do modelo.
-        \item Feedback Humano (E2):\\
-        Em um sistema de IA generativa, seja ele baseado em RAG ou não, e independentemente de as métricas matemáticas parecerem suficientes, o feedback humano é essencial. A avaliação humana é o fator decisivo que determina se um sistema projetado para usuários humanos será aceito ou rejeitado, elogiado ou criticado. O RAG adaptativo introduz o feedback humano, pragmático e da vida real, o que melhora o ecossistema de IA generativa baseado em RAG.
+        \item \textbf{Métricas (E1):} Um modelo não pode ser avaliado sem métricas matemáticas, como a similaridade cosseno, assim como em qualquer sistema de IA. Essas métricas garantem que os dados recuperados sejam relevantes e precisos. Ao quantificar as relações e a relevância dos \textit{data points}, elas fornecem uma base sólida e objetiva para avaliar o desempenho e a confiabilidade do modelo. Fidelidade, ou seja, se a resposta está fundamentada no contexto recuperado. Relevância da resposta, ou seja, se a resposta atende à pergunta e relevância do contexto, se o contexto recuperado é suficientemente focado.
+        \item \textbf{Feedback Humano (E2):} \label{human_feedback} Em um sistema de IA generativa, seja ele baseado em RAG ou não, independentemente de as métricas matemáticas parecerem suficientes, o \textit{feedback} humano é essencial. A avaliação humana é o fator decisivo que determina se um sistema projetado para usuários humanos será aceito ou rejeitado, elogiado ou criticado.
     \end{enumerate}
     
-    \subsubsection{Trainer (T)}
+    \subsubsection{\textit{Trainer} (T)}
 
-    Um modelo de IA generativa padrão é pré-treinado com uma grande quantidade de dados de uso geral. Em seguida, podemos ajustar (T2) o modelo com dados específicos de um domínio.
+    Um modelo de IA generativa padrão é pré-treinado em uma grande quantidade de dados de propósito geral. Em seguida, podemos ajustar finamente (\textit{fine-tuning}, T2) o modelo com dados específicos de um determinado domínio.
 
     \clearpage
 
@@ -392,7 +462,8 @@
     Analisar uma biblioteca de documentos pode ser complexo, pois cada biblioteca pode comportar diversos tipos de documentos, em formatos distintos. Este projeto foi construído visando a análise de qualquer biblioteca de documentos, ou seja, o processamento dos dados da biblioteca será realizado mesmo que ela tenha arquivos em formatos diferentes. O projeto foi contruido com base nos três artefatos previamente explicados e funciona de acordo com a seguinte visão arquitetural:
 
     \begin{figure}[h]
-        \includegraphics[scale=0.3]{architecture.png}
+        \label{fig:arquitetura_solucao}
+        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{architecture.png}
         \centering
         \caption{Visão arquitetural da solução RAG proposta para o trabalho}
         \centering
@@ -403,8 +474,8 @@
     Etapa onde a biblioteca é analisada, seus documentos são processados e transformados de maneira sequencial para obtermos um determinado modelo com as informações necessárias de cada documento. Esta etapa é dividida em duas partes, uma de ingestão e outra de preparo.
 
     \begin{itemize}
-        \item Ingestão: Nesta parte os documentos são lidos e sua extensão é análisada, determinando a forma como o documento terá seus dados extraídos. Uma vez analisados, o documento é divididoo em chunks, um bloco de texto com os dados do documento.
-        \item Preparo: Para cada chunk obtido na ingestão, é instanciado um modelo contendo os dados gerais do documento, assim como os dados do próprio chunk. Este modelo, em específico, visa uma inserção no banco vetorial que será feita na etapa de armazenamento dos embeddings.
+        \item \textbf{Ingestão:} Nesta parte os documentos são lidos e sua extensão é análisada, determinando a forma como o documento terá seus dados extraídos. Uma vez analisados, o documento é divididoo em chunks, um bloco de texto com os dados do documento.
+        \item \textbf{Preparo:} Para cada chunk obtido na ingestão, é instanciado um modelo contendo os dados gerais do documento, assim como os dados do próprio chunk. Este modelo, em específico, visa uma inserção no banco vetorial que será feita na etapa de armazenamento dos embeddings.
     \end{itemize}
 
     \subsubsection{Geração de Embeddings}
@@ -483,7 +554,7 @@
     
     Tendo em vista que uma biblioteca de documentos contém diversos documentos e cada documento possui sua própria extensão, é necessário desenvolver uma solução capaz de processar diversos tipos de documentos, podendo atender diversas bibliotecas distintas.
 
-    Este processamento foi implementado seguindo um Design Pattern, mais especificamente o factory design pattern. O factory design pattern implementa uma interface para a criação de objetos que herdam de uma superclasse, permitindo que as classes filhas possam alterar o tipo de objeto criado. Neste contexto, foi implementada uma fábrica de extratores, todo extrator possui uma instancia dos clientes provedores de serviços do LlamaIndex e Docling, assim como variáveis pré definidas e os métodos de extração. 
+    Este processamento foi implementado seguindo um Design Pattern, mais especificamente o factory design pattern. O factory design pattern implementa uma interface para a criação de objetos que herdam de uma superclasse, permitindo que as classes filhas possam alterar o tipo de objeto criado. Neste contexto, foi implementada uma fábrica de extratores, todo extrator possui uma instancia dos clientes provedores de serviços do LlamaIndex e Docling, assim como variáveis pré definidas e os métodos de extração.
     
     No entanto, cada extrator implementa o método de extração a sua própria maneira, assim é possível implementar a extração de um arquivo .pdf ou .docx mudando somente a implementação de um único método. Isso contribui para uma melhor manutenção do código e atribui a responsabilidade de extração para um único extrator específico de cada documento.
 
