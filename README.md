@@ -14,13 +14,17 @@ O versionamento deste trabalho segue o padrão do [versionamento semântico](htt
 
 ## Estrutura 
 
+- [ ] Agradecimentos
 - [x] Introdução
     - [x] Motivação
     - [x] Objetivos
+    - [x] Organização do Texto
     - [x] Metodologia
-- [x] Fundamentação
-    - [x] Conceitos Fundamentais
-    - [x] O que é RAG?
+- [x] Conceitos Fundamentais
+    - [x] IA Generativa
+    - [x] Large Language Models (LLMs)
+    - [x] O Problema
+    - [x] Retrieval Augmented Generation (RAG)
     - [x] Ecossistema RAG
 - [x] Modelagem
     - [x] Pipeline de Processamento
