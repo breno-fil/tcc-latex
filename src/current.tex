@@ -1,12 +1,13 @@
 \documentclass[a4paper, 12pt]{article}
-\usepackage[a4paper, rmargin=3cm, lmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
-\usepackage{mathtools}
+
 \usepackage{bookmark}
+\usepackage{fontspec}
+\usepackage{enumitem}
+\usepackage{mathtools}
 \usepackage{subcaption}
 \usepackage{amsthm,amsmath,amssymb}
-\usepackage{enumitem}
 \usepackage[ruled, noline]{algorithm2e}
-\usepackage{fontspec}
+\usepackage[a4paper, rmargin=3cm, lmargin=3cm, top=2.5cm, bottom=2.5cm]{geometry}
 
 \usepackage{listings} % Para formatar o código
 \usepackage{tabularx} % Para tabelas ajustáveis à largura total
@@ -75,7 +76,8 @@
 % reference style (Sociedade Brasileira de Computação is compliant with Chicago author-date)
 % as per https://presencial.unifcv.edu.br/arquivos/orientacao_para_artigos_area_informatica.pdf
 \usepackage[authordate, strict, backend=biber, autolang=other]{biblatex-chicago}
-\addbibresource{references.bib}
+% \addbibresource{references.bib}
+\addbibresource{current.bib}
 \DeclareDelimFormat{nameyeardelim}{\addcomma\space}
 \setlength\bibitemsep{6.0pt}
 
@@ -175,7 +177,7 @@
     
     \begin{center}
         Catalogação informatizada pelo autor
-        http://www.unirio.br/bibliotecacentral/fichas-catalograficas
+        % http://www.unirio.br/bibliotecacentral/fichas-catalograficas
     \end{center}
 
     \clearpage
@@ -188,7 +190,7 @@
     \clearpage
 
     \begin{abstract}
-        Em uma parceria entre Seagate e a International Data Corporation (IDC) foi realizado o estudo \citetitle{digitization}, nele a IDC fala sobre diversos aspectos referentes aos dados presentes no mundo digital e um dos tópicos abordados no estudo é “Mankind is on a quest to digitize the world” e neste mesmo tópico eles explicam que os dados que geramos no dia a dia está em constante crescimento, ou seja, estamos gradualmente produzindo mais dados.
+        Em uma parceria entre Seagate e a International Data Corporation (IDC) foi realizado o estudo \cite{digitization}, nele a IDC fala sobre diversos aspectos referentes aos dados presentes no mundo digital e um dos tópicos abordados no estudo é ``Mankind is on a quest to digitize the world'' e neste mesmo tópico eles explicam que os dados que geramos no dia a dia está em constante crescimento, ou seja, estamos gradualmente produzindo mais dados.
 
         Com um volume cada vez maior de dados, uma busca por informação otimizada é essencial, dado que são necessárias ferramentas que nos garantam confiança e precisão da informação adquirida. Com isso em mente, este trabalho visa o desenvolvimento de um sistema capaz de ler, processar e armazenar documentos diversos de determinada biblioteca (conjunto de documentos) para que possamos utilizar um \textit{Large Language Model} (LLM) para responder perguntas que os usuários possam ter acerca dos documentos.
         
@@ -202,7 +204,7 @@
 
     \begin{english}
         \begin{abstract}
-            In a partnership between Seagate and the International Data Corporation (IDC), the study \citetitle{digitization} was conducted. In it, IDC discusses various aspects related to data present in the digital world and one of the topics covered in the study is “Mankind is on a quest to digitize the world”. In this same topic, they explain that the data we generate on a daily basis is constantly growing, that is, we are gradually producing more data.
+            % In a partnership between Seagate and the International Data Corporation (IDC), the study \citetitle{digitization} was conducted. In it, IDC discusses various aspects related to data present in the digital world and one of the topics covered in the study is ``Mankind is on a quest to digitize the world''. In this same topic, they explain that the data we generate on a daily basis is constantly growing, that is, we are gradually producing more data.
 
             With an ever-increasing volume of data, an optimized search for information is essential, given that tools are needed that guarantee reliability and accuracy of the information acquired. With this in mind, this work aims to develop a system capable of reading, processing and storing various documents from a given library (set of documents) so that we can use a \textit{Large Language Model} (LLM) to answer questions that users may have about the documents.
 
@@ -234,19 +236,19 @@
 
     Com a expansão contínua da Internet das Coisas (IoT), o cenário se transforma em um redemoinho de informações. Chegará, ou talvez já tenha chegado, o momento em que será impossível para qualquer ser humano consumir tudo o que criou em um único dia.
 
-    Durante estudo, a \textit{International Data Coorporation} (IDC) previu que a \textit{Global Datasphere} cresceria de 45 zettabytes em 2019 para 175 zettabytes em 2025 \citeb{digitization}. Um crescimento de aproximadamente 380\% em 6 anos, porém essa previsão foi feita em 2018 e atualmente já existem estudos que projetam números ainda maiores para a produção de dados. Na \autoref{fig:total_dados_anual} temos um gráfico feito a partir do estudo \citetitle{data_created}, onde foram calculados um total de 147 \textit{zetabytes} produzidos em 2024, com previsão de 181 \textit{zetabytes} para 2025, um crescimento de 23.12\% \citeb{data_created}.
+    % Durante estudo, a \textit{International Data Coorporation} (IDC) previu que a \textit{Global Datasphere} cresceria de 45 zettabytes em 2019 para 175 zettabytes em 2025 \citeb{digitization}. Um crescimento de aproximadamente 380\% em 6 anos, porém essa previsão foi feita em 2018 e atualmente já existem estudos que projetam números ainda maiores para a produção de dados. Na \autoref{fig:total_dados_anual} temos um gráfico feito a partir do estudo \citetitle{data_created}, onde foram calculados um total de 147 \textit{zetabytes} produzidos em 2024, com previsão de 181 \textit{zetabytes} para 2025, um crescimento de 23.12\% \citeb{data_created}.
 
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{global-data-generated-annually-fabio-duarte.png}
         \centering
-        \caption{Total de dados produzidos por ano, extraído de \citeb{data_created}}
+        % \caption{Total de dados produzidos por ano, extraído de \citeb{data_created}}
         \centering
         \label{fig:total_dados_anual}
     \end{figure}        
 
     \subsection{Motivação}
 
-    No estudo \citetitle{digitization}, a \textit{Seagate}, gigante do armazenamento de dados, uniu forças com a \textit{International Data Corporation} (IDC) para conduzir uma análise dos dados presentes na \textit{Global Datasphere}, que quantifica e analisa o total de dados criados, capturados e replicados no mundo inteiro. A IDC destacou: \textit{“Mankind is on a quest to digitize the world.”} Essa frase encapsula a era em que vivemos, marcada por um crescimento incessante no volume de dados que produzimos diariamente.
+    % No estudo \citetitle{digitization}, a \textit{Seagate}, gigante do armazenamento de dados, uniu forças com a \textit{International Data Corporation} (IDC) para conduzir uma análise dos dados presentes na \textit{Global Datasphere}, que quantifica e analisa o total de dados criados, capturados e replicados no mundo inteiro. A IDC destacou: ``\textit{Mankind is on a quest to digitize the world}''. Essa frase encapsula a era em que vivemos, marcada por um crescimento incessante no volume de dados que produzimos diariamente.
     
     Cada clique, pagamento por aproximação ou uso de \textit{wearables} adiciona mais um fragmento ao vasto oceano digital. Nesse turbilhão de dados, buscar uma matéria ou reportagem torna-se uma tarefa semelhante a encontrar uma agulha em um palheiro digital, um desafio tão fascinante quanto frustrante.
 
@@ -281,7 +283,7 @@
 
     Este trabalho adotará a abordagem de \textit{Design Science Research} (DSR) para garantir que ao final do trabalho, o artefato modelado esteja implementado e funcionando conforme planejado.
 
-    O DSR, possui raízes na engenharia e nas ciências do artificial \citeb{simon_1996}, é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real \citeb{design_science}.
+    % O DSR, possui raízes na engenharia e nas ciências do artificial \citeb{simon_1996}, é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real \citeb{design_science}.
 
     Assim, ao utilizar o \textit{Design Science Research} (DSR), este trabalho resultará em um artefato produzido com base nas análises e discussões realizadas ao longo das próximas seções deste trabalho.
     
@@ -293,7 +295,7 @@
     
     \subsection{IA Generativa}
     
-    A inteligência artificial generativa (IA generativa), às vezes chamada de \textit{gen AI} (\textit{Generative AI}), é um tipo de inteligência artificial (IA) capaz de criar conteúdo original — como texto, imagens, vídeos, áudio ou código de software — em resposta a um comando ou solicitação do usuário. \citeb{genai_ibm}
+    % A inteligência artificial generativa (IA generativa), às vezes chamada de \textit{gen AI} (\textit{Generative AI}), é um tipo de inteligência artificial (IA) capaz de criar conteúdo original — como texto, imagens, vídeos, áudio ou código de software — em resposta a um comando ou solicitação do usuário. \citeb{genai_ibm}
 
     A IA generativa baseia-se em modelos avançados de \textit{machine learning} (aprendizado de máquina) chamados de modelos de \textit{deep learning} (aprendizagem profunda) — algoritmos que simulam a estrutura do cérebro humano e o seu processo de aprendizado. Esses modelos trabalham identificando padrões e relações em grandes volumes de dados.
 
@@ -301,12 +303,12 @@
 
     \subsubsection{Uma Breve História}
 
-    O termo "IA generativa" explodiu na consciência pública na década de 2020, mas a IA generativa já faz parte de nossas vidas há décadas, e a tecnologia de IA generativa atual se baseia em avanços de aprendizado de máquina que remontam ao início do século 20. Uma história representativa não exaustiva da IA generativa pode incluir algumas das seguintes datas:
+    O termo ``IA generativa'' explodiu na consciência pública na década de 2020, mas a inteligência artificial já faz parte de nossas vidas há décadas, e a tecnologia de IA generativa atual tem seus pilares contruídos desde o século XX. Uma história representativa não exaustiva da IA generativa pode incluir algumas das seguintes datas:
 
     \begin{itemize}
-        \item \textbf{1964:} O cientista da computação do \textit{Massachusetts Institute of Technology} (MIT), Joseph Weizenbaum, desenvolve o ELIZA, uma aplicação de processamento de linguagem natural baseada em texto. Essencialmente o primeiro \textit{chatbot} (chamado de \textit{"chatterbot"} na época), o ELIZA usava \textit{scripts} de correspondência de padrões para responder a entradas de linguagem natural digitadas com respostas empáticas em texto.
+        \item \textbf{1964:} O cientista da computação do \textit{Massachusetts Institute of Technology} (MIT), Joseph Weizenbaum, desenvolve o ELIZA, uma aplicação de processamento de linguagem natural baseada em texto. Essencialmente o primeiro \textit{chatbot} (chamado de ``\textit{chatterbot}'' na época), o ELIZA usava \textit{scripts} de correspondência de padrões para responder a entradas de linguagem natural digitadas com respostas empáticas em texto.
 
-        \item \textbf{1999:} A Nvidia lança o GeoForce, a primeira unidade de processamento gráfico (GPU). Originalmente desenvolvida para fornecer gráficos de movimento suave para videogames, as GPUs se tornaram a plataforma padrão para o desenvolvimento de modelos de IA e mineração de criptomoedas.
+        \item \textbf{1999:} A Nvidia lança a GeForce, a primeira unidade de processamento gráfico (\textit{Graphic Processing Unit} - GPU). Originalmente desenvolvida para fornecer gráficos de movimento suave para videogames, as GPUs se tornaram a plataforma padrão para o treinamento de modelos de IA e mineração de criptomoedas, por conta de sua alta capacidade de cálculo matricial.
 
         \item \textbf{2004:} O Google \textit{autocomplete} aparece pela primeira vez, gerando palavras ou frases potenciais à medida que os usuários digitam seus termos de busca.
 
@@ -314,64 +316,64 @@
 
         \item \textbf{2014:} Surgem as primeiras redes adversariais generativas (GANs) e modelos de difusão.
 
-        \item \textbf{2017:} Ashish Vaswani, uma equipe do Google Brain e um grupo da Universidade de Toronto publicam o artigo \textit{Attention is All you Need}, \citeb{att_all_u_need}, um artigo que documenta os princípios dos modelos de transformadores, amplamente reconhecidos como os responsáveis por permitir os modelos de fundação mais poderosos e as ferramentas de IA generativa que estão sendo desenvolvidas hoje.
+        % \item \textbf{2017:} Ashish Vaswani, junto com uma equipe do Google Brain e um grupo da Universidade de Toronto publicam o artigo \textit{Attention is All you Need}, \citeb{att_all_u_need}, um artigo que documenta os princípios dos modelos de transformadores, amplamente reconhecidos como os responsáveis por permitir os modelos de fundação mais poderosos e as ferramentas de IA generativa que estão sendo desenvolvidas hoje.
 
-        \item \textbf{2019-2020:} O OpenAI lança seus modelos de linguagem GPT (\textit{Generative Pre-trained Transformer}), o GPT-2 e o GPT-3.
+        \item \textbf{2019-2020:} A OpenAI lança seus modelos de linguagem GPT (\textit{Generative Pre-trained Transformer}), o GPT-2 e o GPT-3.
 
-        \item \textbf{2022:} O OpenAI apresenta o ChatGPT, uma interface do GPT-3 que gera frases complexas, coerentes e contextuais, além de conteúdo de longo formato em resposta a comandos dos usuários.
+        \item \textbf{2022:} O OpenAI apresenta o ChatGPT, uma interface de \textit{chatbot} do GPT-3 que gera frases complexas, coerentes e contextuais, além de conteúdo de longo formato em resposta a comandos dos usuários.
         
         \item \textbf{2023-2024:} Com a notoriedade e popularidade do ChatGPT, que efetivamente abriu as portas para uma onda de desenvolvimentos, os avanços e lançamentos de produtos em IA generativa têm ocorrido a um ritmo acelerado, incluindo lançamentos do Google Bard (agora Gemini), Microsoft Copilot, IBM watsonx.ai e o modelo de linguagem Llama-2 de código aberto da Meta.
     \end{itemize}
 
-    A inteligência artificial tem sido um tema relevante na tecnologia, mas foi a IA generativa, especialmente com o lançamento do ChatGPT em 2022, que a destacou globalmente, gerando inovação e adoção. Ela oferece grandes benefícios de produtividade para indivíduos e organizações, e, apesar dos desafios e riscos, as empresas exploram como melhorar fluxos de trabalho e enriquecer produtos e serviços. De acordo com uma pesquisa da consultoria \textit{McKinsey}, mais de 65\% das empresas usam Gen AI no mundo. \citeb{mckinsey_genai}.
+    % A inteligência artificial tem sido um tema relevante na tecnologia, mas foi a IA generativa, especialmente com o lançamento do ChatGPT em novembro de 2022, que a destacou globalmente, gerando inovação e adoção. Ela oferece grandes benefícios de produtividade para indivíduos e organizações, e, apesar dos desafios e riscos, as empresas exploram como melhorar fluxos de trabalho e enriquecer produtos e serviços. De acordo com uma pesquisa da consultoria \textit{McKinsey}, mais de 65\% das empresas usam Gen AI no mundo. \citeb{mckinsey_genai}.
 
     \subsection{Large Language Models}
 
-    Os \textit{Large Language Models} (LLMs) são uma categoria de modelos fundamentais treinados em grandes volumes de dados para oferecer capacidades versáteis, atendendo a diversos casos de uso e tarefas. Diferentemente dos modelos específicos para determinados domínios, que exigem treinamentos separados para cada aplicação—geralmente com altos custos e demandas significativas de infraestrutura—os LLMs promovem uma aplicação mais ampla, gerando sinergias entre diferentes áreas e, muitas vezes, alcançando um desempenho superior. \citeb{llm_ibm}
+    % Os \textit{Large Language Models} (LLMs) são uma categoria de modelos fundamentais treinados em grandes volumes de dados para oferecer capacidades versáteis, atendendo a diversos casos de uso e tarefas. Diferentemente dos modelos específicos para determinados domínios, que exigem treinamentos separados para cada aplicação—geralmente com altos custos e demandas significativas de infraestrutura—os LLMs promovem uma aplicação mais ampla, gerando sinergias entre diferentes áreas e, muitas vezes, alcançando um desempenho superior. \citeb{llm_ibm}
 
-    Os LLMs representam um avanço significativo em \textit{Natural Language Processing} (NLP) e inteligência artificial. Esses modelos estão amplamente acessíveis ao público por meio de interfaces como o \textit{ChatGPT-3} e \textit{GPT-4} da \textit{OpenAI}, apoiados pela \textit{Microsoft}. Outros exemplos incluem os modelos \textit{Llama} da Meta, os modelos \textit{BERT/RoBERTa} e \textit{PaLM} do Google, e a série \textit{Granite} lançada pela IBM.
+    Os LLMs representam um avanço significativo em \textit{Natural Language Processing} (NLP) e inteligência artificial. Esses modelos estão amplamente acessíveis ao público por meio de LLMs como o \textit{ChatGPT-3} e \textit{GPT-4} da \textit{OpenAI}, apoiados pela \textit{Microsoft}. Outros exemplos incluem os modelos \textit{Llama} da Meta, os modelos \textit{BERT/RoBERTa} e \textit{PaLM} do Google, e a série \textit{Granite} lançada pela IBM.
 
     Os LLMs são projetados para compreender e gerar texto de forma similar à humana, além de produzir outros tipos de conteúdo. Com base nos extensos volumes de dados em que foram treinados, conseguem traduzir idiomas, resumir textos, responder perguntas, auxiliar na redação e até mesmo na geração de código.
 
-    Essas capacidades são viabilizadas por bilhões de parâmetros que capturam padrões complexos da linguagem. Como resultado, os LLMs estão transformando áreas como chatbots, assistentes virtuais, geração de conteúdo, suporte à pesquisa e tradução de idiomas.
+    Essas capacidades são viabilizadas por bilhões de parâmetros que capturam padrões complexos da linguagem. Como resultado, os LLMs estão transformando áreas como \textit{chatbots}, assistentes virtuais, geração de conteúdo, suporte à pesquisa e tradução de idiomas.
 
     \subsubsection{Como funcionam?}
 
-    Os \textit{Large Language Models} (LLMs) operam utilizando técnicas de aprendizagem profunda e grandes volumes de dados textuais. Baseados na arquitetura de transformadores \citeb{att_all_u_need}, como o \textit{Generative Pre-trained Transformer} (GPT), esses modelos são especialmente eficazes em lidar com dados sequenciais, como entradas de texto. Compostos por várias camadas de redes neurais, os LLMs empregam um mecanismo de atenção para focar em partes específicas dos conjuntos de dados.
+    % Os \textit{Large Language Models} (LLMs) operam utilizando técnicas de aprendizagem profunda e grandes volumes de dados textuais. Baseados na arquitetura de \textit{transformers} \citeb{att_all_u_need}, como o \textit{Generative Pre-trained Transformer} (GPT), esses modelos são especialmente eficazes em lidar com dados sequenciais, como entradas de texto. Compostos por várias camadas de redes neurais, os LLMs empregam um mecanismo de atenção para focar em partes específicas da sequência de texto fornecida na entrada.
 
-    Durante o treinamento, os modelos aprendem a prever a próxima palavra em uma sentença com base no contexto fornecido pelas palavras anteriores. Isso é feito atribuindo probabilidades à recorrência de palavras que foram tokenizadas (divididas em sequências menores) e transformadas em embeddings, representações numéricas do contexto.
+    Durante o treinamento, os modelos aprendem a prever um conjunto de próximas palavras em uma sentença com base no contexto fornecido pelas palavras anteriores e posteriores. Isso é feito atribuindo probabilidades à recorrência de palavras que foram transformadas em \textit{tokens} (divididas em sequências menores) e gerados os \textit{embeddings}, representações numéricas que capturam o contexto de ocorrência das palavras.
 
-    O treinamento envolve o uso de corpora massivas, com bilhões de páginas de texto, permitindo que os LLMs aprendam gramática, semântica e relações conceituais por meio de aprendizado auto-supervisionado e técnicas de zero-shot. Uma vez treinados, os modelos geram texto prevendo autonomamente a próxima palavra com base na entrada recebida e nos padrões adquiridos, resultando em uma produção linguística coerente e relevante para diversas tarefas de compreensão e geração de linguagem.
+    O treinamento envolve o uso de \textit{corpora} (conjuntos de textos) massivos, com bilhões de páginas de texto e trilhões de palavras, permitindo que os LLMs aprendam gramática, semântica e relações conceituais por meio de aprendizado auto-supervisionado, modelagem de sequência e demais técnicas de treinamento de LLMs. Uma vez treinados, os modelos geram texto prevendo autonomamente as próximas palavras com base na entrada recebida e nos padrões aprendidos, resultando em uma produção linguística coerente e relevante para diversas tarefas de compreensão e geração de linguagem.
 
-    O desempenho dos LLMs pode ser aprimorado por meio de técnicas como \textit{prompt engineering}, \textit{fine-tuning} (ajuste fino) e aprendizado por reforço com feedback humano (\textit{RLHF}). Essas abordagens ajudam a mitigar problemas como vieses, discurso de ódio e respostas incorretas ou ilusórias (\textit{hallucinations}), que podem surgir devido ao treinamento em dados não estruturados. Garantir que os LLMs estejam prontos para uso em nível corporativo é crucial para evitar riscos à reputação e responsabilidades indesejadas.
+    O desempenho dos LLMs pode ser aprimorado por meio de técnicas como \textit{prompt engineering}, \textit{fine-tuning} (ajuste fino) e aprendizado por reforço com feedback humano (\textit{Reinforcement Learning from Human Feedback} - RLHF). Essas abordagens ajudam a mitigar problemas como vieses, discurso de ódio e respostas incorretas ou ilusórias (\textit{hallucinations}). Garantir que os LLMs estejam prontos para uso, seja em sociedade ou nível coorporativo, é crucial para evitar riscos à reputação e responsabilidades indesejadas.
 
 
     \subsection{O Problema}
 
-    No livro \citetitle{rothman}, é dito que ``mesmo o modelo mais avançado de Inteligência Artificial (IA) generativa é limitado a responder somente sobre dados nos quais ele foi treinado.'' \citeb{rothman}. Essa afirmação chama a atenção para um problema especial: como fazer para que uma IA saiba responder perguntas referentes a um conjunto específico de dados, diferente daquele em que foi treinada?
+    % No livro \citetitle{rothman}, é dito que ``mesmo o modelo mais avançado de Inteligência Artificial (IA) generativa é limitado a responder somente sobre dados nos quais ele foi treinado.'' \citeb{rothman}. Essa afirmação chama a atenção para um problema especial: como fazer para que uma IA saiba responder perguntas referentes a um conjunto específico de dados, diferente daquele em que foi treinada?
 
-    Quando um modelo de IA generativo não sabe como responder com precisão, alguns dizem que ele está produzindo viés ou sofrendo uma \textit{hallucination} (alucinação). No entanto, ``tudo se resume à impossibilidade de fornecer uma resposta adequada quando o treinamento do modelo não incluiu as informações solicitadas além dos problemas clássicos de configuração do modelo.'' \citeb{rothman}. Essa confusão geralmente leva a sequências aleatórias das saídas mais prováveis, não das mais precisas.
+    % Quando um modelo de IA generativo não sabe como responder com precisão, alguns dizem que ele está produzindo viés ou sofrendo uma \textit{hallucination} (alucinação). No entanto, ``tudo se resume à impossibilidade de fornecer uma resposta adequada quando o treinamento do modelo não incluiu as informações solicitadas além dos problemas clássicos de configuração do modelo.'' \citeb{rothman}. Essa confusão geralmente leva a sequências aleatórias das saídas mais prováveis, não das mais precisas.
 
-    Buscando mitigar essas questões, em 2020 foi publicado o artigo \citetitle{RAG} \citeb{RAG}, que combinava abordagens baseadas em recuperação com modelos generativos, introduzindo a \textit{Retrieval Augmented Generation} (RAG). Uma RAG recupera dados relevantes de fontes externas em tempo real e usa esses dados para gerar respostas contextualmente relevantes, isto é, que façam sentido dentro do contexto trabalhado durante as consultas feitas pelo usuário. Uma de suas principais vantagens é a adaptabilidade, tendo em vista que a estrutura pode ser aplicada independente do tipo de dado abordado na solução, seja texto, imagens, áudios ou documentos diversos.
+    % Buscando mitigar essas questões, em 2020 foi publicado o artigo \citetitle{RAG} \citeb{RAG}, que combinava abordagens baseadas em recuperação com modelos generativos, introduzindo a \textit{Retrieval Augmented Generation} (RAG). Uma RAG recupera dados relevantes de fontes externas em tempo real e usa esses dados para gerar respostas contextualmente relevantes, isto é, que façam sentido dentro do contexto trabalhado durante as consultas feitas pelo usuário. Uma de suas principais vantagens é a adaptabilidade, tendo em vista que a estrutura pode ser aplicada independente do tipo de dado abordado na solução, seja texto, imagens, áudios ou documentos diversos.
 
 
     \subsection{Retrieval Augmented Generation (RAG)}
     
     Quando um modelo de IA generativa não sabe responder determinada pergunta com precisão, diz-se que ele está alucinando ou apresentando viés, mas, na prática, está apenas gerando respostas sem sentido. Isso ocorre porque o modelo não foi treinado com as informações solicitadas ou por conta de limitações em sua configuração, resultando em sequências prováveis, mas não precisas necessariamente.
 
-    Uma RAG começa onde a IA generativa termina, fornecendo informações que um modelo de LLM não possui para responder com precisão as consultas do usuário. Uma RAG otimiza tarefas de recuperação de informações e adiciona os dados recuperados durante a entrada (seja consulta do usuário ou um prompt automatizado), gerando uma saída melhorada e mais amigável ao usuário. O funcionamento geral da RAG pode ser resumido na \autoref{fig:rag_estudante}, que será explicada nos próximos parágrafos:
+    % Uma RAG começa onde a IA generativa termina, fornecendo informações que um modelo de LLM não possui para responder com precisão as consultas do usuário. Uma RAG otimiza tarefas de recuperação de informações e adiciona os dados recuperados durante a entrada (seja consulta do usuário ou um prompt automatizado), gerando uma saída melhorada e mais amigável ao usuário. O funcionamento geral da RAG pode ser resumido na \autoref{fig:rag_estudante}, que será explicada nos próximos parágrafos:
 
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{retrieval-generation-denis-rothman.png}
         \centering
-        \caption{Funcionamento geral de uma estrutura RAG (extraída de \citeb{rothman})}
+        % \caption{Funcionamento geral de uma estrutura RAG (extraída de \citeb{rothman})}
         \centering
-        \label{fig:rag_estudante}
+        % \label{fig:rag_estudante}
     \end{figure}
 
     Imagine um estudante em uma biblioteca, com a tarefa de escrever uma dissertação sobre RAG. Assim como o ChatGPT ou outras ferramentas de IA generativa, o estudante sabe ler e escrever. Como qualquer LLM, o estudante é treinado para compreender informações avançadas, resumir e criar conteúdo. No entanto, como qualquer IA, há muitas informações que este estudante ainda desconhece.
 
-    Na fase de recuperação, ele busca por livros sobre o tema necessário (lado esquerdo da \autoref{fig:rag_estudante}) na biblioteca. Em seguida, ele retorna ao seu lugar, realiza a tarefa de recuperação sozinho ou com a ajuda de um colega, extraindo as informações relevantes dos livros adquiridos. Na fase de geração (lado direito da \autoref{fig:rag_estudante}), o estudante começa a escrever a sua dissertação utilizando o conhecimento adquirido na fase anterior. Esse é o funcionamento de um agente humano guiado por RAG, de maneira semelhante a uma estrutura de IA generativa baseada em RAG.
+    % Na fase de recuperação, ele busca por livros sobre o tema necessário (lado esquerdo da \autoref{fig:rag_estudante}) na biblioteca. Em seguida, ele retorna ao seu lugar, realiza a tarefa de recuperação sozinho ou com a ajuda de um colega, extraindo as informações relevantes dos livros adquiridos. Na fase de geração (lado direito da \autoref{fig:rag_estudante}), o estudante começa a escrever a sua dissertação utilizando o conhecimento adquirido na fase anterior. Esse é o funcionamento de um agente humano guiado por RAG, de maneira semelhante a uma estrutura de IA generativa baseada em RAG.
 
     Enquanto escreve sua dissertação sobre RAG, o estudante encontra tópicos difíceis com os quais não tem tempo para consultar todas as informações disponíveis. Como um agente humano generativo, ele fica travado, assim como um modelo de IA generativa. Ele até pode tentar escrever algo sobre esses tópicos, mas, como a IA, não saberá se o conteúdo está correto até que alguém corrija a dissertação e lhe avalie de alguma maneira.
 
@@ -379,7 +381,7 @@
 
     \subsection{Ecossistema RAG}
 
-    A IA generativa baseada em RAG é um \textit{framework} que pode ser implementada com diversas configurações, funcionando dentro de um ecossistema amplo (\autoref{fig:rag_framework}). Independentemente da quantidade de estruturas de recuperação e geração disponíveis, tudo se resume a quatro eixos principais e suas respectivas questões:
+    % A IA generativa baseada em RAG é um \textit{framework} que pode ser implementada com diversas configurações, funcionando dentro de um ecossistema amplo (\autoref{fig:rag_framework}). Independentemente da quantidade de estruturas de recuperação e geração disponíveis, tudo se resume a quatro eixos principais e suas respectivas questões:
     
     \begin{itemize}
         \item \textbf{Dados:} De onde vêm os dados? São confiáveis e suficientes? Há questões de direitos autorais, privacidade ou segurança?
@@ -392,22 +394,22 @@
     
     Esse conhecimento é representado pelos parâmetros do modelo (pesos e vieses), que são ajustados durante o processo de treinamento para minimizar a função de perda e melhorar o desempenho do modelo. O Conhecimento paramétrico permite que o modelo faça previsões e generalize para dados novos e invisíveis, capturando recursos e relacionamentos essenciais dentro dos dados de treinamento.
     
-    Nos próximos parágrafos, a \autoref{fig:rag_framework} abaixo, ilustrando os principais componentes do \textit{framework} RAG (independentemente do tipo implementado), será explicada.
+    % Nos próximos parágrafos, a \autoref{fig:rag_framework} abaixo, ilustrando os principais componentes do \textit{framework} RAG (independentemente do tipo implementado), será explicada.
 
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{rag-framework-ecosystem-denis-rothman.png}
         \centering
-        \caption{Arquitetura da estrutura RAG (extraída de \citeb{rothman})}
+        % \caption{Arquitetura da estrutura RAG (extraída de \citeb{rothman})}
         \centering
-        \label{fig:rag_framework}
+        % \label{fig:rag_framework}
     \end{figure}
 
-    \begin{itemize}
-        \item \textbf{\textit{Retriever}} (D, em verde na \autoref{fig:rag_framework}): Responsável pela coleta, processamento, armazenamento e recuperação de dados.
-        \item \textbf{\textit{Generator}} (G, em azul na \autoref{fig:rag_framework}): Cuida da complementação da entrada, engenharia de prompts e geração de respostas.
-        \item \textbf{\textit{Evaluator}} (E, em amarelo na \autoref{fig:rag_framework}): Avalia o desempenho usando métricas matemáticas, \textit{feedback} humano e outras formas de validação.
-        \item \textbf{\textit{Trainer}} (T, em rosa na \autoref{fig:rag_framework}): Gerencia o modelo pré-treinado inicial e sua posterior ajuste fino (\textit{fine-tuning}).
-    \end{itemize}
+    % \begin{itemize}
+    %     \item \textbf{\textit{Retriever}} (D, em verde na \autoref{fig:rag_framework}): Responsável pela coleta, processamento, armazenamento e recuperação de dados.
+    %     \item \textbf{\textit{Generator}} (G, em azul na \autoref{fig:rag_framework}): Cuida da complementação da entrada, engenharia de prompts e geração de respostas.
+    %     \item \textbf{\textit{Evaluator}} (E, em amarelo na \autoref{fig:rag_framework}): Avalia o desempenho usando métricas matemáticas, \textit{feedback} humano e outras formas de validação.
+    %     \item \textbf{\textit{Trainer}} (T, em rosa na \autoref{fig:rag_framework}): Gerencia o modelo pré-treinado inicial e sua posterior ajuste fino (\textit{fine-tuning}).
+    % \end{itemize}
 
     Esses quatro componentes dependem de seus respectivos ecossistemas, composto por seus subcomponentes, formando o \textit{pipeline} de IA generativa baseada em RAG. Nas seções a seguir, serão usadas as siglas D, G, E e T para representar,respectivamente, \textit{Retriever}, \textit{Generator}, \textit{Evaluator} e \textit{Trainer}.
 
@@ -416,7 +418,7 @@
     O componente \textit{retriever} de um ecossistema RAG coleta, processa, armazena e recupera dados. O ponto de partida de um ecossistema RAG é, portanto, um processo de ingestão de dados, cujo primeiro passo é a coleta de dados. Os subcomponentes são:
 
     \begin{enumerate}
-        \item \textbf{Coleta de Dados (D1):} Atualmente dados são extremamente diversos, podendo ser textos, arquivos de mídia (como músicas ou vídeos em mp4) ou arquivos estruturados e não estruturados (PDFs, JSONs e páginas \textit{web}). Além disso, grande parte desses dados é não estruturada e pode ser encontrada de maneiras imprevisíveis e complexas. Felizmente, várias plataformas, como Pinecone\footnote{Disponível em \citeb{pinecone}}, OpenAI\footnote{Disponível em \citeb{openai}}, Chroma\footnote{Disponível em \citeb{chroma}} e Activeloop\footnote{Disponível em \citeb{activeloop}}, oferecem ferramentas prontas para processar e armazenar essa vasta quantidade de dados.
+        % \item \textbf{Coleta de Dados (D1):} Atualmente dados são extremamente diversos, podendo ser textos, arquivos de mídia (como músicas ou vídeos em mp4) ou arquivos estruturados e não estruturados (PDFs, JSONs e páginas \textit{web}). Além disso, grande parte desses dados é não estruturada e pode ser encontrada de maneiras imprevisíveis e complexas. Felizmente, várias plataformas, como Pinecone \footnote{\citeurl{pinecone}}, OpenAI \footnote{\citeurl{openai}}, Chroma \footnote{\citeurl{chroma}} e Activeloop \footnote{\citeurl{activeloop}}, oferecem ferramentas prontas para processar e armazenar essa vasta quantidade de dados.
         \item \textbf{Processamento de Dados (D2):} Na fase de coleta de dados (D1) no processamento de dados multimodais, diferentes tipos de dados, como texto, imagens e vídeos, podem ser extraídos de \textit{websites} utilizando técnicas de \textit{web scraping} ou outras fontes de informação. Esses objetos de dados são então transformados para criar representações uniformes. Alguns exemplos dessas transformações incluem: \textit{chunking}, \textit{embedding} e indexação. Essas técnicas serão discutidas mais adiante.
         \item \textbf{Armazenamento de Dados (D3):} Neste estágio do \textit{pipeline}, já se coletou e se iniciou o processamento de uma grande quantidade de dados diversos. Mas para fazermos com que esses dados sejam úteis, deve-se fazer uso de \textit{vector stores} (armazenamento de vetores), como Elastic Search. Esse não apenas armazena os dados, mas os convertem em entidades matemáticas, representadas como vetores, permitindo realizar cálculos poderosos. Esses sistemas também utilizam técnicas de indexação e outras abordagens para garantir acesso rápido e eficiente aos dados. Em vez de manter os dados em arquivos estáticos, transforma-se tudo em um sistema dinâmico e pesquisável, pronto para alimentar \textit{chatbots}, motores de busca e outras aplicações.
         \item \textbf{Consulta de Recuperação (D4):} O processo de recuperação é acionado pela entrada (ou consulta) do usuário ou entrada automatizada (G1). Para recuperar dados rapidamente, carregamos os dados nos \textit{vector stores} e \textit{datasets} após transformá-los para um formato adequado. Em seguida, utilizamos uma combinação de pesquisas por palavras-chave, \textit{embeddings} inteligentes e indexação para recuperar os dados de forma eficiente.
@@ -432,13 +434,13 @@
 
     \subsubsection{\textit{Generator} (G)}
 
-    No ecossistema RAG, as linhas entre a entrada e a recuperação não são tão nítidas, como mostrado na \autoref{fig:rag_framework}, que representa o \textit{framework} e ecossistema RAG. A entrada do usuário (G1), seja automatizado ou humano, interage com a consulta de recuperação (D4) para complementar a entrada antes de enviá-la ao modelo generativo. O fluxo gerativo começa com a entrada do usuário, que é aprimorada com dados recuperados antes de ser processada pelo modelo de IA generativa.
+    % No ecossistema RAG, as linhas entre a entrada e a recuperação não são tão nítidas, como mostrado na \autoref{fig:rag_framework}, que representa o \textit{framework} e ecossistema RAG. A entrada do usuário (G1), seja automatizado ou humano, interage com a consulta de recuperação (D4) para complementar a entrada antes de enviá-la ao modelo generativo. O fluxo gerativo começa com a entrada do usuário, que é aprimorada com dados recuperados antes de ser processada pelo modelo de IA generativa.
 
     \begin{enumerate}
         \item \textbf{Entrada (G1):} A entrada pode ser uma série de tarefas automatizadas (como o processamento de \textit{e-mails}, por exemplo) ou \textit{prompts} humanos por meio de uma Interface de Usuário (\textit{User Interface} - UI). Essa flexibilidade permite integrar a IA de forma flúida em diversos ambientes profissionais, aprimorando a produtividade em diferentes setores.
         \item \textbf{Entrada Aumentada com Feedback Humano (G2):} O feedback humano (\textit{Human Feedback} - HF) pode ser adicionado à entrada, conforme descrito na \autoref{sec:human_feedback}, sob o componente \textit{evaluator} (E). O \textit{feedback} humano torna o ecossistema RAG consideravelmente mais adaptável, permitindo total controle sobre a recuperação de dados e as entradas para a IA generativa.
         \item \textbf{Engenharia de \textit{Prompts} (G3):} Tanto o \textit{retriever} (D) quanto o \textit{generator} (G) dependem fortemente da engenharia de \textit{prompts} para preparar a mensagem padrão e aumentada que o modelo de IA generativa deverá processar. A engenharia de \textit{prompts} combina a saída do \textit{retriever} (D) com a entrada do usuário, garantindo que o modelo receba uma entrada bem estruturada e relevante para gerar a resposta desejada.
-        \item \textbf{Geração e Saída (G4):} A escolha de um modelo de IA generativa (LLM) depende dos objetivos do projeto. Modelos como Llama\footnote{Disponível em \citeb{llama_models}}, Gemini\footnote{Disponível em \citeb{gemini_models}}, GPT\footnote{Disponível em \citeb{gpt_models}} e outros podem atender a diferentes requisitos. No entanto, o \textit{prompt} precisa estar alinhado com as especificações de cada modelo.
+        % \item \textbf{Geração e Saída (G4):} A escolha de um modelo de IA generativa (LLM) depende dos objetivos do projeto. Modelos como Llama \footnote{\citeurl{llama_models}}, Gemini\footnote{\citeurl{gemini_models}}, GPT \footnote{\citeurl{gpt_models}} e outros podem atender a diferentes requisitos. No entanto, o \textit{prompt} precisa estar alinhado com as especificações de cada modelo.
     \end{enumerate}
 
     \subsubsection{\textit{Evaluator} (E)}
@@ -470,12 +472,12 @@
     
     A ideia central de um \textit{pipeline} é promover eficiência e continuidade ao integrar processos de forma harmoniosa, garantindo que cada componente contribua para o objetivo final com precisão e agilidade. Essa abordagem é amplamente aplicada em diversas áreas, como computação, engenharia de software e operações industriais, destacando sua versatilidade e importância para melhorar fluxos de trabalho e resultados. 
 
-    O \textit{pipeline} de processamento implementado, é responsável por gerenciar fluxos de análise e transformação de documentos para a solução. Neste contexto, ele desempenha a função de lidar com bibliotecas de documentos, analisando cada documento e garantindo que cada um seja processado corretamente. Esse processo é modelado de acordo com a \autoref{fig:pipeline_scheme} abaixo:
+    O \textit{pipeline} de processamento implementado é responsável por gerenciar fluxos de análise e transformação de documentos para a solução. Neste contexto, ele desempenha a função de lidar com bibliotecas de documentos, analisando cada documento e garantindo que cada um seja processado corretamente. Esse processo é modelado de acordo com a \autoref{fig:pipeline_scheme}:
     
     \begin{figure}
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{architecture-pipeline.png}
         \centering
-        \caption{Visão arquitetural do pipeline de ingestão proposto no trabalho.}
+        \caption{Visão arquitetural do \textit{pipeline} de ingestão proposto no trabalho.}
         \centering
         \label{fig:pipeline_scheme}
     \end{figure}
@@ -483,31 +485,31 @@
     O \textit{pipeline} em questão executa as seguintes etapas: 
     
     \begin{enumerate}
-        \item \textbf{Configuração de Ambiente}: o desenvolvedor responsável por executar o \textit{pipeline} configura um arquivo de ambiente contendo as informações referentes ao modelo de embedding, llm utilizada, entre outros.
-        \item \textbf{Busca e Leitura de Dados}: um \textit{script} é responsável por buscar os documentos da biblioteca de documentos configurada. Em seguida a biblioteca é analisada, seus documentos são processados e transformados de maneira sequencial para obtermos um determinado modelo com as informações necessárias de cada documento.
+        \item \textbf{Configuração de Ambiente}: o desenvolvedor responsável por executar o \textit{pipeline} configura um arquivo de ambiente contendo as informações referentes ao modelo de \textit{embedding}, LLM utilizado, entre outros.
+        \item \textbf{Busca e Leitura de Dados}: um \textit{script} é responsável por buscar os documentos da biblioteca de documentos configurada. Em seguida, a biblioteca é analisada, seus documentos são processados e transformados de maneira sequencial para obtermos objeto específico com as informações necessárias de cada documento.
         \item \textbf{Processamento de Dados}: uma vez extraídos, os dados obtidos são analisados e somente dados relevantes para a operação são guardados em um objeto específico.
-        \item \textbf{Geração de \textit{Embeddings}}: para cada objeto obtido na etapa anterior, a informação de cada \textit{chunk} precisa estar em um formato específico para o banco vetorial, este formato é obtido quando geramos os \textit{embeddings}, que neste contexto, são uma representação numérica de baixa dimensão dos dados de um \textit{chunk} expecífico.
-        \item \textbf{Formatação de Dados}: com os \textit{embeddings} da etapa anterior, o objeto de modelo é completo e se encontra pronto para a inserção no banco vetorial.
-        \item \textbf{Inserção no Banco Vetorial}: uma vez gerados, os \textit{embeddings} de cada \textit{chunk} estão presentes no modelo previamente adquirido na etapa de \textbf{Processamento de Dados}. O armazenamento é feito de forma sequencial em \textit{batches}, grupos com tamanho limitado pelo desenvolvedor, através da interface de programação de aplicações (API) já que ela é o único artefato com acesso direto ao banco vetorial. Assim, o tempo da etapa de inserção ao banco é reduzido, tendo em vista que uma vez que um documento é particionado em \textit{chunks}, dependendo do tamanho do documento, podemos obter mais de 100 \textit{chunks}, ou seja, 100 inserções.
+        \item \textbf{Geração de \textit{Embeddings}}: para cada objeto obtido na etapa anterior, a informação de cada \textit{chunk} (uma parte do conteúdo do documento particionado) precisa estar em um formato específico para o banco vetorial, este formato é obtido quando geramos os \textit{embeddings}, que neste contexto, são uma representação numérica (vetorial) de baixa dimensão dos dados de um \textit{chunk} específico.
+        \item \textbf{Formatação de Dados}: com os \textit{embeddings} da etapa anterior, o objeto com as informações desejadas é completo e se encontra pronto para a inserção no banco vetorial.
+        \item \textbf{Inserção no Banco Vetorial}: uma vez gerados, os \textit{embeddings} de cada \textit{chunk} estão presentes no objeto previamente adquirido na etapa de \textbf{Processamento de Dados}. O armazenamento é feito de forma sequencial em \textit{batches}, grupos com tamanho limitado pelo desenvolvedor, através da interface de programação de aplicações (\textit{Application Programming Interface} - API) já que ela é o único artefato com acesso direto ao banco vetorial. Assim, o tempo da etapa de inserção ao banco é reduzido, tendo em vista que, uma vez que um documento é particionado em \textit{chunks}, dependendo do seu tamanho original, podemos obter mais de 100 \textit{chunks}, ou seja, 100 inserções.
     \end{enumerate}
     
     \subsubsection{Interface de Programação de Aplicações (API)} \label{sec:api_concept}
 
     Uma interface de programação de aplicações (API) é um conjunto de definições e protocolos que permite a comunicação entre diferentes sistemas. Sua principal função é permitir que um programa acesse recursos e funcionalidades de outro, facilitando a integração e a troca de dados. As APIs são utilizadas para simplificar processos complexos, expondo apenas as funcionalidades necessárias e ocultando detalhes internos, proporcionando uma interface padronizada para o desenvolvedor.
 
-    No contexto da comunicação entre sistemas, uma API geralmente opera através de requisições HTTP, onde um cliente envia uma solicitação a um servidor que, por sua vez, responde com os dados ou serviços solicitados. As APIs podem utilizar formatos como JSON ou XML para a troca de informações. Elas desempenham um papel crucial na construção de aplicações modernas, pois permitem que diferentes softwares interajam sem a necessidade de entender a implementação interna do outro.
+    No contexto da comunicação entre sistemas, uma API geralmente opera através de requisições HTTP, em que um cliente envia uma solicitação a um servidor que, por sua vez, responde com os dados ou serviços solicitados. As APIs podem utilizar formatos como JSON ou XML para a troca de informações. Elas desempenham um papel crucial na construção de aplicações modernas, pois permitem que diferentes softwares interajam sem a necessidade de entender a implementação interna do outro.
 
-    As APIs são amplamente utilizadas para fornecer funcionalidades específicas, como acesso a bancos de dados, integração com redes sociais, pagamento eletrônico, entre outros. Elas são fundamentais no desenvolvimento de microserviços e sistemas distribuídos, permitindo que diferentes componentes de uma aplicação se comuniquem de forma eficiente e escalável. Dessa forma, a API se torna o artefato central no ecossistema proposto, sendo responsável por mediar a comunicação entre os diferentes componentes implementados. Sua principal função é receber e processar as requisições feitas pelos usuário na interface gráfica de usuário (GUI), garantindo que as operações sejam realizadas de forma eficiente e segura.
+    As APIs são amplamente utilizadas para fornecer funcionalidades específicas, como acesso a bancos de dados, integração com redes sociais, pagamento eletrônico, entre outros. Elas são fundamentais no desenvolvimento de microsserviços e sistemas distribuídos, permitindo que diferentes componentes de uma aplicação se comuniquem de forma eficiente e escalável. Dessa forma, a API se torna o artefato central no ecossistema proposto, sendo responsável por mediar a comunicação entre os diferentes componentes implementados. Sua principal função é receber e processar as requisições feitas pelos usuário na interface gráfica de usuário (\textit{Graphical User Interface} - GUI), garantindo que as operações sejam realizadas de forma eficiente e segura.
     
     Além disso, a API desempenha um papel crítico na segurança do sistema ao restringir o acesso direto ao banco vetorial por parte dos outros artefatos. Essa camada de abstração impede interações não autorizadas ou inadequadas com o banco de dados, garantindo que apenas as operações de usuários autenticados sejam realizadas. Com isso, a API promove uma integração controlada e otimizada entre os artefatos, além de assegurar a integridade dos dados e a consistência do sistema como um todo.
     
     \subsubsection{Interface Gráfica de Usuário (GUI)} \label{sec:gui}
     
-    A interface gráfica do usuário (GUI) é um componente essencial, responsável por receber e guiar o usuário em suas interações com o sistema. Ela oferece elementos visuais e controles intuitivos, como botões, menus e janelas, que simplificam a utilização das funcionalidades disponíveis.
+    A interface gráfica do usuário (\textit{Graphical User Interface} - GUI) é um componente essencial, responsável por receber e guiar o usuário em suas interações com o sistema. Ela oferece elementos visuais e controles intuitivos, como botões, menus e janelas, que simplificam a utilização das funcionalidades disponíveis.
 
-    Além de sua função de interação direta com o usuário, a GUI atua como um elo entre o usuário e a API do sistema. Ela interpreta as entradas do usuário, como cliques ou comandos, e as converte em requisições apropriadas para o backend, garantindo que as instruções sejam processadas corretamente.
+    Além de sua função de interação direta com o usuário, a GUI atua como um elo entre o usuário e a API do sistema. Ela interpreta as entradas do usuário, como cliques ou comandos, e as converte em requisições apropriadas para \textit{backend}, garantindo que as instruções sejam processadas corretamente.
 
-    \begin{figure}
+    \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{architecture-solution.png}
         \centering
         \caption{Visão arquitetural do fluxo da interface de usuário proposta no trabalho.}
@@ -518,20 +520,20 @@
     Esse fluxo de comunicação, ilustrado na \autoref{fig:gui_scheme}, possibilita que tarefas como busca e enriquecimento de respostas ocorram de maneira transparente e alinhada às necessidades do usuário. Este fluxo entre usuário e sistema, pode ser decomposto nas seguintes etapas:
 
     \begin{enumerate}
-        \item \textbf{Envio da \textit{Query}}: usuário realiza uma pergunta para o chat. Em seguida, a interface envia a \textit{query} do usuário para a API e aguarda a resposta.
+        \item \textbf{Envio de Consultas (\textit{Query})}: usuário realiza uma pergunta para o \textit{chat}. Em seguida, a interface envia a consulta do usuário para a API e aguarda a resposta.
         \item \textbf{Busca por Contexto}: No momento em que o usuário realiza a \textit{query}, o sistema realiza uma busca por contexto ou informações relevantes, gerando um objeto de contexto que contém todas as informações relevantes.
-        \item \textbf{Enriquecimento da Resposta}: com o contexto da \textit{query}, a API responde com uma lista contendo os objetos presentes no banco vetorial cujo embedding contém informações relevantes para a query do usuário.
-        \item \textbf{Resposta Enriquecida}: a partir da resposta obtida anteriormente, a lista é encaminhada para uma LLM que irá analisar primeiramente um prompt focado em entregar respostas humanizadas para o usuário. Neste prompt, há todo um cuidado para que um desenvolvedor possa implementar a solução e realizar as afinações necessárias para seu próprio contexto.
-        \item \textbf{Visualização}: a interface gráfica recebe a resposta da requisição feita à API e a expõe para o usuário dentro do modelo de chat proposto.
+        \item \textbf{Enriquecimento da Resposta}: com o contexto da \textit{query}, a API responde com uma lista contendo os objetos presentes no banco vetorial cujo \textit{embedding} contém informações relevantes para a consulta do usuário.
+        \item \textbf{Resposta Enriquecida}: a partir da resposta obtida anteriormente, a lista é encaminhada para um LLM que irá analisar primeiramente um \textit{prompt} focado em entregar respostas humanizadas para o usuário. Nesse \textit{prompt}, há todo um cuidado para que um desenvolvedor possa implementar a solução e realizar as afinações necessárias para seu próprio contexto.
+        \item \textbf{Visualização}: a interface gráfica recebe a resposta da requisição feita à API e a expõe para o usuário dentro do modelo de \textit{chat} proposto.
     \end{enumerate}
 
     Essa mediação entre usuário e sistema não apenas melhora a experiência de uso, mas também assegura que a interface seja sincronizada com os demais artefatos do sistema. Ao integrar as funcionalidades visuais com a lógica subjacente do sistema, a GUI contribui para uma experiência de interação consistente, eficiente e intuitiva, promovendo um equilíbrio ideal entre acessibilidade e desempenho técnico.
     
     \subsection{Ecossistema RAG} \label{sec:ecosystem}
     
-    Analisar uma biblioteca de documentos pode ser complexo, pois cada biblioteca pode comportar diversos tipos de documentos, em formatos distintos. Este projeto foi construído visando a análise de qualquer biblioteca de documentos, ou seja, o processamento dos dados da biblioteca será realizado mesmo que ela tenha arquivos em formatos diferentes. O projeto foi contruido com base nos três artefatos previamente explicados e funciona como ilustrado na \autoref{fig:ecosystem} a seguir:
+    Analisar uma biblioteca de documentos pode ser complexo, pois cada biblioteca pode comportar diversos tipos de documentos, em formatos distintos. Este projeto foi construído visando à análise de qualquer biblioteca de documentos, ou seja, o processamento dos dados da biblioteca será realizado mesmo que ela tenha arquivos em formatos diferentes. O projeto foi contruido com base nos três artefatos previamente explicados e funciona como ilustrado na \autoref{fig:ecosystem}:
 
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{ecosystem.png}
         \centering
         \caption{Visão arquitetural do ecossistema RAG proposto no trabalho}
@@ -545,23 +547,23 @@
 
     \subsubsection{Python e Ambientes Virtuais} \label{sec:python}
     
-    O Python 3.11 \footnote{Disponível em \citeb{python}} é uma das versões da linguagem de programação Python, lançada com melhorias significativas em desempenho, novas funcionalidades e correções de bugs. Uma das principais inovações dessa versão é a otimização do tempo de execução, com um aumento significativo na velocidade em relação às versões anteriores, devido a melhorias no interpretador e na execução de código. 
+    % O Python 3.11 \footnote{\citeurl{python}} é uma das versões da linguagem de programação Python, lançada com melhorias significativas em desempenho, novas funcionalidades e correções de \textit{bugs}. Uma das principais inovações dessa versão é a otimização do tempo de execução, com um aumento significativo na velocidade em relação às versões anteriores, devido a melhorias no interpretador e na execução de código. 
     
-    Além disso, a versão 3.11 introduziu aprimoramentos na sintaxe, como a simplificação de anotações de tipos e novos recursos que facilitam o desenvolvimento de aplicativos mais robustos e eficientes. A linguagem continua a ser uma das mais populares, especialmente em áreas como desenvolvimento web, ciência de dados e inteligência artificial.
+    Além disso, a versão 3.11 introduziu aprimoramentos na sintaxe, como a simplificação de anotações de tipos e novos recursos que facilitam o desenvolvimento de aplicativos mais robustos e eficientes. A linguagem continua a ser uma das mais populares, especialmente em áreas como desenvolvimento \textit{web}, ciência de dados e inteligência artificial.
     
-    Ambientes virtuais são espaços isolados onde é possível instalar e gerenciar dependências específicas de um projeto, sem afetar o sistema global ou outros projetos. Em Python, esses ambientes são criados com o módulo venv, permitindo que cada projeto tenha suas próprias versões de pacotes e bibliotecas. Isso evita conflitos entre dependências e facilita o gerenciamento de diferentes versões de pacotes para cada projeto.
+    Ambientes virtuais são espaços isolados em que é possível instalar e gerenciar dependências específicas de um projeto, sem afetar o sistema global ou outros projetos. Em Python, esses ambientes são criados com o módulo venv, permitindo que cada projeto tenha suas próprias versões de pacotes e bibliotecas. Isso evita conflitos entre dependências e facilita o gerenciamento de diferentes versões de pacotes para cada projeto.
 
     As principais vantagens dos ambientes virtuais incluem a capacidade de isolar dependências, garantindo que cada projeto utilize a versão correta de pacotes, a facilidade de replicar e compartilhar ambientes de desenvolvimento e a redução de problemas de compatibilidade entre pacotes ou versões do Python. Eles oferecem um controle mais preciso sobre o ambiente de execução, tornando o desenvolvimento mais seguro e eficiente.
 
     \subsubsection{Docling} \label{sec:docling}
 
-    O Docling \footnote{Disponível em \citeb{docling}} é uma biblioteca Python projetada para facilitar a extração e organização de documentos. Ela permite que desenvolvedores processem automaticamente documentos de diferentes formatos, como \textit{PDFs}, textos e arquivos \textit{Word}, para extrair informações estruturadas e relevantes. A biblioteca é útil para automatizar tarefas de leitura e processamento de grandes volumes de dados, organizando-os de forma a facilitar a análise posterior.
+    % O Docling \footnote{\citeurl{docling}} é uma biblioteca Python projetada para facilitar a extração e organização de documentos. Ela permite que desenvolvedores processem automaticamente documentos de diferentes formatos, como \textit{PDFs}, textos e arquivos \textit{Word}, para extrair informações estruturadas e relevantes. A biblioteca é útil para automatizar tarefas de leitura e processamento de grandes volumes de dados, organizando-os de forma a facilitar a análise posterior.
 
     A principal vantagem do Docling é a sua capacidade de simplificar o processo de extração de dados, tornando-o mais rápido e eficiente, sem a necessidade de escrever código complexo para lidar com diferentes tipos de documentos. Isso a torna uma ferramenta valiosa para projetos que requerem análise de texto ou a criação de bancos de dados a partir de documentos não estruturados.
 
     \subsubsection{Llama Index} \label{sec:llama_index}
 
-    O LlamaIndex \footnote{Disponível em \citeb{llama_index}} é uma biblioteca Python que serve como uma estrutura flexível para integrar modelos de LLMs a dados privados, facilitando a construção de assistentes de conhecimento personalizados.
+    % O LlamaIndex \footnote{\citeurl{llama_index}} é uma biblioteca Python que serve como uma estrutura flexível para integrar modelos de LLMs a dados privados, facilitando a construção de assistentes de conhecimento personalizados.
 
     A biblioteca oferece ferramentas para iniciantes e usuários avançados. Sua API de alto nível permite que iniciantes façam tanto a ingestão quanto a consulta de seus dados com poucas linhas de código, enquanto as APIs de baixo nível possibilitam que usuários avançados personalizem e estendam módulos conforme suas necessidades. O LlamaIndex possui mais de 300 pacotes de integração disponíveis, permitindo que os desenvolvedores escolham os provedores de LLM, \textit{embeddings} e armazenamentos vetoriais que melhor atendam às suas necessidades.
 
@@ -569,252 +571,252 @@
 
     \subsubsection{Elastic Search} \label{sec:elasticsearch}
 
-    O Elasticsearch \footnote{Disponível em \citeb{elasticsearch}} é um mecanismo de busca e análise distribuído, de código aberto, desenvolvido em Java e baseado no Apache Lucene. Lançado inicialmente em 2010, ele permite armazenar, buscar e analisar grandes volumes de dados em tempo quase real, oferecendo respostas em milissegundos.
+    % O Elasticsearch \footnote{\citeurl{elasticsearch}} é um mecanismo de busca e análise distribuído, de código aberto, desenvolvido em Java e baseado no Apache Lucene. Lançado inicialmente em 2010, ele permite armazenar, buscar e analisar grandes volumes de dados em tempo quase real, oferecendo respostas em milissegundos.
 
-    Uma das principais vantagens do Elasticsearch é sua capacidade de lidar com diversos tipos de buscas — estruturadas, não estruturadas, geoespaciais e métricas — permitindo combinar diferentes tipos de consultas de forma eficiente. Além disso, sua natureza distribuída possibilita o processamento paralelo de grandes volumes de dados, garantindo alto desempenho e escalabilidade. Ele é amplamente utilizado em diversos casos de uso, incluindo busca de texto completo, monitoramento de logs, análise de dados e como banco de dados vetorial otimizado para velocidade e relevância em cargas de trabalho em escala de produção.
+    Uma das principais vantagens do Elasticsearch é sua capacidade de lidar com diversos tipos de buscas — estruturadas, não estruturadas, geoespaciais e métricas — permitindo combinar diferentes tipos de consultas de forma eficiente. Além disso, sua natureza distribuída possibilita o processamento paralelo de grandes volumes de dados, garantindo alto desempenho e escalabilidade. Ele é amplamente utilizado em diversos casos de uso, incluindo busca de texto completo, monitoramento de \textit{logs}, análise de dados e como banco de dados vetorial otimizado para velocidade e relevância em cargas de trabalho em escala de produção.
 
     Em resumo, o Elasticsearch é uma ferramenta poderosa e flexível para busca e análise de dados, oferecendo desempenho elevado, escalabilidade e uma ampla gama de funcionalidades que o tornam adequado para diversas aplicações empresariais e de desenvolvimento.
 
     \subsubsection{Ollama} \label{sec:ollama}
 
-    O Ollama \footnote{Disponível em \citeb{ollama}} é uma estrutura leve e extensível que facilita a execução de modelos de linguagem de grande porte (LLMs) diretamente em máquinas locais. Compatível com sistemas operacionais como macOS, Linux e Windows, o Ollama permite que desenvolvedores e pesquisadores implementem modelos como Llama 3.3, Phi 4, Mistral e Gemma 2 \footnote{Disponíveis em \citeb{llama_models}}, além de possibilitar a personalização e criação de modelos próprios.
+    % O Ollama \footnote{\citeurl{ollama}} é uma estrutura leve e extensível que facilita a execução de modelos de linguagem de grande porte (LLMs) diretamente em máquinas locais. Compatível com sistemas operacionais como macOS, Linux e Windows, o Ollama permite que desenvolvedores e pesquisadores utilizem modelos como Llama 3.3, Phi 4, Mistral e Gemma 2 \footnote{\citeurl{llama_models}}, além de possibilitar a personalização e criação de modelos próprios.
 
     A instalação do Ollama é simplificada, com pacotes disponíveis para diferentes plataformas. Após a instalação, os usuários podem iniciar o servidor localmente utilizando o comando \textit{ollama serve}. O Ollama também oferece uma API \textit{RESTful}, permitindo a integração com diversas aplicações e linguagens de programação. Para projetos em Python, por exemplo, existe uma biblioteca dedicada que facilita a interação com o Ollama, permitindo a execução de modelos e o processamento de respostas de forma eficiente.
 
-    Uma característica notável do Ollama é sua capacidade de lidar com entradas multilinha e modelos multimodais. Isso significa que os usuários podem fornecer prompts complexos que incluem múltiplas linhas de texto ou até mesmo imagens, e o Ollama processará essas entradas de maneira eficaz. Além disso, o Ollama permite a execução de modelos específicos para tarefas variadas, como o llava, que pode descrever o conteúdo de imagens fornecidas.
+    Uma característica notável do Ollama é sua capacidade de lidar com entradas multilinha e modelos multimodais. Isso significa que os usuários podem fornecer \textit{prompts} complexos que incluem múltiplas linhas de texto ou até mesmo imagens, e o Ollama processará essas entradas de maneira eficaz. Além disso, o Ollama permite a execução de modelos específicos para tarefas variadas, como o llava, que pode descrever o conteúdo de imagens fornecidas.
 
-    Em resumo, o Ollama se destaca como uma solução robusta para a execução e personalização de modelos de linguagem de grande porte em ambientes locais. Sua flexibilidade, combinada com uma interface intuitiva e suporte a múltiplas plataformas, o torna uma ferramenta valiosa para desenvolvedores e pesquisadores que buscam implementar soluções baseadas em LLMs de forma eficiente e personalizada.
+    Em resumo, o Ollama se destaca como uma solução robusta para a execução e personalização de modelos de LLMs em ambientes locais. Sua flexibilidade, combinada com uma interface intuitiva e suporte a múltiplas plataformas, o torna uma ferramenta valiosa para desenvolvedores e pesquisadores que buscam implementar soluções baseadas em LLMs de forma eficiente e personalizada.
 
     \subsubsection{Fast API} \label{sec:fastapi}
 
-    O FastAPI \footnote{Disponível em \citeb{fastapi}} é um framework web moderno e de alto desempenho para a construção de APIs com Python, baseado em anotações de tipo padrão do Python. Lançado em 2018, ele permite a criação rápida de APIs robustas e eficientes, aproveitando os recursos de tipagem do Python para validação de dados e documentação automática.
+    % O FastAPI \footnote{\citeurl{fastapi}} é um \textit{framework web} moderno e de alto desempenho para a construção de APIs com Python, baseado em anotações de tipo padrão do Python. Lançado em 2018, ele permite a criação rápida de APIs robustas e eficientes, aproveitando os recursos de tipagem do Python para validação de dados e documentação automática.
 
-    Uma das principais características do FastAPI é sua capacidade de gerar automaticamente documentação interativa para as APIs, utilizando ferramentas como Swagger UI e ReDoc. Isso facilita o desenvolvimento e a integração, permitindo que desenvolvedores e usuários explorem e testem os endpoints da API de forma intuitiva.
+    Uma das principais características do FastAPI é sua capacidade de gerar automaticamente documentação interativa para as APIs, utilizando ferramentas como Swagger UI e ReDoc. Isso facilita o desenvolvimento e a integração, permitindo que desenvolvedores e usuários explorem e testem os \textit{endpoints} da API de forma intuitiva.
 
-    Além disso, o FastAPI é projetado para ser fácil de aprender e rápido de codificar, sem comprometer o desempenho. Ele é construído sobre o Starlette para a camada de rede e o Pydantic para a validação de dados, garantindo alta performance e confiabilidade.
+    % Além disso, o FastAPI é projetado para ser fácil de aprender e rápido de codificar, sem comprometer o desempenho. Ele é construído sobre o Starlette \footnote{\citeurl{starlette}} e o Pydantic \footnote{\citeurl{pydantic}} para a validação de dados, garantindo alta performance e confiabilidade.
 
-    Em resumo, o FastAPI se destaca como uma ferramenta poderosa e eficiente para o desenvolvimento de APIs em Python, combinando facilidade de uso, desempenho e recursos avançados para atender às necessidades de desenvolvedores modernos.
+    Finalmente, o FastAPI se destaca como uma ferramenta poderosa e eficiente para o desenvolvimento de APIs em Python, combinando facilidade de uso, desempenho e recursos avançados para atender às necessidades de desenvolvedores modernos.
 
     \subsubsection{Streamlit} \label{sec:streamlit}
     
-    O Streamlit \footnote{Disponível em \citeb{streamlit}} é um \textit{framework} de código aberto em Python que permite a criação rápida e interativa de aplicativos \textit{web} para ciência de dados e aprendizado de máquina. Com apenas algumas linhas de código, é possível transformar scripts de dados em aplicativos \textit{web} compartilháveis, sem a necessidade de experiência prévia em \textit{front-end}.
+    % O Streamlit \footnote{\citeurl{streamlit}} é um \textit{framework} de código aberto em Python que permite a criação rápida e interativa de aplicativos \textit{web} para ciência de dados e aprendizado de máquina. Com apenas algumas linhas de código, é possível transformar \textit{scripts} de dados em aplicativos \textit{web} compartilháveis, sem a necessidade de experiência prévia em desenvolvimento \textit{front-end}.
 
     Uma das principais vantagens do Streamlit é sua simplicidade e integração direta com bibliotecas populares de Python. Isso permite que os desenvolvedores construam interfaces interativas para visualização de dados, \textit{dashboards} e relatórios de forma eficiente. Além disso, o Streamlit oferece recursos como \textit{widgets} interativos, que permitem aos usuários interagir com os dados em tempo real, e a capacidade de atualizar automaticamente a interface à medida que o código é modificado, facilitando o desenvolvimento iterativo.
 
-    Em resumo, o Streamlit é uma ferramenta poderosa e acessível para a criação de aplicativos \textit{web} interativos em Python, ideal para cientistas de dados e engenheiros de aprendizado de máquina que desejam compartilhar e visualizar seus projetos de forma rápida e eficaz.
+    No geral, o Streamlit é uma ferramenta poderosa e acessível para a criação de aplicativos \textit{web} interativos em Python, ideal para cientistas de dados, engenheiros de aprendizado de máquina e pesquisadores que desejam compartilhar e visualizar seus projetos de forma rápida e eficaz.
 
     \clearpage
 
-    \section{Solução Desenvolvida}
+    % \section{Solução Desenvolvida}
 
-    Com os conceitos fundamentais por trás de um ecosistema RAG, discutidos na \autoref{sec:concepts}, este capítulo seguirá expondo o processo de desenvolvimento do ecosistema proposto para este projeto. Levando em consideração as tecnologias apresentadas na \autoref{sec:technologies}, os próximos tópicos irão abordar o desenvolvimento concreto de cada artefato proposto para a solução final do projeto.
+    % Com os conceitos fundamentais por trás de um ecossistema RAG, discutidos na \autoref{sec:concepts}, este capítulo expõe o processo de desenvolvimento do ecossistema proposto para este projeto. Levando em consideração as tecnologias apresentadas na \autoref{sec:technologies}, os próximos tópicos irão abordar o desenvolvimento concreto de cada artefato proposto para a solução final do projeto.
 
-    \subsection{Conjunto de Dados}
+    % \subsection{Conjunto de Dados}
 
-    Para este projeto, não é viável processar todos os documentos de uma biblioteca devido as limitações de hardware enfrentadas durante a implementação. Para sanar este problema, foi selecionado um conjunto de dados específico que permitisse o processamento de todos os documentos.
-
-    Este conjunto de dados é formado por todos os trabalhos de conclusão de curso do ano de 2023 publicados pela secretaria do Bacharelado em Sistemas de Informação da Universidade Federal do Estado do Rio de Janeiro - UNIRIO, \citeb{tccs_unirio}. Totalizando 21 documentos do tipo \textit{PDF} com trabalhos de conclusão de curso de diversos alunos do curso.
-
-    \subsection{\textit{Pipeline} de Ingestão}
+    % Para este projeto, toda a implementação foi feita em um notebook pessoal e não seria viável processar todos os documentos de uma biblioteca grande devido ao longo tempo de processamento (para uma biblioteca com 23 documentos, o \textit{pipeline} de processamento demora entre 30 e 40 minutos para ser executado). 
     
-    Como visto na \autoref{sec:pipeline} a primeira etapa do \textit{pipeline} de ingestão é a leitura e processamento de uma biblioteca de documentos. E para obter uma leitura e processamento de documentos agnóstica a extensões de documentos, segue-se  um Design Pattern, mais especificamente o \textit{factory design pattern}. 
+    % Para sanar este problema, foi selecionado um conjunto de dados formado por todos os Trabalhos de Conclusão de Curso (TCCs) do ano de 2023 defendidos por alunos do Bacharelado em Sistemas de Informação da Universidade Federal do Estado do Rio de Janeiro - UNIRIO, \citeb{tccs_unirio}. Totalizando 21 documentos do tipo \textit{PDF} com TCCs de diversos alunos do curso.
+
+    % \subsection{\textit{Pipeline} de Ingestão}
     
-    O \textit{factory design pattern} implementa uma interface para a criação de objetos que herdam de uma superclasse, permitindo que as classes filhas possam alterar o tipo de objeto criado. Neste contexto, foi implementada uma fábrica de extratores, onde todo extrator possui uma instância dos clientes provedores de serviços do LlamaIndex (\autoref{sec:llama_index}) e Docling (\autoref{sec:docling}), assim como variáveis pré definidas e os métodos de extração.
+    % Como visto na \autoref{sec:pipeline} a primeira etapa do \textit{pipeline} de ingestão é a leitura e processamento de uma biblioteca de documentos. Assim, para obter uma leitura e processamento de documentos agnóstica a extensões de documentos, segue-se  um \textit{Design Pattern}, mais especificamente o \textit{factory design pattern}. 
     
-    No entanto, cada extrator implementa o método de extração a sua própria maneira, assim é possível implementar a extração de um arquivo \textit{PDF} ou \textit{DOCX} mudando somente a implementação de um único método. Isso contribui para uma melhor manutenção do código e atribui a responsabilidade de extração para um único extrator específico de cada documento.
-
-    Uma vez extraído os dados, é necessário separar os dados relevantes de cada documento e particionar o mesmo em \textit{chunks}. Para isso, antes de particionar os documentos é realizada uma busca por dados relevantes do documento, neste contexto de biblioteca de TCCs, os dados relevantes são o nome do arquivo, biblioteca a qual ele pertence, caminho (filepath), extensão e mídias do arquivo, como definido no \autoref{lst:document_info} a seguir:
+    % O \textit{factory design pattern} implementa uma interface para a criação de objetos que herdam de uma superclasse, permitindo que as classes filhas possam alterar o tipo de objeto criado. Neste contexto, foi implementada uma fábrica de extratores, em que todo extrator possui uma instância dos clientes provedores de serviços do LlamaIndex (\autoref{sec:llama_index}) e Docling (\autoref{sec:docling}), assim como variáveis predefinidas e os métodos de extração.
     
-    \begin{lstlisting}[caption={Modelo com dados mais superficiais do documento.}, label={lst:document_info}]
-        {
-            "filename": "nome do arquivo sem extensão",
-            "filepath": "caminho onde o arquivo se encontra",
-            "database": "biblioteca a qual o arquivo pertence",
-            "medias": {
-                "images": "lista com o caminho das imagens achadas no arquivo",
-                "tables": "lista com o caminhos das tabelas achadas no arquivo"
-            },
-            "extension": "extensão do arquivo"
-        }
-    \end{lstlisting}
+    % No entanto, cada extrator implementa o método de extração à sua própria maneira, assim é possível implementar a extração de um arquivo \textit{PDF} ou \textit{DOCX} mudando somente a implementação de um único método. Isso contribui para uma melhor manutenção do código e atribui a responsabilidade de extração para um único extrator específico de cada documento.
+
+    % Uma vez extraído os dados, é necessário separar os dados relevantes de cada documento e particionar o mesmo em \textit{chunks}. Para isso, antes de particionar os documentos, é realizada uma busca por dados relevantes do documento. Neste contexto de biblioteca de TCCs, os dados relevantes são o nome do arquivo, biblioteca à qual ele pertence, caminho (\textit{filepath}), extensão e mídias do arquivo, como definido no \autoref{lst:document_info} a seguir:
     
-    As mídias são separadas em dois tipos, imagens e tabelas, durante a primeira leitura do documento a biblioteca Docling identifica as mídias dos documentos e as salva em um diretório específico dentro do código do artefato do pipeline, posteriormente este diretório será injetado no código do artefato da API.
-
-    Com as informações gerais do documento, no \autoref{lst:document_info}, podemos dar continuidade a partição dos documentos em \textit{chunks}. Neste projeto, cada \textit{chunk} foi configurado para ter no máximo 2048 tokens. Cada \textit{chunk} gerado será lido e terá o \textit{embedding} gerado para a inserção no banco vetorial, neste projeto o modelo de \textit{embedding} utilizado é o \textit{\textbf{impira/layoutlm-document-qa}} \footnote{Disponível em \citeb{impira_model}}, pois é um modelo voltado para implementações de RAG e já treinado para melhor atender nosso caso de uso.
+    % \begin{lstlisting}[caption={Objeto com dados mais superficiais do documento.}, label={lst:document_info}]
+    %     {
+    %         "filename": "nome do arquivo sem extensão",
+    %         "filepath": "caminho onde o arquivo se encontra",
+    %         "database": "biblioteca à qual o arquivo pertence",
+    %         "medias": {
+    %             "images": "lista com o caminho das imagens achadas no arquivo",
+    %             "tables": "lista com o caminhos das tabelas achadas no arquivo"
+    %         },
+    %         "extension": "extensão do arquivo"
+    %     }
+    % \end{lstlisting}
     
-    Prosseguindo com o particionamento dos documentos em \textit{chunks}, ao final da partição obtemos o modelo definido no \autoref{lst:document_chunk} a seguir:
+    % As mídias são separadas em dois tipos, imagens e tabelas. Durante a primeira leitura do documento, a biblioteca Docling identifica as mídias dos documentos e as salva em um diretório específico dentro do código do artefato do \textit{pipeline}. Posteriormente este diretório será injetado no código do artefato da API.
 
-    \begin{lstlisting}[caption={Modelo de dados para inserção no banco vetorial}, label={lst:document_chunk}]
-        {
-            "_id": "chave única do chunk",
-            "extension": "extensão do arquivo",
-            "chunk": "objeto de chunk sem alterações",
-            "vector": "embeddings gerado para o chunk",
-            "filename": "nome do arquivo sem extensão",
-            "sequence": "sequência do chunk em questão",
-            "filepath": "caminho onde o arquivo se encontra",
-            "database": "biblioteca a qual o arquivo pertence",
-            "tables": "lista de caminhos das tabelas achadas no arquivo",
-            "figures": "lista de caminhos das imagens achadas no arquivo",
-            "pages": "lista de páginas com a informação do chunk em questão",
-        }
-    \end{lstlisting}
-
-    Este processo de leitura e processamento irá se repetir até que o último documento seja devidamente processado. Uma vez processados, os documentos estarão no formato proposto pelo modelo no \autoref{lst:document_chunk} e estarão prontos para compor o arquivo \textit{.pickle} para ingestão. 
+    % Com as informações gerais do documento, no \autoref{lst:document_info}, pode-se dar continuidade à partição dos documentos em \textit{chunks}. Neste projeto, cada \textit{chunk} foi configurado para ter no máximo 2048 \textit{tokens}. Cada \textit{chunk} gerado é lido e tem o \textit{embedding} gerado para a inserção no banco vetorial. Neste projeto, o modelo de \textit{embedding} utilizado é o \textit{\textbf{intfloat/multilingual-e5-base}} \footnote{\citeurl{intfloat_model}}, pois é um modelo treinado para melhor atender o caso de uso deste trabalho.
     
-    Um arquivo \textit{.pickle} é um formato utilizado para serializar e desserializar objetos Python, ou seja, ele armazena a estrutura de dados em um formato binário. A serialização é realizada através do módulo \textit{pickle}, que converte os objetos Python em um fluxo de \textit{bytes}, e a desserialização converte esse fluxo de volta para o objeto original. Isso permite salvar o estado de objetos complexos, como listas, dicionários e até instâncias de classes, e recuperá-los posteriormente, facilitando a persistência e a transferência de dados.
+    % Prosseguindo com o particionamento dos documentos em \textit{chunks}, ao final da partição obtém-se o objeto final definido no \autoref{lst:document_chunk} a seguir:
 
-    A inserção no banco será feita a partir dos arquivos \textit{.pickle} salvos em um diretório específico. Dentro do arquivo \textit{.pickle} estão todos os \textit{chunks} obtidos durante o processamento dos documentos, contando com todas as informações do modelo no \autoref{lst:document_chunk}. Ao desserializar o conteúdo do arquivo \textit{.pickle} é feita uma requisição para API contendo os objetos desserializados e o tamanho dos \textit{batches} configurados para inserção. Neste contexto, um \textit{batch} é o tamanho do grupo de objetos que serão inseridos no banco simultaneamente. A implementação da API será discutida na \autoref{sec:api}.
+    % \begin{lstlisting}[caption={Objeto de dados para inserção no banco vetorial.}, label={lst:document_chunk}]
+    %     {
+    %         "_id": "chave única do chunk",
+    %         "extension": "extensão do arquivo",
+    %         "chunk": "objeto de chunk sem alterações",
+    %         "vector": "embeddings gerado para o chunk",
+    %         "filename": "nome do arquivo sem extensão",
+    %         "sequence": "sequência do chunk em questão",
+    %         "filepath": "caminho onde o arquivo se encontra",
+    %         "database": "biblioteca à qual o arquivo pertence",
+    %         "tables": "lista de caminhos das tabelas achadas no arquivo",
+    %         "figures": "lista de caminhos das imagens achadas no arquivo",
+    %         "pages": "lista de páginas com a informação do chunk em questão",
+    %     }
+    % \end{lstlisting}
 
-    \subsection{Interface de Programação de Aplicações (API)}\label{sec:api}
-
-    Como discutido previamente na \autoref{sec:api_concept}, as APIs (\textit{Application Programming Interfaces}) desempenham um papel central na comunicação entre sistemas, permitindo que um programa acesse recursos e funcionalidades de outro de maneira padronizada e eficiente. Essas interfaces são fundamentais para a integração e troca de dados entre diferentes componentes de um ecossistema computacional. Neste projeto, a utilização de uma API desempenha um papel crucial na restrição do acesso direto ao banco vetorial, adicionando uma camada de abstração que aprimora tanto a organização quanto a segurança da solução desenvolvida. Para alcançar esse objetivo, foi empregada a biblioteca \textit{fastAPI}, discutida na \autoref{sec:fastapi}.
-
-    Para garantir que a API atenda a todas as necessidades relacionadas aos pontos de acesso ao banco vetorial, é essencial realizar uma análise detalhada dos cenários de interação. Essa análise deve abranger não apenas os contextos em que o acesso ao banco é indispensável, mas também as situações em que a interface gráfica depende diretamente da API para funcionar corretamente. Essa abordagem permite identificar possíveis lacunas e garantir que os \textit{endpoints} implementados sejam abrangentes e adequados às necessidades do ecossistema. A seguir, a \autoref{fig:endpoints} apresenta uma visão consolidada de todos os \textit{endpoints} desenvolvidos:
-
-    \begin{figure}[h]
-        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{endpoints.png}
-        \centering
-        \caption{Visão interativa da documentação, exibindo os endpoints disponíveis na API implementada e suas funcionalidades.}
-        \centering
-        \label{fig:endpoints}
-    \end{figure}
-
-    Ainda na \autoref{fig:endpoints}, é possível identificar quatro grupos distintos de \textit{endpoints} onde cada grupo possui uma responsabilidade com o ponto de acesso ao banco vetorial instanciado. Estes grupos são \textit{Índices}, \textit{Ingestão}, \textit{Mídia}, \textit{Geração} e possuem os seguintes \textit{endpoints}:
-
-    \begin{enumerate}
-        \item \textbf{\textit{Índices}}\\
-        Responsáveis por operações relacionadas aos índices da instância do banco vetorial configurado para a aplicação.
-        \begin{itemize}
-            \item \textbf{\textit{/indexes}}: Lista todos os índices disponíveis no banco vetorial instanciado.
-            \item \textbf{\textit{/indexes/index}}: Verifica se determinado índice existe ou não, dentro do banco vetorial instanciado.
-            \item \textbf{\textit{/indexes/create/index}}: Efetua a criação de um novo índice para o banco vetorial instanciado.
-            \item \textbf{\textit{/indexes/delete/index}}: Remove um índice, já existente, no banco vetorial instanciado.
-        \end{itemize}
-        \item \textbf{\textit{Ingestão}}:\\ Responsáveis por operações relacionadas a todas as operações de ingestão de dados na instância do banco vetorial configurado para a aplicação.
-        \begin{itemize}
-            \item \textbf{\textit{/insert}}: Insere um único documento dentro do índice no banco vetorial instanciado
-            \item \textbf{\textit{/insert/batch}}: Insere múltiplos documentos dentro do índice no banco vetorial instanciado, inserindo \textit{batches} ou grupos grandes de documentos em paralelo.
-        \end{itemize}
-        \item \textbf{\textit{Mídia}}:\\ Responsáveis por operações relacionadas à consulta de mídias estáticas presentes na API.
-        \begin{itemize}
-            \item \textbf{\textit{document/library/file}}: Retorna um documento que tenha sido previamente processado durante a ingestão (pdf, doc, csv, etc).
-            \item \textbf{\textit{media/library/folder/file}}: Retorna um arquivo de imagem, png ou jpeg.
-        \end{itemize}
-        \item \textbf{\textit{Geração}}:\\ Responsáveis por operações relacionadas enriquecimento e geração de perguntas e respostas para o usuário.
-        \begin{itemize}
-            \item \textbf{\textit{/generate}} \label{sec:generate}: Interpreta uma pergunta ou questão, em seguida realiza uma busca por contexto no banco vetorial instanciado e usa uma LLM para interpretar este contexto e retornar uma resposta humanizada.
-            \item \textbf{\textit{/context}} \label{sec:context}: Busca contexto no banco vetorial instanciado a partir de uma pergunta ou questão.
-        \end{itemize}
-    \end{enumerate}
-
-    É importante frizar que todas as operações realizadas na API referentes ao \textit{embedding} precisam ter o mesmo modelo e dimensões de \textit{embedding} utilizados na configuração e instanciação do serviço de \textit{embedding} utilizado durante a etapa de ingestão dos documentos, do contrário as respostas serão confusas e muitas vezes erradas (\textit{hallucinations}).
-
-    Além disso, por se tratar de uma implementação conduzida em um ambiente local, sem \textit{deploy} em servidores externos ou infraestruturas na nuvem, optou-se por não incluir \textit{endpoints} relacionados à segurança da aplicação. Embora a segurança seja um aspecto fundamental em sistemas distribuídos, a natureza controlada do ambiente experimental justifica a exclusão dessa camada adicional, permitindo que o foco permaneça na validação e na funcionalidade do ecossistema em si. Essa decisão não diminui a importância do tema, mas reflete uma abordagem pragmática, alinhada ao escopo definido para este trabalho.
-
-    \subsubsection{\textit{Endpoints} de Geração}
-
-    Como o objetivo principal do ecossistema RAG é gerar uma resposta ao usuário, esta seção irá focar nos dois \textit{endpoints} implementados para o objetivo em questão. O primeiro \textit{endpoint}, resumido na \autoref{sec:generate}, é o responsável pelo fluxo cíclico implementado na interface gráfica, pois uma vez enviadas a pergunta, estratégia e biblioteca na requisição para a API, o \textit{endpoint} \textit{/generate} vai identificar a estratégia a ser utilizada, passar a pergunta para um serviço responsável pelo \textit{embedding}, que por sua vez vai formatará a pergunta. Em seguida será feita uma busca por documentos relevantes dentro da instância do banco vetorial. Essa busca é realizada a partir do segundo \textit{endpoint} implementado, resumido na \autoref{sec:context}, que irá receber a estratégia selecionada e realizar uma busca por documentos relevantes dentro da instância do banco vetorial configurada.
-
-    Com os documentos relevantes encontrados, a partir do \textit{endpoint} \textit{/context}, o \textit{/generate} dará continuidade ao seu fluxo e utilizará os documentos relevantes encontrados como contexto para enviar à um serviço de LLM. Neste caso o \textit{/generate} irá enviar o contexto adquirido, juntamente com a pergunta original feita pelo usuário, ou seja, sem o \textit{embedding}. Após a requisição ao serviço de LLM, o \textit{/generate} irá retornar uma resposta humanizada ao usuário.
-
-    \subsubsection{Abstrações de Serviços}
-
-    Dentro da API são utilizados diversos serviços, abrangendo tanto funcionalidades internas, como \textit{logging} e testes, quanto aspectos essenciais para a aplicação, como os serviços de integração com Modelos de LLMs e conexão com bancos vetoriais. Para proporcionar maior flexibilidade aos desenvolvedores interessados em estender ou adaptar este trabalho às suas necessidades, além de adicionar uma camada de abstração à aplicação, os serviços de LLM e de conexão com o banco vetorial seguem uma abordagem baseada no \textit{Factory Design Pattern}.
-
-    Os Design Patterns (Padrões de Projeto) são soluções reutilizáveis para problemas recorrentes no desenvolvimento de software. Eles foram formalizados no clássico livro \citeb{design_patterns} e são amplamente utilizados para melhorar a estrutura, a legibilidade e a manutenção de sistemas. Suas principais vantagens incluem:
+    % Este processo de leitura e processamento se repete até que o último documento seja devidamente processado. Uma vez processados, os documentos estão no formato proposto pelo modelo no \autoref{lst:document_chunk} e estão prontos para compor o arquivo \textit{.pickle} para ingestão. 
     
-    \begin{itemize}
-        \item \textbf{Abstração}: Simplificam a complexidade ao ocultar os detalhes de implementação.
-        \item \textbf{Reutilização de Código}: Reduzem redundâncias, promovendo um desenvolvimento mais eficiente.
-        \item \textbf{Flexibilidade}: Facilitam a adaptação de sistemas a novos requisitos sem modificar significativamente o código existente.
-        \item \textbf{Manutenção e Escalabilidade}: Tornam o sistema mais modular e fácil de ajustar ao longo do tempo.
-    \end{itemize}
+    % Um arquivo \textit{.pickle} é um formato utilizado para serializar e desserializar objetos Python, ou seja, ele armazena a estrutura de dados em um formato binário. A serialização é realizada através do módulo \textit{pickle}, que converte os objetos Python em um fluxo de \textit{bytes}, e a desserialização converte esse fluxo de volta para o objeto original. Isso permite salvar o estado de objetos complexos, como listas, dicionários e até instâncias de classes, e recuperá-los posteriormente, facilitando a persistência e a transferência de dados.
+
+    % A inserção no banco é feita a partir dos arquivos \textit{.pickle} salvos em um diretório específico. Dentro do arquivo \textit{.pickle}, estão todos os \textit{chunks} obtidos durante o processamento dos documentos, contando com todas as informações do objeto no \autoref{lst:document_chunk}. Ao desserializar o conteúdo do arquivo \textit{.pickle} é feita uma requisição para API contendo os objetos desserializados e o tamanho dos \textit{batches} configurados para inserção. Neste contexto, um \textit{batch} é o número de objetos que serão inseridos no banco simultaneamente. A implementação da API será discutida na \autoref{sec:api} a seguir.
+
+    % \subsection{Interface de Programação de Aplicações (API)}\label{sec:api}
+
+    % Como discutido previamente na \autoref{sec:api_concept}, as APIs desempenham um papel central na comunicação entre sistemas, permitindo que um programa acesse recursos e funcionalidades de outro de maneira padronizada e eficiente. Essas interfaces são fundamentais para a integração e troca de dados entre diferentes componentes de um ecossistema computacional. Neste projeto, a utilização de uma API desempenha um papel crucial na restrição do acesso direto ao banco vetorial, adicionando uma camada de abstração que aprimora tanto a organização quanto a segurança da solução desenvolvida. Para alcançar esse objetivo, foi empregada a biblioteca \textit{fastAPI}, discutida na \autoref{sec:fastapi}.
+
+    % Para garantir que a API atenda a todas as necessidades relacionadas aos pontos de acesso ao banco vetorial, é essencial realizar uma análise detalhada dos cenários de interação. Essa análise deve abranger não apenas os contextos em que o acesso ao banco é indispensável, mas também as situações em que a interface gráfica depende diretamente da API para funcionar corretamente. Essa abordagem permite identificar possíveis lacunas e garantir que os \textit{endpoints} implementados sejam abrangentes e adequados às necessidades do ecossistema. A seguir, a \autoref{fig:endpoints} apresenta uma visão consolidada de todos os \textit{endpoints} desenvolvidos:
+
+    % \begin{figure}[ht]
+    %     \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{endpoints.png}
+    %     \centering
+    %     \caption{Visão interativa da documentação, exibindo os \textit{endpoints} disponíveis na API implementada e suas funcionalidades.}
+    %     \centering
+    %     \label{fig:endpoints}
+    % \end{figure}
+
+    % Ainda na \autoref{fig:endpoints}, é possível identificar quatro grupos distintos de \textit{endpoints} onde cada grupo possui uma responsabilidade com o ponto de acesso ao banco vetorial instanciado. Estes grupos são \textit{Índices}, \textit{Ingestão}, \textit{Mídia}, \textit{Geração} e possuem os seguintes \textit{endpoints}:
+
+    % \begin{enumerate}
+    %     \item \textbf{\textit{Índices}}\\
+    %     Responsáveis por operações relacionadas aos índices da instância do banco vetorial configurado para a aplicação.
+    %     \begin{itemize}
+    %         \item \textbf{\textit{/indexes}}: Lista todos os índices disponíveis no banco vetorial instanciado.
+    %         \item \textbf{\textit{/indexes/index}}: Verifica se determinado índice existe ou não, dentro do banco vetorial instanciado.
+    %         \item \textbf{\textit{/indexes/create/index}}: Efetua a criação de um novo índice para o banco vetorial instanciado.
+    %         \item \textbf{\textit{/indexes/delete/index}}: Remove um índice, já existente, no banco vetorial instanciado.
+    %     \end{itemize}
+    %     \item \textbf{\textit{Ingestão}}:\\ Responsáveis por operações relacionadas a todas as operações de ingestão de dados na instância do banco vetorial configurado para a aplicação.
+    %     \begin{itemize}
+    %         \item \textbf{\textit{/insert}}: Insere um único documento dentro do índice no banco vetorial instanciado
+    %         \item \textbf{\textit{/insert/batch}}: Insere múltiplos documentos dentro do índice no banco vetorial instanciado, inserindo \textit{batches} ou grupos grandes de documentos em paralelo.
+    %     \end{itemize}
+    %     \item \textbf{\textit{Mídia}}:\\ Responsáveis por operações relacionadas à consulta de mídias estáticas presentes na API.
+    %     \begin{itemize}
+    %         \item \textbf{\textit{document/library/file}}: Retorna um documento que tenha sido previamente processado durante a ingestão (pdf, doc, csv, etc).
+    %         \item \textbf{\textit{media/library/folder/file}}: Retorna um arquivo de imagem, png ou jpeg.
+    %     \end{itemize}
+    %     \item \textbf{\textit{Geração}}:\\ Responsáveis por operações relacionadas enriquecimento e geração de perguntas e respostas para o usuário.
+    %     \begin{itemize}
+    %         \item \textbf{\textit{/generate}} \label{sec:generate}: Interpreta uma pergunta ou questão, em seguida realiza uma busca por contexto no banco vetorial instanciado e usa uma LLM para interpretar este contexto e retornar uma resposta humanizada.
+    %         \item \textbf{\textit{/context}} \label{sec:context}: Busca contexto no banco vetorial instanciado a partir de uma pergunta ou questão.
+    %     \end{itemize}
+    % \end{enumerate}
+
+    % É importante frizar que todas as operações realizadas na API referentes ao \textit{embedding} precisam ter o mesmo modelo e dimensões de \textit{embedding} utilizados na configuração e instanciação do serviço de \textit{embedding} utilizado durante a etapa de ingestão dos documentos, do contrário as respostas serão confusas e muitas vezes erradas (\textit{hallucinations}).
+
+    % Além disso, por se tratar de uma implementação conduzida em um ambiente local, sem \textit{deploy} em servidores externos ou infraestruturas na nuvem, optou-se por não incluir \textit{endpoints} relacionados à segurança da aplicação. Embora a segurança seja um aspecto fundamental em sistemas distribuídos, a natureza controlada do ambiente experimental justifica a exclusão dessa camada adicional, permitindo que o foco permaneça na validação e na funcionalidade do ecossistema em si. Essa decisão não diminui a importância do tema, mas reflete uma abordagem pragmática, alinhada ao escopo definido para este trabalho.
+
+    % \subsubsection{\textit{Endpoints} de Geração}
+
+    % Como o objetivo principal do ecossistema RAG é gerar uma resposta ao usuário, esta seção irá focar nos dois \textit{endpoints} implementados para o objetivo em questão. O primeiro \textit{endpoint}, resumido na \autoref{sec:generate}, é o responsável pelo fluxo cíclico implementado na interface gráfica, pois uma vez enviadas a pergunta, estratégia e biblioteca na requisição para a API, o \textit{endpoint} \textit{/generate} vai identificar a estratégia a ser utilizada, passar a pergunta para um serviço responsável pelo \textit{embedding}, que por sua vez vai formatará a pergunta. Em seguida será feita uma busca por documentos relevantes dentro da instância do banco vetorial. Essa busca é realizada a partir do segundo \textit{endpoint} implementado, resumido na \autoref{sec:context}, que irá receber a estratégia selecionada e realizar uma busca por documentos relevantes dentro da instância do banco vetorial configurada.
+
+    % Com os documentos relevantes encontrados, a partir do \textit{endpoint} \textit{/context}, o \textit{/generate} dará continuidade ao seu fluxo e utilizará os documentos relevantes encontrados como contexto para enviar à um serviço de LLM. Neste caso o \textit{/generate} irá enviar o contexto adquirido, juntamente com a pergunta original feita pelo usuário, ou seja, sem o \textit{embedding}. Após a requisição ao serviço de LLM, o \textit{/generate} irá retornar uma resposta humanizada ao usuário.
+
+    % \subsubsection{Abstrações de Serviços}
+
+    % Dentro da API são utilizados diversos serviços, abrangendo tanto funcionalidades internas, como \textit{logging} e testes, quanto aspectos essenciais para a aplicação, como os serviços de integração com Modelos de LLMs e conexão com bancos vetoriais. Para proporcionar maior flexibilidade aos desenvolvedores interessados em estender ou adaptar este trabalho às suas necessidades, além de adicionar uma camada de abstração à aplicação, os serviços de LLM e de conexão com o banco vetorial seguem uma abordagem baseada no \textit{Factory Design Pattern}.
+
+    % Os Design Patterns (Padrões de Projeto) são soluções reutilizáveis para problemas recorrentes no desenvolvimento de software. Eles foram formalizados no clássico livro \citeb{design_patterns} e são amplamente utilizados para melhorar a estrutura, a legibilidade e a manutenção de sistemas. Suas principais vantagens incluem:
     
-    O \textit{Factory Design Pattern}, é um padrão criacional que fornece uma interface para a criação de objetos em uma superclasse, delegando às subclasses a responsabilidade de determinar qual classe concreta será instanciada. Ele é útil quando a criação de objetos envolve lógica complexa ou quando diferentes tipos de objetos precisam ser criados de forma dinâmica, dependendo do contexto.
-
-    \begin{figure}[h]
-        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{factory-design-pattern.jpg}
-        \centering
-        \caption{Estrutura da implementação do \textit{Factory Design Pattern}, \citeb{design_patterns}}
-        \centering
-        \label{fig:factory_design_pattern}
-    \end{figure}
-
-    No contexto desta API, o \textit{Factory Design Pattern} é responsável por encapsular a lógica de criação dos serviços de LLM e de conexão com bancos vetoriais (equivalentes ao \textit{product} na \autoref{fig:factory_design_pattern}), permitindo que os desenvolvedores escolham ou configurem diferentes implementações desses serviços sem modificar a estrutura principal da aplicação. Por exemplo, um desenvolvedor pode optar por usar um serviço de LLM específico, como \textit{OpenAI} ou \textit{Hugging Face}, ou selecionar um banco vetorial diferente, como \textit{Pinecone}\footnote{Disponível em \citeb{pinecone}} ou \textit{Elasticsearch}\footnote{Disponível em \citeb{elasticsearch}}.
+    % \begin{itemize}
+    %     \item \textbf{Abstração}: Simplificam a complexidade ao ocultar os detalhes de implementação.
+    %     \item \textbf{Reutilização de Código}: Reduzem redundâncias, promovendo um desenvolvimento mais eficiente.
+    %     \item \textbf{Flexibilidade}: Facilitam a adaptação de sistemas a novos requisitos sem modificar significativamente o código existente.
+    %     \item \textbf{Manutenção e Escalabilidade}: Tornam o sistema mais modular e fácil de ajustar ao longo do tempo.
+    % \end{itemize}
     
-    Desta forma, essa abordagem não apenas reduz o acoplamento entre os componentes, mas também simplifica a adição de novos serviços no futuro. Promovendo uma arquitetura mais organizada e escalável, garantindo que a API seja acessível a desenvolvedores com diferentes demandas e preferências tecnológicas.
+    % O \textit{Factory Design Pattern}, é um padrão criacional que fornece uma interface para a criação de objetos em uma superclasse, delegando às subclasses a responsabilidade de determinar qual classe concreta será instanciada. Ele é útil quando a criação de objetos envolve lógica complexa ou quando diferentes tipos de objetos precisam ser criados de forma dinâmica, dependendo do contexto.
 
-    \clearpage
+    % \begin{figure}[ht]
+    %     \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{factory-design-pattern.jpg}
+    %     \centering
+    %     \caption{Estrutura da implementação do \textit{Factory Design Pattern}, \citeb{design_patterns}}
+    %     \centering
+    %     \label{fig:factory_design_pattern}
+    % \end{figure}
 
-    \subsection{Estratégias de Busca} \label{sec:strategies}
-
-    Como a API é o principal artefato responsável pela comunicação com o banco vetorial instanciado, ela desempenha um papel crucial na implementação de diferentes estratégias de busca para o ecossistema RAG. Existem diversas abordagens utilizadas para a busca de contexto, neste trabalho serão utilizadas as estratégias de \textit{Vector Store Flat Index} e \textit{Small to Big}. Cada uma dessas estratégias adota maneiras distintas para enriquecer as respostas geradas, o que pode impactar no resultado final.
-
-    A escolha da estratégia de busca adequada depende diretamente das características da base de dados ingerida no banco vetorial. Estratégias distintas geram diferentes graus de refinamento e contextualização nas respostas, o que pode ser uma vantagem ou desvantagem, dependendo do objetivo do sistema e da qualidade dos dados armazenados. Por exemplo, bases de dados bem estruturadas e consistentes podem se beneficiar de abordagens mais simples, enquanto bases de dados mais heterogêneas podem exigir estratégias mais sofisticadas, como o uso de rerankers, para obter respostas relevantes e precisas.
-
-    Para garantir a precisão e a confiabilidade das respostas geradas pelo sistema, é fundamental realizar uma análise de desempenho. Recomenda-se confeccionar uma bateria de perguntas representativas e avaliar sistematicamente as respostas geradas por cada estratégia e por cada biblioteca com que o ecossistema RAG interage. Esse processo não apenas valida a adequação de cada abordagem, mas também fornece insights valiosos para ajustes e otimizações no sistema, garantindo que ele atenda de forma eficaz às necessidades do usuário final.
-
-    \subsubsection{\textit{Vector Store Flat Index}}
-
-    \begin{figure}[h]
-        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{vector-strategy.png}
-        \centering
-        \caption{Fluxograma do funcionamento da estratégia \textit{Vector Store Flat Index}.}
-        \centering
-        \label{fig:vector_strategy}
-    \end{figure}
-
-    O coração do RAG é um índice de busca que organiza o conteúdo em formato vetorizado, permitindo identificar os fragmentos mais relevantes para uma consulta com base em comparações entre os vetores. Essa abordagem, ilustrada na \autoref{fig:vector_strategy}, além de simples e eficiente facilita a recuperação de informações relevantes ao priorizar os k fragmentos mais próximos do vetor de consulta.
-
-    \subsubsection{\textit{Small to Big}}
-
-    \begin{figure}[h]
-        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{small-to-big-strategy.png}
-        \centering
-        \caption{Fluxograma do funcionamento da estratégia \textit{Small to Big}.}
-        \centering
-        \label{fig:small_to_big_strategy}
-    \end{figure}
-
-    Essa estratégia envolve vincular pequenos fragmentos de dados com fragmentos adjacentes, obtendo fragmentos maiores. Quando um fragmento relevante é identificado, o fragmento anterior e o próximo são recuperados, fornecendo um contexto mais amplo para o LLM, como ilustrado na \autoref{fig:small_to_big_strategy}.
-
-    \subsection{Interface Gráfica de Usuário}
+    % No contexto desta API, o \textit{Factory Design Pattern} é responsável por encapsular a lógica de criação dos serviços de LLM e de conexão com bancos vetoriais (equivalentes ao \textit{product} na \autoref{fig:factory_design_pattern}), permitindo que os desenvolvedores escolham ou configurem diferentes implementações desses serviços sem modificar a estrutura principal da aplicação. Por exemplo, um desenvolvedor pode optar por usar um serviço de LLM específico, como \textit{OpenAI} ou \textit{Hugging Face}, ou selecionar um banco vetorial diferente, como \textit{Pinecone}\footnote{\citeurl{pinecone}} ou \textit{Elasticsearch}\footnote{\citeurl{elasticsearch}}.
     
-    O objetivo principal de uma interface gráfica é proporcionar ao usuário uma experiência intuitiva, eficiente e agradável ao longo de sua interação com os fluxos da aplicação. Uma interface bem projetada não apenas facilita a navegação, mas também reduz a curva de aprendizado e possíveis frustrações. No contexto deste trabalho, como o foco é a simulação de um assistente virtual, a forma mais natural e prática de implementar o ecossistema RAG seria por meio de uma interface de chat. Essa escolha se justifica pela familiaridade do público com esse tipo de interação, especialmente em cenários de assistência automatizada, permitindo que o usuário obtenha respostas às suas dúvidas e perguntas de maneira direta e acessível.
+    % Desta forma, essa abordagem não apenas reduz o acoplamento entre os componentes, mas também simplifica a adição de novos serviços no futuro. Promovendo uma arquitetura mais organizada e escalável, garantindo que a API seja acessível a desenvolvedores com diferentes demandas e preferências tecnológicas.
 
-    Para viabilizar essa proposta, foi utilizada a biblioteca \textit{streamlit}, apresentada na \autoref{sec:streamlit}, que possibilita a criação rápida e interativa de interfaces web. A partir dessa tecnologia, foi desenvolvida uma interface de chat que simula o comportamento de um assistente virtual. A estrutura da interface foi planejada para maximizar a usabilidade e a organização da interação.
+    % \clearpage
 
-    Na barra lateral, encontram-se dois filtros que fornecem ao usuário controle sobre os parâmetros do sistema. O primeiro filtro é um seletor de bibliotecas, que, embora neste trabalho esteja limitado a uma única opção, demonstra o potencial de expansão para suportar múltiplas bibliotecas em futuros desenvolvimentos. O segundo filtro é um seletor de estratégias, as quais são detalhadas na \autoref{sec:strategies}. Esses filtros permitem personalizar a experiência do usuário e ajustar o comportamento do assistente de acordo com diferentes configurações.
+    % \subsection{Estratégias de Busca} \label{sec:strategies}
 
-    No plano central da interface, está localizado o chat propriamente dito, que exibe as mensagens trocadas entre o usuário e o assistente virtual. Essa área principal é responsável por gerenciar as interações do usuário com a API subjacente, fornecendo respostas em tempo real e simulando o comportamento de um sistema de perguntas e respostas. O design foi cuidadosamente planejado para que a comunicação seja clara, eficiente e visualmente organizada, reforçando o objetivo de criar uma experiência fluida e satisfatória.
+    % Como a API é o principal artefato responsável pela comunicação com o banco vetorial instanciado, ela desempenha um papel crucial na implementação de diferentes estratégias de busca para o ecossistema RAG. Existem diversas abordagens utilizadas para a busca de contexto, neste trabalho serão utilizadas as estratégias de \textit{Vector Store Flat Index} e \textit{Small to Big}. Cada uma dessas estratégias adota maneiras distintas para enriquecer as respostas geradas, o que pode impactar no resultado final.
 
-    \begin{figure}[h]
-        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{chat-interface.png}
-        \centering
-        \caption{Interface de chat implementada com uso da biblioteca \textit{streamlit}, discutida na \autoref{sec:streamlit}.}
-        \centering
-        \label{fig:chat_interface}
-    \end{figure}
+    % A escolha da estratégia de busca adequada depende diretamente das características da base de dados ingerida no banco vetorial. Estratégias distintas geram diferentes graus de refinamento e contextualização nas respostas, o que pode ser uma vantagem ou desvantagem, dependendo do objetivo do sistema e da qualidade dos dados armazenados. Por exemplo, bases de dados bem estruturadas e consistentes podem se beneficiar de abordagens mais simples, enquanto bases de dados mais heterogêneas podem exigir estratégias mais sofisticadas, como o uso de rerankers, para obter respostas relevantes e precisas.
 
-    \clearpage
+    % Para garantir a precisão e a confiabilidade das respostas geradas pelo sistema, é fundamental realizar uma análise de desempenho. Recomenda-se confeccionar uma bateria de perguntas representativas e avaliar sistematicamente as respostas geradas por cada estratégia e por cada biblioteca com que o ecossistema RAG interage. Esse processo não apenas valida a adequação de cada abordagem, mas também fornece insights valiosos para ajustes e otimizações no sistema, garantindo que ele atenda de forma eficaz às necessidades do usuário final.
 
-    \section{Avaliação Experimental}
-    \lipsum[1-2]
-    \subsection{Experimento}
-    \lipsum[3-4]
-    \subsection{Resultados}
-    \lipsum[5-6]
+    % \subsubsection{\textit{Vector Store Flat Index}}
+
+    % \begin{figure}[ht]
+    %     \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{vector-strategy.png}
+    %     \centering
+    %     \caption{Fluxograma do funcionamento da estratégia \textit{Vector Store Flat Index}.}
+    %     \centering
+    %     \label{fig:vector_strategy}
+    % \end{figure}
+
+    % O coração do RAG é um índice de busca que organiza o conteúdo em formato vetorizado, permitindo identificar os fragmentos mais relevantes para uma consulta com base em comparações entre os vetores. Essa abordagem, ilustrada na \autoref{fig:vector_strategy}, além de simples e eficiente facilita a recuperação de informações relevantes ao priorizar os k fragmentos mais próximos do vetor de consulta.
+
+    % \subsubsection{\textit{Small to Big}}
+
+    % \begin{figure}[ht]
+    %     \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{small-to-big-strategy.png}
+    %     \centering
+    %     \caption{Fluxograma do funcionamento da estratégia \textit{Small to Big}.}
+    %     \centering
+    %     \label{fig:small_to_big_strategy}
+    % \end{figure}
+
+    % Essa estratégia envolve vincular pequenos fragmentos de dados com fragmentos adjacentes, obtendo fragmentos maiores. Quando um fragmento relevante é identificado, o fragmento anterior e o próximo são recuperados, fornecendo um contexto mais amplo para o LLM, como ilustrado na \autoref{fig:small_to_big_strategy}.
+
+    % \subsection{Interface Gráfica de Usuário}
     
-    \section{Conclusão}
-    \subsection{Considerações Finais}
-    \lipsum[1-2]
+    % O objetivo principal de uma interface gráfica é proporcionar ao usuário uma experiência intuitiva, eficiente e agradável ao longo de sua interação com os fluxos da aplicação. Uma interface bem projetada não apenas facilita a navegação, mas também reduz a curva de aprendizado e possíveis frustrações. No contexto deste trabalho, como o foco é a simulação de um assistente virtual, a forma mais natural e prática de implementar o ecossistema RAG seria por meio de uma interface de chat. Essa escolha se justifica pela familiaridade do público com esse tipo de interação, especialmente em cenários de assistência automatizada, permitindo que o usuário obtenha respostas às suas dúvidas e perguntas de maneira direta e acessível.
 
-    \subsection{Limitações}
-    \lipsum[3-4]
+    % Para viabilizar essa proposta, foi utilizada a biblioteca \textit{streamlit}, apresentada na \autoref{sec:streamlit}, que possibilita a criação rápida e interativa de interfaces web. A partir dessa tecnologia, foi desenvolvida uma interface de chat que simula o comportamento de um assistente virtual. A estrutura da interface foi planejada para maximizar a usabilidade e a organização da interação.
 
-    \subsection{Trabalhos Futuros}
-    \lipsum[5-6]
+    % Na barra lateral, encontram-se dois filtros que fornecem ao usuário controle sobre os parâmetros do sistema. O primeiro filtro é um seletor de bibliotecas, que, embora neste trabalho esteja limitado a uma única opção, demonstra o potencial de expansão para suportar múltiplas bibliotecas em futuros desenvolvimentos. O segundo filtro é um seletor de estratégias, as quais são detalhadas na \autoref{sec:strategies}. Esses filtros permitem personalizar a experiência do usuário e ajustar o comportamento do assistente de acordo com diferentes configurações.
+
+    % No plano central da interface, está localizado o chat propriamente dito, que exibe as mensagens trocadas entre o usuário e o assistente virtual. Essa área principal é responsável por gerenciar as interações do usuário com a API subjacente, fornecendo respostas em tempo real e simulando o comportamento de um sistema de perguntas e respostas. O design foi cuidadosamente planejado para que a comunicação seja clara, eficiente e visualmente organizada, reforçando o objetivo de criar uma experiência fluida e satisfatória.
+
+    % \begin{figure}[ht]
+    %     \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{chat-interface.png}
+    %     \centering
+    %     \caption{Interface de chat implementada com uso da biblioteca \textit{streamlit}, discutida na \autoref{sec:streamlit}.}
+    %     \centering
+    %     \label{fig:chat_interface}
+    % \end{figure}
+
+    % \clearpage
+
+    % \section{Avaliação Experimental}
+    % \lipsum[1-2]
+    % \subsection{Experimento}
+    % \lipsum[3-4]
+    % \subsection{Resultados}
+    % \lipsum[5-6]
+    
+    % \section{Conclusão}
+    % \subsection{Considerações Finais}
+    % \lipsum[1-2]
+
+    % \subsection{Limitações}
+    % \lipsum[3-4]
+
+    % \subsection{Trabalhos Futuros}
+    % \lipsum[5-6]
 
     \clearpage
 
