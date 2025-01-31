@@ -97,8 +97,8 @@
 \renewcommand{\figureautorefname}{Figura} % Substitui "Figure" por "Imagem"
 \renewcommand{\tableautorefname}{Tabela} % Substitui "Table" por "Tabela"
 \renewcommand{\sectionautorefname}{Seção} % Substitui "Section" por "Seção"
-\renewcommand{\subsectionautorefname}{Subseção} % Substitui "Subsection" por "Subseção"
-\renewcommand{\subsubsectionautorefname}{Subseção} % Substitui "Subsubsection" por "Subseção"
+\renewcommand{\subsectionautorefname}{Seção} % Substitui "Subsection" por "Subseção"
+\renewcommand{\subsubsectionautorefname}{Seção} % Substitui "Subsubsection" por "Subseção"
 \renewcommand{\equationautorefname}{Equação} %
 
 \begin{document}
@@ -165,12 +165,12 @@
         
         \rule{10.0cm}{.1mm}
 
-        Supervisor 2, D.Sc. -- UNIRIO
+        Carlos Eduardo Mello -- UNIRIO
         \vskip 1.0cm
 
         \rule{10.0cm}{.1mm}
 
-        Supervisor 3, D.Sc. -- XXXX
+        Jobson Luiz Massollar da Silva -- UNIRIO
         \vskip 1.0cm
     \end{flushright}
     \vspace{\stretch{1}}
@@ -200,8 +200,6 @@
     Aos meus amigos, que estiveram ao meu lado durante o processo de escrita, meu sincero agradecimento por me motivarem a seguir em frente, mesmo nos momentos de dificuldade, quando a paciência ou inspiração pareciam escassas.
     
     Um agradecimento especial ao meu orientador, Pedro Nuno de Moura Souza, que me guiou na fascinante jornada pelo universo do \textit{Deep Learning} e Inteligência Artificial. Sua confiança em minhas ideias e o apoio contínuo, especialmente durante a mudança de tema do TCC, foram fundamentais para o sucesso deste trabalho.
-    
-    Dedico este trabalho à minha amada Jéssica, que tem sido minha parceira desde 2013 e sempre me deu suporte nos momentos mais desafiadores, e à nossa pequena Sofia, que chegou em 2019 para tornar cada passo ainda mais especial.
 
     \clearpage
 
@@ -337,7 +335,7 @@
 
         \item \textbf{2014:} Surgem as primeiras redes adversariais generativas (GANs) e modelos de difusão.
 
-        \item \textbf{2017:} Ashish Vaswani, junto com uma equipe do Google Brain e um grupo da Universidade de Toronto publicam o artigo \textit{Attention is All you Need}, \citeb{att_all_u_need}, um artigo que documenta os princípios dos modelos de transformadores, amplamente reconhecidos como os responsáveis por permitir os modelos de fundação mais poderosos e as ferramentas de IA generativa que estão sendo desenvolvidas hoje.
+        \item \textbf{2017:} Ashish Vaswani, junto com uma equipe do Google Brain e um grupo da Universidade de Toronto publicam o artigo \textit{Attention is All you Need}, \citeb{att_all_u_need}, um artigo que documenta os princípios dos modelos de \textit{transformers}, amplamente reconhecidos como os responsáveis por permitir os modelos de fundação mais poderosos e as ferramentas de IA generativa que estão sendo desenvolvidas e utilizadas atualmente.
 
         \item \textbf{2019-2020:} A OpenAI lança seus modelos de linguagem GPT (\textit{Generative Pre-trained Transformer}), o GPT-2 e o GPT-3.
     
@@ -374,15 +372,15 @@
     Os padrões de projeto (\textit{Design Patterns}) são soluções reutilizáveis para problemas recorrentes no desenvolvimento de software. Eles foram formalizados no clássico livro \citeb{design_patterns} e são amplamente utilizados para melhorar a estrutura, a legibilidade e a manutenção de sistemas. Suas principais vantagens incluem:
     
     \begin{itemize}
-        \item \textbf{Abstração}: Simplificam a complexidade ao ocultar os detalhes de implementação.
-        \item \textbf{Reutilização de Código}: Reduzem redundâncias, promovendo um desenvolvimento mais eficiente.
-        \item \textbf{Flexibilidade}: Facilitam a adaptação de sistemas a novos requisitos sem modificar significativamente o código existente.
+        \item \textbf{Abstração}: Simplificam a complexidade ao ocultar os detalhes de implementação;
+        \item \textbf{Reutilização de Código}: Reduzem redundâncias, promovendo um desenvolvimento mais eficiente;
+        \item \textbf{Flexibilidade}: Facilitam a adaptação de sistemas a novos requisitos sem modificar significativamente o código existente;
         \item \textbf{Manutenção e Escalabilidade}: Tornam o sistema mais modular e fácil de ajustar ao longo do tempo.
     \end{itemize}
     
     \subsubsection{Padrão de Fábrica} \label{sec:factory_pattern}
 
-    Para este trabalho, o padrão fábrica será utilizado em situações em que a abstração de um serviço ou classe traz uma vantagem para o artefato, de modo que ele possa instanciar uma classe a partir de determinado contexto, como é ilustrado na \autoref{fig:factory-pattern}.
+    Neste trabalho, o padrão fábrica será utilizado em situações em que a abstração de um serviço ou classe traz uma vantagem para o artefato, de modo que ele possa instanciar uma classe a partir de determinado contexto, como é ilustrado na \autoref{fig:factory-pattern}.
     
     \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{images/factory-design-pattern.jpg}
@@ -470,7 +468,7 @@
         \item \textbf{Coleta de Dados (D1):} Atualmente dados são extremamente diversos, podendo ser textos, arquivos de mídia (como músicas ou vídeos em mp4) ou arquivos estruturados e não estruturados (PDFs, JSONs e páginas \textit{web}). Além disso, grande parte desses dados é não estruturada e pode ser encontrada de maneiras imprevisíveis e complexas. Felizmente, várias plataformas, como Pinecone \footnote{\citeurl{pinecone}}, OpenAI \footnote{\citeurl{openai}}, Chroma \footnote{\citeurl{chroma}} e Activeloop \footnote{\citeurl{activeloop}}, oferecem ferramentas prontas para processar e armazenar essa vasta quantidade de dados.
         \item \textbf{Processamento de Dados (D2):} Na fase de coleta de dados (D1) no processamento de dados multimodais, diferentes tipos de dados, como texto, imagens e vídeos, podem ser extraídos de \textit{websites} utilizando técnicas de \textit{web scraping} ou outras fontes de informação. Esses objetos de dados são então transformados para criar representações uniformes. Alguns exemplos dessas transformações incluem: \textit{chunking}, \textit{embedding} e indexação. Essas técnicas serão discutidas mais adiante.
         \item \textbf{Armazenamento de Dados (D3):} Neste estágio do \textit{pipeline}, já se coletou e se iniciou o processamento de uma grande quantidade de dados diversos. Mas para fazermos com que esses dados sejam úteis, deve-se fazer uso de \textit{vector stores} (armazenamento de vetores), como Elastic Search. Esse não apenas armazena os dados, mas os convertem em entidades matemáticas, representadas como vetores, permitindo realizar cálculos poderosos. Esses sistemas também utilizam técnicas de indexação e outras abordagens para garantir acesso rápido e eficiente aos dados. Em vez de manter os dados em arquivos estáticos, transforma-se tudo em um sistema dinâmico e pesquisável, pronto para alimentar \textit{chatbots}, motores de busca e outras aplicações.
-        \item \textbf{Consulta de Recuperação (D4):} O processo de recuperação é acionado pela entrada (ou consulta) do usuário ou entrada automatizada (G1). Para recuperar dados rapidamente, carregamos os dados nos \textit{vector stores} e \textit{datasets} após transformá-los para um formato adequado. Em seguida, utilizamos uma combinação de pesquisas por palavras-chave, \textit{embeddings} inteligentes e indexação para recuperar os dados de forma eficiente.
+        \item \textbf{Consulta de Recuperação (D4):} \label{sec:recovery} O processo de recuperação é acionado pela entrada (ou consulta) do usuário ou entrada automatizada (G1). Para recuperar dados rapidamente, carregamos os dados nos \textit{vector stores} e \textit{datasets} após transformá-los para um formato adequado. Em seguida, utilizamos uma combinação de pesquisas por palavras-chave, \textit{embeddings} inteligentes e indexação para recuperar os dados de forma eficiente.
         A equação da similaridade cosseno, definida na \autoref{eq:cosseno}, como: 
         
         \begin{equation}
@@ -508,7 +506,7 @@
     Um modelo de IA generativa padrão é pré-treinado em uma grande quantidade de dados de propósito geral. Em seguida, podemos ajustar finamente (\textit{fine-tuning}, T2) o modelo com dados específicos de um determinado domínio.
     
     \clearpage
-
+    
     \section{Modelagem}
 
     Com os conceitos de um ecossistema RAG em mente, é possível explicar de forma objetiva a modelagem da solução proposta para este trabalho. Antes de abordar as tecnologias específicas, tema reservado para um capítulo posterior, será apresentada uma visão abstrata da modelagem da solução.
@@ -564,6 +562,8 @@
 
     O fluxo de comunicação, ilustrado na \autoref{fig:gui_scheme}, possibilita que tarefas como busca e enriquecimento de respostas ocorram de maneira transparente e alinhadas às necessidades do usuário.
 
+    \clearpage
+
     \begin{figure}[h!]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{architecture-solution.png}
         \centering
@@ -572,14 +572,15 @@
         \label{fig:gui_scheme}
     \end{figure}
     
-    Esse fluxo ilustrado na \autoref{fig:gui_scheme}, onde o usuário interage com a interface de \textit{chat}, pode ser decomposto nas seguintes etapas:
-
+    A interação do usuário com a interface de \textit{chat}, ilustrado na \autoref{fig:gui_scheme}, pode ser decomposto em seis etapas:
+    
     \begin{enumerate}
         \item \textbf{Envio de Consultas (\textit{Query})}: usuário realiza uma pergunta para o \textit{chat}. Em seguida, a interface envia a consulta do usuário para a API e aguarda a resposta.
         \item \textbf{Busca por Contexto}: No momento em que o usuário realiza a \textit{query}, o sistema realiza uma busca por contexto ou informações relevantes, gerando um objeto de contexto que contém todas as informações relevantes.
         \item \textbf{Enriquecimento da Resposta}: com o contexto da \textit{query}, a API responde com uma lista contendo os objetos presentes no banco vetorial cujo \textit{embedding} contém informações relevantes para a consulta do usuário.
         \item \textbf{Resposta Enriquecida}: a partir da resposta obtida anteriormente, a lista é encaminhada para um LLM que irá analisar primeiramente um \textit{prompt} focado em entregar respostas humanizadas para o usuário. Nesse \textit{prompt}, há todo um cuidado para que um desenvolvedor possa implementar a solução e realizar as afinações necessárias para seu próprio contexto.
-        \item \textbf{Visualização}: a interface gráfica recebe a resposta da requisição feita à API e a expõe para o usuário dentro do modelo de \textit{chat} proposto.
+        \item \textbf{Recebimento da Resposta}: a interface gráfica recebe a resposta da requisição feita à API e a expõe para o usuário dentro do modelo de \textit{chat} proposto.
+        \item \textbf{Visualização}: o usuário visualiza a resposta humanizada gerada para sua consulta.
     \end{enumerate}
 
     Essa mediação entre usuário e sistema não apenas melhora a experiência de uso, mas também assegura que a interface seja sincronizada com os demais artefatos do sistema. Ao integrar as funcionalidades visuais com a lógica subjacente do sistema, a GUI contribui para uma experiência de interação consistente, eficiente e intuitiva, promovendo um equilíbrio ideal entre acessibilidade e desempenho técnico.
@@ -596,8 +597,6 @@
         \label{fig:ecosystem}
     \end{figure}
 
-    \clearpage
-
     \subsection{Tecnologias} \label{sec:technologies}
 
     Este capítulo apresenta as tecnologias utilizadas no desenvolvimento do projeto, destacando suas funcionalidades e relevância para atender aos objetivos propostos. Serão abordadas as ferramentas empregadas na criação da interface, API, no gerenciamento de dados (banco vetorial) e nas integrações, evidenciando como cada uma contribuiu para a construção de uma solução eficiente e alinhada às melhores práticas.
@@ -610,7 +609,7 @@
     
     Ambientes virtuais são espaços isolados em que é possível instalar e gerenciar dependências específicas de um projeto, sem afetar o sistema global ou outros projetos. Em Python, esses ambientes são criados com o módulo venv, permitindo que cada projeto tenha suas próprias versões de pacotes e bibliotecas. Isso evita conflitos entre dependências e facilita o gerenciamento de diferentes versões de pacotes para cada projeto.
 
-    As principais vantagens dos ambientes virtuais incluem a capacidade de isolar dependências, garantindo que cada projeto utilize a versão correta de pacotes, a facilidade de replicar e compartilhar ambientes de desenvolvimento e a redução de problemas de compatibilidade entre pacotes ou versões do Python. Eles oferecem um controle mais preciso sobre o ambiente de execução, tornando o desenvolvimento mais seguro e eficiente.
+    Ambientes virtuais possuem a capacidade de isolar dependências, garantindo que cada projeto utilize a versão correta de pacotes, a facilidade de replicar e compartilhar ambientes de desenvolvimento e a redução de problemas de compatibilidade entre pacotes ou versões do Python. Eles oferecem um controle mais preciso sobre o ambiente de execução, tornando o desenvolvimento mais seguro e eficiente.
 
     \subsubsection{Docling} \label{sec:docling}
 
@@ -670,10 +669,9 @@
 
     \subsection{Conjunto de Dados} \label{sec:data}
 
-    Para este projeto, toda a implementação foi feita em um notebook pessoal e não seria viável processar todos os documentos de uma biblioteca grande devido ao longo tempo de processamento (para uma biblioteca com 23 documentos, o \textit{pipeline} de processamento demora entre 30 e 40 minutos para ser executado). 
+    Para este projeto, toda a implementação foi feita em um notebook pessoal sem uma GPU (\textit{Graphics Processing Unit}) e não seria viável processar todos os documentos de uma biblioteca grande devido ao longo tempo de processamento. 
     
-    Para sanar este problema, foi selecionado um conjunto de dados formado por todos os Trabalhos de Conclusão de Curso (TCCs) do ano de 2023 defendidos por alunos do Bacharelado em Sistemas de Informação da Universidade Federal do Estado do Rio de Janeiro - UNIRIO, \citeb{tccs_unirio}. Totalizando 21 documentos do tipo \textit{PDF} com TCCs de diversos alunos do curso.
-
+    Para sanar este problema, foi selecionado um conjunto de dados menor, formado por todos os Trabalhos de Conclusão de Curso (TCCs) do ano de 2023 defendidos por alunos do Bacharelado em Sistemas de Informação da Universidade Federal do Estado do Rio de Janeiro - UNIRIO, \citeb{tccs_unirio}. Totalizando 22 documentos do tipo \textit{PDF} com TCCs de diversos alunos do curso.    
 
     \subsection{\textit{Pipeline} de Ingestão}
     
@@ -682,8 +680,6 @@
     A partir deste padrão, foi implementada uma fábrica de extratores, em que todo extrator possui uma instância dos clientes provedores de serviços do LlamaIndex \footnote{\citeurl{llama_index}} e Docling \footnote{\citeurl{docling}}, assim como variáveis predefinidas e os métodos de extração. No entanto, cada extrator implementa o método de extração à sua própria maneira, assim é possível implementar a extração de um arquivo \textit{PDF} ou \textit{DOCX} mudando somente a implementação de um único método. Isso contribui para uma melhor manutenção do código e atribui a responsabilidade de extração para um único extrator específico de cada documento.
 
     Uma vez extraídos os dados, é necessário separar os dados relevantes de cada documento e particionar o mesmo em \textit{chunks}. Para isso, antes de particionar os documentos, é realizada uma busca por dados relevantes do documento. Neste contexto de biblioteca de TCCs, os dados relevantes são o nome do arquivo, biblioteca à qual ele pertence, caminho (\textit{filepath}), extensão e mídias do arquivo, como definido no \autoref{lst:document_info} a seguir:
-
-    \clearpage
     
     \begin{lstlisting}[caption={Objeto com dados mais superficiais do documento.}, label={lst:document_info}]
         {
@@ -703,8 +699,6 @@
     Com as informações gerais do documento, no \autoref{lst:document_info}, pode-se dar continuidade à partição dos documentos em \textit{chunks}. Neste projeto, cada \textit{chunk} foi configurado para ter no máximo 2048 \textit{tokens}. Cada \textit{chunk} gerado é lido e tem o \textit{embedding} gerado para a inserção no banco vetorial. Neste projeto, o modelo de \textit{embedding} utilizado é o \textit{\textbf{intfloat/multilingual-e5-base}} \footnote{\citeurl{intfloat_model}}, pois é um modelo treinado para melhor atender o caso de uso deste trabalho.
     
     Prosseguindo com o particionamento dos documentos em \textit{chunks}, ao final da partição obtém-se o objeto final definido no \autoref{lst:document_chunk} a seguir:
-
-    \clearpage
 
     \begin{lstlisting}[caption={Objeto de dados para inserção no banco vetorial.}, label={lst:document_chunk}]
         {
@@ -726,7 +720,7 @@
     
     Um arquivo \textit{.pickle} é um formato utilizado para serializar e desserializar objetos Python, ou seja, ele armazena a estrutura de dados em um formato binário. A serialização é realizada através do módulo \textit{pickle}, que converte os objetos Python em um fluxo de \textit{bytes}, e a desserialização converte esse fluxo de volta para o objeto original. Isso permite salvar o estado de objetos complexos, como listas, dicionários e até instâncias de classes, e recuperá-los posteriormente, facilitando a persistência e a transferência de dados.
 
-    A inserção no banco é feita a partir dos arquivos \textit{.pickle} salvos em um diretório específico. Dentro do arquivo \textit{.pickle}, estão todos os \textit{chunks} obtidos durante o processamento dos documentos, contando com todas as informações do objeto no \autoref{lst:document_chunk}. Ao desserializar o conteúdo do arquivo \textit{.pickle} é feita uma requisição à API contendo os objetos desserializados e o tamanho dos \textit{batches} configurados para inserção. Neste contexto, um \textit{batch} é o número de objetos que serão inseridos no banco simultaneamente. A implementação da API será discutida na \autoref{sec:api} a seguir.
+    A inserção no banco é feita a partir dos arquivos \textit{.pickle} salvos em um diretório específico. Dentro do arquivo \textit{.pickle}, estão todos os \textit{chunks} obtidos durante o processamento dos documentos, contando com todas as informações do objeto no \autoref{lst:document_chunk}. Ao desserializar o conteúdo do arquivo \textit{.pickle}, é feita uma requisição à API contendo os objetos desserializados e o tamanho dos \textit{batches} configurados para inserção. Neste contexto, um \textit{batch} é o número de objetos que serão inseridos no banco simultaneamente. A implementação da API será discutida na \autoref{sec:api} a seguir.
 
     \subsection{Interface de Programação de Aplicações (API)}\label{sec:api}
 
@@ -752,59 +746,67 @@
         \item \textbf{\textit{Índices}}\\
         Responsáveis por operações relacionadas aos índices da instância do banco vetorial configurado para a aplicação.
         \begin{itemize}
-            \item \textbf{\textit{/indexes}}: Lista todos os índices disponíveis no banco vetorial instanciado.
-            \item \textbf{\textit{/indexes/index}}: Verifica se determinado índice existe ou não, dentro do banco vetorial instanciado.
-            \item \textbf{\textit{/indexes/create/index}}: Efetua a criação de um novo índice para o banco vetorial instanciado.
-            \item \textbf{\textit{/indexes/delete/index}}: Remove um índice, já existente, no banco vetorial instanciado.
+            \item \textbf{\texttt{/indexes}}: Lista todos os índices disponíveis no banco vetorial instanciado.
+            \item \textbf{\texttt{/indexes/index}}: Verifica se determinado índice existe ou não, dentro do banco vetorial instanciado.
+            \item \textbf{\texttt{/indexes/create/index}}: Efetua a criação de um novo índice para o banco vetorial instanciado.
+            \item \textbf{\texttt{/indexes/delete/index}}: Remove um índice, já existente, no banco vetorial instanciado.
         \end{itemize}
-        \item \textbf{\textit{Ingestão}}:\\ Responsáveis por operações relacionadas a todas as operações de ingestão de dados na instância do banco vetorial configurado para a aplicação.
+        \item \textbf{\textit{Ingestão}}:\\ Responsáveis por todas as operações de ingestão de dados na instância do banco vetorial configurado para a aplicação.
         \begin{itemize}
-            \item \textbf{\textit{/insert}}: Insere um único documento dentro do índice no banco vetorial instanciado
-            \item \textbf{\textit{/insert/batch}}: Insere múltiplos documentos dentro do índice no banco vetorial instanciado, inserindo \textit{batches} ou grupos grandes de documentos em paralelo.
+            \item \textbf{\texttt{/insert}}: Insere um único documento dentro do índice no banco vetorial instanciado
+            \item \textbf{\texttt{/insert/batch}}: Insere múltiplos documentos dentro do índice no banco vetorial instanciado, inserindo \textit{batches} ou grupos grandes.
         \end{itemize}
-        \item \textbf{\textit{Mídia}}:\\ Responsáveis por operações relacionadas à consulta de mídias estáticas presentes na API.
+        \item \textbf{\textit{Mídia}}:\\ Responsáveis por operações relacionadas à consulta de mídias, como imagens e documentos processados presentes na API.
         \begin{itemize}
-            \item \textbf{\textit{document/library/file}}: Retorna um documento que tenha sido previamente processado durante a ingestão (pdf, doc, csv, etc).
-            \item \textbf{\textit{media/library/folder/file}}: Retorna um arquivo de imagem, png ou jpeg.
+            \item \textbf{\texttt{document/library/file}}: Retorna um documento que tenha sido previamente processado durante a ingestão (pdf, doc, csv, etc).
+            \item \textbf{\texttt{media/library/folder/file}}: Retorna um arquivo de imagem (png ou jpeg).
         \end{itemize}
         \item \textbf{\textit{Geração}}:\\ Responsáveis por operações relacionadas enriquecimento e geração de perguntas e respostas para o usuário.
         \begin{itemize}
-            \item \textbf{\textit{/generate}} \label{sec:generate}: Interpreta uma pergunta ou questão, em seguida realiza uma busca por contexto no banco vetorial instanciado e usa uma LLM para interpretar este contexto e retornar uma resposta humanizada.
-            \item \textbf{\textit{/context}} \label{sec:context}: Busca contexto no banco vetorial instanciado a partir de uma pergunta ou questão.
+            \item \textbf{\texttt{/generate}} \label{sec:generate}: Interpreta uma consulta, em seguida realiza uma busca por contexto no banco vetorial instanciado e usa um LLM para interpretar este contexto e retornar uma resposta humanizada.
+            \item \textbf{\texttt{/context}} \label{sec:context}: Busca contexto no banco vetorial instanciado a partir de uma consulta.
         \end{itemize}
     \end{enumerate}
 
-    É importante frisar que todas as operações realizadas na API referentes ao \textit{embedding} precisam ter o mesmo modelo e dimensões de \textit{embedding} utilizados na configuração e instanciação do serviço de \textit{embedding} utilizado durante a etapa de ingestão dos documentos, do contrário as respostas serão confusas e muitas vezes erradas (\textit{hallucinations}).
+    É importante frisar que todas as operações realizadas na API envolvendo \textit{embedding} precisam ter o mesmo modelo e dimensões utilizados na configuração e instanciação do serviço de \textit{embedding} adotado durante a etapa de ingestão dos documentos; do contrário, as respostas serão confusas e muitas vezes erradas, correspondendo a alucinações (\textit{hallucinations}).
 
     Além disso, por se tratar de uma implementação conduzida em um ambiente local, sem \textit{deploy} em servidores externos ou infraestruturas na nuvem, optou-se por não incluir \textit{endpoints} relacionados à segurança da aplicação. Embora a segurança seja um aspecto fundamental em sistemas distribuídos, a natureza controlada do ambiente experimental justifica a exclusão dessa camada adicional, permitindo que o foco permaneça na validação e na funcionalidade do ecossistema em si. Essa decisão não diminui a importância do tema, mas reflete uma abordagem pragmática, alinhada ao escopo definido para este trabalho.
 
     \subsubsection{\textit{Endpoints} de Geração}
 
-    Como o objetivo principal do ecossistema RAG é gerar uma resposta ao usuário, esta seção irá focar nos dois \textit{endpoints} implementados para o objetivo em questão. O primeiro \textit{endpoint}, resumido na \autoref{sec:generate}, é o responsável pelo fluxo cíclico implementado na interface gráfica, pois uma vez enviadas a pergunta, estratégia e biblioteca na requisição para a API, o \textit{endpoint} \textit{/generate} vai identificar a estratégia a ser utilizada, passar a pergunta para um serviço responsável pelo \textit{embedding}, que por sua vez vai formatará a pergunta. Em seguida será feita uma busca por documentos relevantes dentro da instância do banco vetorial. Essa busca é realizada a partir do segundo \textit{endpoint} implementado, resumido na \autoref{sec:context}, que irá receber a estratégia selecionada e realizar uma busca por documentos relevantes dentro da instância do banco vetorial configurada.
+    Como o objetivo principal do ecossistema RAG é gerar uma resposta ao usuário, esta seção irá focar nos dois \textit{endpoints} implementados para o objetivo em questão. O primeiro \textit{endpoint}, resumido no \autoref{sec:generate}, é o responsável pelo fluxo de consultas implementado na interface gráfica. Uma vez enviadas a pergunta, estratégia de busca e biblioteca de documentos na requisição para a API, o \textit{endpoint} \textit{/generate} identifica a estratégia a ser utilizada, encaminha a pergunta para um serviço responsável pelo \textit{embedding} que, por sua vez, vai formatar a pergunta. Em seguida, é feita uma busca por documentos relevantes dentro da instância do banco vetorial. Essa busca é realizada a partir do segundo \textit{endpoint} implementado, resumido no \autoref{sec:context}, que irá receber a estratégia selecionada e realizar uma busca por documentos relevantes na instância do banco vetorial.
 
-    Com os documentos relevantes encontrados, a partir do \textit{endpoint} \textit{/context}, o \textit{/generate} dará continuidade ao seu fluxo e utilizará os documentos relevantes encontrados como contexto para enviar à um serviço de LLM. Neste caso o \textit{/generate} irá enviar o contexto adquirido, juntamente com a pergunta original feita pelo usuário, ou seja, sem o \textit{embedding}. Após a requisição ao serviço de LLM, o \textit{/generate} irá retornar uma resposta humanizada ao usuário.
+    Com os documentos relevantes encontrados, a partir do \textit{endpoint} \texttt{/context}, o \texttt{/generate} dá continuidade ao seu fluxo e utiliza os documentos relevantes encontrados como contexto para enviar a um serviço de LLM. Neste caso, o \textit{/generate} envia o contexto adquirido, juntamente com a pergunta original feita pelo usuário, ou seja, sem o \textit{embedding}. Após a requisição ao serviço de LLM, o \texttt{/generate} retorna uma resposta humanizada ao usuário.
 
     \subsubsection{Abstrações de Serviços} \label{sec:abstraction}
 
-    Dentro da API são utilizados diversos serviços, abrangendo tanto funcionalidades internas, como \textit{logging} e testes, quanto aspectos essenciais para a aplicação, como os serviços de integração com modelos de LLMs e conexão com bancos vetoriais. Para proporcionar maior flexibilidade aos desenvolvedores interessados em estender ou adaptar este trabalho às suas necessidades, além de adicionar uma camada de abstração à aplicação, os serviços de LLM e de conexão com o banco vetorial seguem a mesma abordagem descrita na \autoref{sec:ingestion_pipeline}, baseada no padrão de fábrica.
+    Dentro da API, são utilizados diversos serviços, abrangendo tanto funcionalidades internas, como \textit{logging} e testes, quanto aspectos essenciais para a aplicação, como os serviços de integração com modelos de LLMs e conexão com bancos vetoriais. Para proporcionar maior flexibilidade aos desenvolvedores interessados em estender ou adaptar este trabalho às suas necessidades, além de adicionar uma camada de abstração à aplicação, os serviços de LLM e de conexão com o banco vetorial seguem a mesma abordagem descrita na \autoref{sec:pipeline}, baseada no padrão de fábrica.
 
     No contexto desta API, o padrão de fábrica é responsável por encapsular a lógica de criação dos serviços de LLM e de conexão com bancos vetoriais (equivalentes ao \textit{product} na \autoref{fig:factory-pattern}), permitindo que os desenvolvedores escolham ou configurem diferentes implementações desses serviços sem modificar a estrutura principal da aplicação. 
     
-    Por exemplo, um desenvolvedor pode optar por usar um serviço de LLM específico, como \textit{OpenAI} ou \textit{Hugging Face}, ou selecionar um banco vetorial diferente, como \textit{Pinecone} \footnote{\citeurl{pinecone}} ou \textit{Elasticsearch} \footnote{\citeurl{elasticsearch}}.
+    Por exemplo, um desenvolvedor pode optar por usar um serviço de LLM específico, como GPT e \textit{LLama}, ou selecionar um banco vetorial diferente, como \textit{Pinecone} \footnote{\citeurl{pinecone}} ou \textit{Elasticsearch} \footnote{\citeurl{elasticsearch}}.
     
-    Desta forma, essa abordagem não apenas reduz o acoplamento entre os componentes, mas também simplifica a adição de novos serviços no futuro. Promovendo uma arquitetura mais organizada e escalável, garantindo que a API seja acessível a desenvolvedores com diferentes demandas e preferências tecnológicas.
+    Dessa forma, essa abordagem não apenas reduz o acoplamento entre os componentes, mas também simplifica a adição de novos serviços no futuro. Ao promover uma arquitetura mais organizada e escalável, garante-se que a API seja acessível a desenvolvedores com diferentes demandas e preferências tecnológicas.
 
     \subsection{Estratégias de Busca} \label{sec:strategies}
 
-    Como a API é o principal artefato responsável pela comunicação com o banco vetorial instanciado, ela desempenha um papel crucial na implementação de diferentes estratégias de busca para o ecossistema RAG. Existem diversas abordagens utilizadas para a busca de contexto, neste trabalho serão utilizadas as estratégias de \textit{Vector Store Flat Index} e \textit{Small to Big}. Cada uma dessas estratégias adota maneiras distintas para enriquecer as respostas geradas, o que pode impactar no resultado final.
+    Como a API é o principal artefato responsável pela comunicação com o banco vetorial instanciado, ela desempenha um papel crucial na implementação de diferentes estratégias de busca para o ecossistema RAG. Existem diversas abordagens utilizadas para a busca de contexto, neste trabalho serão implementadas duas das estratégias descritas no \citetitle{retrieval_strategies}, \citeb{retrieval_strategies} sendo elas a \textit{Vector Store Flat Index} e \textit{Small to Big}. Estratégias de busca adotam maneiras distintas de enriquecer as respostas geradas, o que impacta o resultado final.
 
-    A escolha da estratégia de busca adequada depende diretamente das características da base de dados ingerida no banco vetorial. Estratégias distintas geram diferentes graus de refinamento e contextualização nas respostas, o que pode ser uma vantagem ou desvantagem, dependendo do objetivo do sistema e da qualidade dos dados armazenados. Por exemplo, bases de dados bem estruturadas e consistentes podem se beneficiar de abordagens mais simples, enquanto bases de dados mais heterogêneas podem exigir estratégias mais sofisticadas, como o uso de \textit{rerankers}, para obter respostas relevantes e precisas.
+    A escolha da estratégia de busca adequada depende diretamente das características da base de dados contida no banco vetorial. Estratégias distintas geram diferentes graus de refinamento e contextualização nas respostas, o que pode ser uma vantagem ou desvantagem, dependendo do objetivo do sistema e da qualidade dos dados armazenados. Por exemplo, bases de dados bem estruturadas e consistentes podem se beneficiar de abordagens mais simples, enquanto bases de dados mais heterogêneas podem exigir estratégias mais sofisticadas, como o uso de modelos ou algoritmos usados para reordenar os documentos recuperados na fase de busca, denominados \textit{rerankers}.
 
-    Para garantir a precisão e a confiabilidade das respostas geradas pelo sistema, é fundamental realizar uma análise de desempenho. Recomenda-se confeccionar uma bateria de perguntas e avaliar as respostas geradas por cada estratégia e por cada biblioteca com que o ecossistema RAG interage. 
+    Para garantir a precisão e a confiabilidade das respostas geradas pelo sistema, é fundamental realizar uma análise de desempenho. Recomenda-se confeccionar uma bateria de perguntas e avaliar as respostas geradas por cada estratégia e para cada biblioteca com que o ecossistema RAG interage.
+
+    A avaliação das respostas geradas irá determinar a qualidade que o ecossistema RAG alcançou em suas respostas. Esta avaliação é essencial para classificar o amadurecimento da solução e deve ser feita através de um ou mais humanos que tenham conhecimento dos dados da biblioteca contida no banco vetorial, ou por \textit{frameworks} projetados para avaliar o desempenho de sistemas RAG, como o \textit{Retrieval Augmented Generation Assessment Suite} (RAGAS), que avalia um sistema RAG em diferentes aspectos.
     
-    Esse processo não apenas valida a adequação de cada abordagem, mas também fornece \textit{insights} valiosos para ajustes no sistema, garantindo que ele atenda de forma eficaz às necessidades do usuário final.
+    Esse processo não apenas valida a adequação de cada abordagem, mas também fornece \textit{insights} para ajustes no sistema, garantindo que ele atenda de forma eficaz às necessidades do usuário final.
+
+    No que se segue, serão explicadas as duas estratégias de busca de contexto exploradas neste trabalho.
 
     \subsubsection{\textit{Vector Store Flat Index}} \label{sec:vector_search}
+
+    O coração do RAG é um índice de busca que organiza o conteúdo em formato vetorizado, permitindo identificar os fragmentos mais relevantes para uma consulta com base em comparações entre os vetores, como discutido no \autoref{sec:recovery}. Essa abordagem, ilustrada na \autoref{fig:vector_strategy}, recebe a consulta do usuário e realiza o \textit{embedding} dela, realizando uma busca vetorial no banco pelos top $k$ \textit{chunks} mais relevantes. 
+
+    \clearpage
 
     \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{vector-strategy.png}
@@ -814,10 +816,16 @@
         \label{fig:vector_strategy}
     \end{figure}
 
-    O coração do RAG é um índice de busca que organiza o conteúdo em formato vetorizado, permitindo identificar os fragmentos mais relevantes para uma consulta com base em comparações entre os vetores. Essa abordagem, ilustrada na \autoref{fig:vector_strategy}, além de simples e eficiente facilita a recuperação de informações relevantes ao priorizar os k fragmentos mais próximos do vetor de consulta.
+    Em seguida, o contexto dos \textit{chunks} mais relevantes é enviado para um serviço de LLM, que irá receber um \textit{prompt} junto com o contexto e gerar uma resposta humanizada. Além de simples e eficiente, facilita a recuperação de informações relevantes ao priorizar os $k$ fragmentos mais próximos do vetor de consulta.
 
     \subsubsection{\textit{Small to Big}} \label{sec:small_to_big_search}
 
+    Essa estratégia envolve vincular cada um dos top $k$ \textit{chunks} com seus \textit{chunks} adjacentes, obtendo contextos mais amplos para o LLM. 
+    
+    Quando os top $k$ \textit{chunks} são identificados, cada um deles é enriquecido, de forma que o \textit{chunk} anterior e o próximo são recuperados a partir de uma chave de sequência instanciada durante a ingestão dos documentos, ou seja, se foi identificado o \textit{chunk} $4$ como relevante, ele será enriquecido com os \textit{chunks} $3$ e $5$ respectivamente. Isso ocorre para cada um dos top $k$ \textit{chunks} relevantes.
+    
+    Com esta implementação, é possível fornecer um contexto mais amplo para o LLM, como ilustrado na \autoref{fig:small_to_big_strategy}.
+    
     \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{small-to-big-strategy.png}
         \centering
@@ -826,33 +834,33 @@
         \label{fig:small_to_big_strategy}
     \end{figure}
 
-    Essa estratégia envolve vincular pequenos fragmentos de dados com fragmentos adjacentes, obtendo fragmentos maiores. Quando um fragmento relevante é identificado, o fragmento anterior e o próximo são recuperados, fornecendo um contexto mais amplo para o LLM, como ilustrado na \autoref{fig:small_to_big_strategy}.
+    
 
     \subsection{Buscas Vetoriais} \label{sec:vec_search}
 
     Neste trabalho, foi escolhido o \textit{Elasticsearch}, discutido na \autoref{sec:elasticsearch}, como instância de banco vetorial para a criação de \textit{indexes} e execução de buscas por contexto.
 
-    Nas buscas vetoriais realizadas, são analisados os \textit{embeddings} tanto da consulta quanto aqueles já armazenados no banco de dados, sendo retornado o \textit{nearest neighbor}, ou seja, o resultado mais próximo ao \textit{embedding} correspondente à consulta. Para garantir o retorno do \textit{nearest neighbor}, o \textit{elasticsearch}, faz uso do algoritmo \textit{Approximate Nearest Neighbor} (ANN).
+    Nas buscas vetoriais realizadas, são analisados os \textit{embeddings} tanto da consulta quanto aqueles já armazenados no banco de dados, sendo retornado o \textit{nearest neighbor}, ou seja, o resultado mais próximo, segundo uma métrica de similaridade adotada, ao \textit{embedding} correspondente à consulta. Para garantir o retorno do \textit{nearest neighbor}, o \textit{elasticsearch}, faz uso de um algoritmo \textit{Approximate Nearest Neighbor} (ANN), mais especificamente o \textit{Hierarchical Navigable Small World graphs} (HNSW) como evidenciado na publicação da versão $8.0$ do \textit{elasticsearch} \citetitle{hsnw}, \citeb{hsnw}.
     
-    O algoritmo ANN encontra um ponto em um conjunto de dados muito próximo ao ponto de consulta fornecido, mas não necessariamente o mais próximo de forma absoluta. Enquanto um algoritmo NN (Nearest Neighbor) percorre toda a base de dados para encontrar a correspondência perfeita, um algoritmo ANN se contenta com uma correspondência que seja ``próxima o suficiente''. 
+    O algoritmo ANN encontra um ponto em um conjunto de dados muito próximo ao ponto de consulta fornecido, mas não necessariamente o mais próximo de forma absoluta. Enquanto um algoritmo NN (\textit{Nearest Neighbor}) percorre toda a base de dados, gastando tempo O(n), para encontrar a correspondência perfeita, um algoritmo ANN se contenta com uma correspondência que seja ``próxima o suficiente'' e que possa ser encontrada rapidamente. 
     
-    Isso pode parecer uma solução inferior, mas é a chave para realizar buscas rápidas por similaridade. Desta maneira, em vez de consumir uma grande quantidade de tempo e recursos, é possível identificar pontos de dados com muito menos esforço, mas que ainda são úteis na maioria dos cenários práticos.
+    Isso pode parecer uma solução inferior, mas é a chave para realizar buscas rápidas por similaridade. Desta maneira, em vez de consumir uma grande quantidade de tempo e recursos, é possível identificar pontos similares com muito menos esforço, mas que ainda são úteis na maioria dos cenários práticos.
     
-    É importante frisar que uma busca vetorial no algoritmo ANN não percorre todo o banco vetorial porque, em conjuntos de dados muito grandes, a busca exaustiva por cada ponto se torna computacionalmente inviável, demandando tempos de resposta muito altos e consumo excessivo de recursos. 
+    É importante frisar que uma busca vetorial no algoritmo ANN não percorre todo o banco vetorial porque, em conjuntos de dados muito grandes, a busca exaustiva (complexidade O(n)) por cada ponto se torna computacionalmente inviável, demandando tempos de resposta muito altos e consumo excessivo de recursos. 
     
-    Para contornar essa limitação, o ANN emprega estruturas de dados especializadas, que permitem navegar apenas pelas regiões do espaço vetorial que têm maior probabilidade de conter os resultados mais relevantes. Isso reduz significativamente o número de comparações necessárias, mantendo a busca eficiente e prática, especialmente em aplicações onde o tempo de resposta é crítico. Essa abordagem é particularmente vantajosa em aplicações onde a escalabilidade e o tempo de resposta são fatores críticos, como em sistemas de recomendação e recuperação de informações.
+    Para contornar essa limitação, o ANN emprega estruturas de dados especializadas, que permitem navegar apenas pelas regiões do espaço vetorial que têm maior probabilidade de conter os resultados mais relevantes. Isso reduz significativamente o número de comparações necessárias, mantendo a busca eficiente e prática, especialmente em aplicações onde o tempo de resposta é crítico. Essa abordagem é particularmente vantajosa em aplicações em que a escalabilidade e o tempo de resposta são fatores críticos, como em sistemas de recomendação e recuperação de informações.
     
 
     \subsection{Interface Gráfica de Usuário}
     
-    O objetivo principal de uma interface gráfica é proporcionar ao usuário uma experiência intuitiva, eficiente e agradável ao longo de sua interação com os fluxos da aplicação. Uma interface bem projetada não apenas facilita a navegação, mas também reduz a curva de aprendizado e possíveis frustrações. No contexto deste trabalho, como o foco é a simulação de um assistente virtual, a forma mais natural e prática de implementar o ecossistema RAG seria por meio de uma interface de chat. Essa escolha se justifica pela familiaridade do público com esse tipo de interação, especialmente em cenários de assistência automatizada, permitindo que o usuário obtenha respostas às suas dúvidas e perguntas de maneira direta e acessível.
+    O objetivo principal de uma interface gráfica é proporcionar ao usuário uma experiência intuitiva, eficiente e agradável ao longo de sua interação com os fluxos da aplicação. Uma interface bem projetada não apenas facilita a navegação, mas também reduz a curva de aprendizado e possíveis frustrações. No contexto deste trabalho, como o foco é a simulação de um assistente virtual, a forma mais natural e prática de implementar o ecossistema RAG seria por meio de uma interface de \textit{chat}. Essa escolha se justifica pela familiaridade do público com esse tipo de interação, especialmente em cenários de assistência automatizada, permitindo que o usuário obtenha respostas às suas dúvidas e perguntas de maneira direta e acessível.
 
-    Para viabilizar essa proposta, foi utilizada a biblioteca \textit{streamlit}, apresentada na \autoref{sec:streamlit}, que possibilita a criação rápida e interativa de interfaces web. A partir dessa tecnologia, foi desenvolvida uma interface de chat que simula o comportamento de um assistente virtual, apresentada na \autoref{fig:chat_interface}. A estrutura da interface foi planejada para maximizar a usabilidade e a organização da interação.
+    Para viabilizar essa proposta, foi utilizada a biblioteca \textit{streamlit}, apresentada na \autoref{sec:streamlit}, que possibilita a criação rápida e interativa de interfaces \textit{web}. A partir dessa tecnologia, foi desenvolvida uma interface de \textit{chat} que simula o comportamento de um assistente virtual, apresentada na \autoref{fig:chat_interface}. A estrutura da interface foi planejada para maximizar a usabilidade e a organização da interação.
     
     \begin{figure}[ht]
         \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{chat-interface.png}
         \centering
-        \caption{Interface de chat implementada com uso da biblioteca \textit{streamlit}, discutida na \autoref{sec:streamlit}.}
+        \caption{Interface de chat implementada com uso da biblioteca \textit{streamlit}.}
         \centering
         \label{fig:chat_interface}
     \end{figure}
@@ -860,25 +868,25 @@
     Na \autoref{fig:chat_interface}, na barra lateral à esquerda, encontram-se dois filtros que fornecem ao usuário controle sobre dois parâmetros do sistema: 
     
     \begin{enumerate}
-        \item \textbf{Seletor de bibliotecas}: embora neste trabalho o escopo de bibliotecas esteja limitado a uma única opção, a escalabilidade do projeto está presente. Permitindo que um desenvolvedor possa ingerir múltiplas bibliotecas.
-        \item \textbf{Seletor de estratégia}: permite que o usuário escolha determinada estratégia para obter respostas mais precisas dependendo dos dados presentes na biblioteca, como discutido na \autoref{sec:strategies}.
+        \item \textbf{Seletor de bibliotecas}: embora neste trabalho o escopo de bibliotecas esteja limitado a uma única opção, a escalabilidade do projeto está presente. Esta opção permite que um desenvolvedor possa ingerir múltiplas bibliotecas;
+        \item \textbf{Seletor de estratégia de busca}: permite que o usuário escolha determinada estratégia de busca para obter respostas mais precisas dependendo dos dados presentes na biblioteca, como discutido na \autoref{sec:strategies}.
     \end{enumerate}
     
     Esses seletores possibilitam a personalização da experiência do usuário e um ajuste em tempo real do contexto que será buscado de acordo com as possíveis configurações.
 
-    Ainda na \autoref{fig:chat_interface}, no plano central da interface, está localizado o chat propriamente dito, que exibe as mensagens trocadas entre o usuário e o assistente virtual. Essa área principal é responsável por gerenciar as interações do usuário com a API subjacente, fornecendo respostas e simulando o comportamento de um sistema de perguntas e respostas. O design foi cuidadosamente planejado para que a comunicação seja clara, eficiente e visualmente organizada, reforçando o objetivo de criar uma experiência fluida e satisfatória ao usuário.
+    Ainda na \autoref{fig:chat_interface}, no plano central da interface, está localizado o \texit{chat} propriamente dito, que exibe as mensagens trocadas entre o usuário e o assistente virtual. Essa área principal é responsável por gerenciar as interações do usuário com a API subjacente, fornecendo respostas e implementando o comportamento de um sistema de perguntas e respostas. O design foi cuidadosamente planejado para que a comunicação seja clara, eficiente e visualmente organizada, reforçando o objetivo de criar uma experiência fluida e satisfatória ao usuário.
 
     \section{Avaliação Experimental} \label{sec:experiment}
 
-    Como dito anteriormente na \autoref{sec:objectives}, um dos objetivos específicos deste trabalho é executar uma validação sobre a solução gerada, de maneira que o resultado seja relevante. Ou seja, é necessário avaliar a eficiência e viabilidade do ecossistema a fim de responder se ele é capaz ou não de sanar uma dúvida ou responder uma pergunta de maneira satisfatória. 
+    Como dito anteriormente na \autoref{sec:objectives}, um dos objetivos específicos deste trabalho é executar uma validação sobre a solução gerada, de maneira que o resultado seja relevante. Ou seja, é necessário avaliar a eficácia e viabilidade do ecossistema a fim de responder se ele é capaz ou não de sanar dúvidas ou responder perguntas acerca de um determinado conjunto de documentos, de maneira satisfatória. 
     
-    Assim, nesta avaliação serão necessáriaos um \textit{prompt} para o assistente, perguntas e estratégias para obtermos o resultados necessários para popular o \textit{template} proposto na \autoref{tab:template_results}, que será apresentada neste capítulo. E como foi explicado na \autoref{sec:gui}, mais especificamente na etapa 4 da \autoref{fig:gui_scheme}, é necessário encaminhar um \textit{prompt} que será utilizado durante as requisições ao serviço de LLM no enriquecimento das respostas. Para esta avaliação, o \textit{prompt} é:
+    Assim, nesta avaliação, serão necessários um \textit{prompt} para o assistente, perguntas e definição de estratégia de busca para se obterem os resultados necessários para preencher o \textit{template} proposto na \autoref{tab:template_results}. Como foi explicado na \autoref{sec:gui}, mais especificamente na etapa 4 da \autoref{fig:gui_scheme}, é necessário encaminhar um \textit{prompt} que será utilizado durante as requisições ao serviço de LLM no enriquecimento das respostas. Para esta avaliação, o \textit{prompt} é:
 
     \begin{quote}
         
     \textit{Você é o assistente prestativo da UNIRIO, cujo trabalho é auxiliar estudantes e pesquisadores a esclarecer dúvidas sobre os trabalhos de conclusão de curso (TCCs).
     Seu trabalho é responder as perguntas de forma clara, utilizando somente os dados disponíveis dentro das tags de <context> e <history> fornecidas.
-    Sempre que for solicitado uma lista com "todos os trabalhos" ou "todas as citações", deixe claro que você irá retornar uma partição da biblioteca.}
+    Sempre que for solicitado uma lista com ``todos os trabalhos'' ou ``todas as citações'', deixe claro que você irá retornar uma partição da biblioteca.}
     
     \textit{Antes de responder, você precisa identificar e analisar as seguintes tags:
         1. Tag <query> que identifica o começo de uma pergunta (</query> identifica o fim da pergunta).
@@ -900,14 +908,14 @@
         \item Liste todos os trabalhos que abordem o tema ``inteligência artificial''.
     \end{enumerate}
 
-    Cada uma dessas perguntas será realizada para cada estratégia implementada, sendo elas representadas pelas seguintes chaves:
+    Cada uma dessas perguntas será realizada para cada estratégia de busca implementada, sendo elas representadas pelas seguintes chaves:
     
     \begin{itemize}
         \item \textbf{\textit{vector}}: estratégia \textit{Vector Store Flat Index} discutida na \autoref{sec:vector_search}.
-        \item \textbf{\textit{small to big}}: estratégia \textit{Small to Big} discutida na \autoref{sec:small_to_big_search}.
+        \item \textbf{\textit{small to big}}: estratégia \textit{Small to Big} discutida na \autoref{sec:small_to_big_search};
     \end{itemize}
     
-    No final das requisições haverá uma tabela, contendo o número da pergunta, a estratégia e um valor indicando se a resposta foi satisfatória, insatisfatória ou uma alucinação. Como ilustrado na \autoref{tab:template_results} a seguir:
+    No final das requisições haverá uma tabela, contendo o número da pergunta, a estratégia de busca e um valor indicando se a resposta foi satisfatória, insatisfatória ou uma alucinação (a partir de uma classificação humana). Como ilustrado na \autoref{tab:template_results} a seguir:
 
     \begin{center}
         \begin{table}[h!]
@@ -917,9 +925,9 @@
         \begin{tabular}{|c|c|l|}
         \hline
         \textbf{Pergunta} & \textbf{Estratégia} & \textbf{Resposta} \\ \hline
-         1                & vector              & Satisfatória      \\ \hline
-         2                & small to big        & Alucinação        \\ \hline
-         3                & vector              & Insatisfatória    \\ \hline
+         1                & \textit{vector}              & Satisfatória      \\ \hline
+         2                & \textit{small to big}        & Alucinação        \\ \hline
+         3                & \textit{vector}              & Insatisfatória    \\ \hline
         \end{tabular}
         \caption{Exemplo de tabela para os resultados do experimento.}
         \label{tab:template_results}
@@ -1001,14 +1009,16 @@
     Ao executar as perguntas para a estratégia \textit{Small to Big}, observa-se que as respostas são muito similares mesmo com a troca de estratégia. Porém, percebe-se que a estratégia é capaz de referenciar mais documentos que a estratégia \textit{Vector Store Flat Index}, mesmo que os demais documentos não sejam tão relevantes quanto o primeiro, como visto na \autoref{fig:satisfactory-question-C}. Também é possível observar, que ambas as estratégias obtiveram a mesma referência de documento, embora na estratégia \textit{Small to Big} a quantidade de documentos é consideralvemente maior, devido ao seu comportamento, discutido na \autoref{sec:small_to_big_search}. Durante a execução da primeira pergunta, tanto na \autoref{fig:satisfactory-question-C} quanto na \autoref{fig:satisfactory-question} o primeiro documento referenciado em ambas execuções foi o mesmo, inclusive as páginas referenciadas.
 
     A partir da \autoref{tab:results}, observa-se que independente da estratégia escolhida para a biblioteca de TCCs abordada a qualidade das respostas é a mesma. Os únicos pontos de atenção para este contexto é a quantidade de documentos referenciados nas estratégias, que possuem implementações distintas, e também consultas que peçam para ``listar todos...'', ``citar todas...'', que no contexto de busca vetorial abordado na \autoref{sec:vec_search} acaba não sendo possível, já que a busca realizada não percorre todo o banco vetorial durante a busca por contexto.
+
+    \clearpage
     
     \section{Conclusão}
+    
+    \subsection{Considerações Finais}
 
     A era digital, impulsionada pela expansão da Internet das Coisas (IoT), nos colocou no centro de um turbilhão de informações, onde cada indivíduo, por meio de dispositivos conectados, se tornou não apenas consumidor, mas também criador de dados em larga escala. Smartphones, dispositivos inteligentes e plataformas online produzem continuamente um rastro digital, transformando nossas atividades diárias em peças de um imenso quebra-cabeça global. Esse cenário destaca um paradoxo intrigante, pois enquanto as tecnologias facilitam a comunicação e o acesso ao conhecimento, o volume cada vez maior de dados gerados ultrapassa a capacidade humana de absorção. A era do ``excesso de dados'' nos desafia a encontrar maneiras mais inteligentes de filtrar, interpretar e aproveitar essa riqueza de informações sem nos perdermos em sua imensidão.
 
     Diante do desafio de lidar com o excesso de informações, a tecnologia RAG surge como uma solução para transformar grandes bibliotecas de dados em fontes acessíveis e inteligentes. Combinando recuperação de informações relevantes e geração de texto baseada em IA, o RAG também permite que o usuário obtenha respostas precisas e contextualizadas de maneira rápida e intuitiva. Localizando dados relevantes em vastos repositórios, processa o conteúdo e apresenta \textit{insights} claros, eliminando a necessidade de navegar por volumes massivos de informações.
-    
-    \subsection{Considerações Finais}
 
     Diante do cenário atual, marcado pelo crescente volume de dados gerados diariamente e pela presença de vastas bibliotecas digitais, a busca por informações tornou-se uma tarefa cada vez mais desafiadora, exigindo soluções que combinem eficiência e acessibilidade. 
     
