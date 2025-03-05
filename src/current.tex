@@ -299,11 +299,28 @@
 
     Este trabalho adotará a abordagem de \textit{Design Science Research} (DSR) para garantir que, ao final do trabalho, o artefato modelado esteja implementado e funcionando conforme planejado, atendendo aos requisitos definidos e demonstrando sua viabilidade prática. O DSR oferece uma estrutura robusta para guiar a criação de soluções baseadas em evidências, alinhando teoria e prática de forma estruturada.
 
-    Com raízes na engenharia e nas ciências do artificial \citeb{simon_1996}, o DSR é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real \citeb{design_science}.
-
-    Além disso, a aplicação do DSR valoriza a integração de análise teórica com resultados práticos, incentivando a reflexão crítica sobre as escolhas metodológicas e de \textit{design} realizadas durante o projeto. Isso possibilita uma contribuição mais ampla, tanto para o avanço acadêmico quanto para a aplicação prática em contextos organizacionais.
+    Com raízes na engenharia e nas ciências do artificial \citeb{simon_1996}, o DSR é uma metodologia voltada para a resolução de problemas. Seu objetivo é aprimorar o conhecimento humano por meio da criação de artefatos inovadores e da geração de conhecimento de design, oferecendo soluções práticas para problemas do mundo real \citeb{design_science}. 
     
-    Assim, ao utilizar o \textit{Design Science Research} (DSR), este trabalho resultará em um artefato produzido com base nas análises e discussões realizadas ao longo das próximas seções deste trabalho.
+    No artigo \citetitle{dsr} \citeb{dsr}, é apresentado um diagrama que detalha o processo de pesquisa do DSR, a tradução deste diagrama apresentada na \autoref{fig:dsr_model} expõe quatro pontos de entrada para o início do processo de pesquisa:
+    
+    \begin{enumerate}
+        \item Iniciação centrada no problema
+        \item Solução centrada no objetivo
+        \item Iniciação centrada no desenho e no desenvolvimento
+        \item Iniciado por cliente ou contexto
+    \end{enumerate}
+    
+    Neste trabalho, o início do processo de pesquisa é feito através da iniciação centrada no problema, discutido na \autoref{sec:problem}. A aplicação do DSR valoriza a integração de análise teórica com resultados práticos, incentivando a reflexão crítica sobre as escolhas metodológicas e de \textit{design} realizadas durante o projeto.
+    
+    \begin{figure}[ht]
+        \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{dsrm-process-model-2.png}
+        \centering
+        \caption{Tradução do diagrama do processo de pesquisa do DSR (extraído de \citeb{dsr})}
+        \centering
+        \label{fig:dsr_model}
+    \end{figure}  
+
+    Isso possibilita uma contribuição mais ampla, tanto para o avanço acadêmico quanto para a aplicação prática em contextos organizacionais. Assim, ao utilizar o DSR, este trabalho resultará em um artefato produzido com base nas análises e discussões realizadas ao longo das próximas seções deste trabalho.
     
     \clearpage
 
@@ -393,7 +410,7 @@
     O padrão de fábrica, é um padrão criacional que fornece uma interface para a criação de objetos em uma superclasse, delegando às subclasses a responsabilidade de determinar qual classe concreta será instanciada. Ele é útil quando a criação de objetos envolve lógica complexa ou quando diferentes tipos de objetos precisam ser criados de forma dinâmica, dependendo do contexto. Como ilustrado na \autoref{fig:factory-pattern}, o padrão de fábrica implementa uma interface para a criação de objetos que herdam de uma superclasse, permitindo que as classes filhas possam alterar o tipo de objeto criado. 
 
     
-    \subsection{O Problema}
+    \subsection{O Problema} \label{sec:problem}
 
     No livro \citetitle{rothman}, é dito que ``mesmo o modelo mais avançado de Inteligência Artificial (IA) generativa é limitado a responder somente sobre dados nos quais ele foi treinado.'' \citeb{rothman}. Essa afirmação chama a atenção para um problema especial: como fazer para que uma IA saiba responder perguntas referentes a um conjunto específico de dados, diferente daquele em que foi treinada?
 
