@@ -156,7 +156,7 @@
         cumprimento de requerimento parcial para obtenção título de Bacharel em
         Sistemas de Informação.}
         \vskip 1.5cm
-        Approved by:
+        Aprovado por:
         \vskip 1.5cm
         \rule{10.0cm}{.1mm}
 
@@ -190,8 +190,9 @@
     \clearpage
 
     \begin{flushright}
-        Agradecimentos
+        \textbf{Agradecimentos}
     \end{flushright}
+    \normalsize
     
     Agradeço profundamente aos meus pais, Rita e Alexandre, pelo apoio incondicional ao longo de toda a minha jornada, mas especialmente durante meu percurso acadêmico, sempre ao meu lado.
 
@@ -204,6 +205,7 @@
     \clearpage
 
     \begin{abstract}
+    \normalsize
         Em uma parceria entre Seagate e a International Data Corporation (IDC) foi realizado o estudo \citetitle{digitization}, nele a IDC fala sobre diversos aspectos referentes aos dados presentes no mundo digital e um dos tópicos abordados no estudo é ``Mankind is on a quest to digitize the world'' e neste mesmo tópico eles explicam que os dados que geramos no dia a dia está em constante crescimento, ou seja, estamos gradualmente produzindo mais dados.
 
         Com um volume cada vez maior de dados, uma busca por informação otimizada é essencial, dado que são necessárias ferramentas que nos garantam confiança e precisão da informação adquirida. Com isso em mente, este trabalho visa o desenvolvimento de um sistema capaz de ler, processar e armazenar documentos diversos de determinada biblioteca (conjunto de documentos) para que possamos utilizar um \textit{Large Language Model} (LLM) para responder perguntas que os usuários possam ter acerca dos documentos.
@@ -214,10 +216,12 @@
             \textbf{Palavras-chave:} retrieval, augmented, generation, inteligência, artificial.
         \end{flushleft}
     \end{abstract}
+    
     \clearpage
 
     \begin{english}
         \begin{abstract}
+        \normalsize
             In a partnership between Seagate and the International Data Corporation (IDC), the study \citetitle{digitization} was conducted. In it, IDC discusses various aspects related to data present in the digital world and one of the topics covered in the study is ``Mankind is on a quest to digitize the world''. In this same topic, they explain that the data we generate on a daily basis is constantly growing, that is, we are gradually producing more data.
 
             With an ever-increasing volume of data, an optimized search for information is essential, given that tools are needed that guarantee reliability and accuracy of the information acquired. With this in mind, this work aims to develop a system capable of reading, processing and storing various documents from a given library (set of documents) so that we can use a \textit{Large Language Model} (LLM) to answer questions that users may have about the documents.
@@ -493,7 +497,7 @@
             \label{eq:cosseno}
         \end{equation}
         
-        Calcula o cosseno entre dois vetores, por exemplo, encontra itens (vetores) que estejam intimamente relacionados, garantindo que os resultados da busca não sejam apenas rápidos, mas também altamente relevantes.
+        Calcula o cosseno entre dois vetores, por exemplo, encontra itens (vetores) que estejam intimamente relacionados a partir do cosseno do ângulo entre dois vetores, resultando em um valor entre -1 e 1, sendo 1 para vetores iguais e -1 para vetores opostos. Garantindo que os resultados da busca não sejam apenas rápidos, mas também altamente relevantes.
     \end{enumerate}
 
     Após a recuperação dos dados, o próximo passo é aumentar a entrada, ou seja, adicionar as informações recuperadas para enriquecer a resposta gerada ao usuário.
@@ -783,10 +787,10 @@
         \item \textbf{\textit{Índices}}\\
         Responsáveis por operações relacionadas aos índices da instância do banco vetorial configurado para a aplicação.
         \begin{itemize}
-            \item \textbf{\texttt{/indexes}}: Lista todos os índices disponíveis no banco vetorial instanciado.
-            \item \textbf{\texttt{/indexes/index}}: Verifica se determinado índice existe ou não, dentro do banco vetorial instanciado.
-            \item \textbf{\texttt{/indexes/create/index}}: Efetua a criação de um novo índice para o banco vetorial instanciado.
-            \item \textbf{\texttt{/indexes/delete/index}}: Remove um índice, já existente, no banco vetorial instanciado.
+            \item \texttt{/indexes}: Lista todos os índices disponíveis no banco vetorial instanciado.
+            \item \texttt{/indexes/index}: Verifica se determinado índice existe ou não, dentro do banco vetorial instanciado.
+            \item \texttt{/indexes/create/index}: Efetua a criação de um novo índice para o banco vetorial instanciado.
+            \item \texttt{/indexes/delete/index}: Remove um índice, já existente, no banco vetorial instanciado.
         \end{itemize}
         \item \textbf{\textit{Ingestão}}:\\ Responsáveis por todas as operações de ingestão de dados na instância do banco vetorial configurado para a aplicação.
         \begin{itemize}
